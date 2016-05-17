@@ -19,7 +19,7 @@ subset_pc_plot <- function(gene_set, exp.design, feature_label, counts.mat){
   # Extract the first two components, and add labels from the design data frame
   pc1_pc2 <- subset(rotations, select = c("PC1", "PC2"))
   pc1_pc2$rna_seq_lib <- rownames(pc1_pc2)
-  pc1_pc2_w_design <- left_join(pc1_pc2, exp.design, by='rna_seq_lib')
+  pc1_pc2_w_design <- dplyr::left_join(pc1_pc2, exp.design, by='rna_seq_lib')
   p <- ggplot2::ggplot(pc1_pc2_w_design, aes(x=PC1, y=PC2))
   p <- p + ggplot2::aes_string(colour=feature_label)
   # p <- p + geom_label_repel(box.padding = unit(0.5, "lines"), na.rm=TRUE)

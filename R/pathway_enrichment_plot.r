@@ -12,8 +12,8 @@ pathway_enrichment_plot <- function(gage_hits, plot_limit = 20){
   # Arrange by q-value - reverse because of the coordinate flip below
   plot_subset$pathway <- factor(plot_subset$pathway,
                                 levels = rev(plot_subset$pathway))
-  p <- ggplot(plot_subset,
-              aes(x=pathway, y=q.val, size=set.size, colour=stat.mean))
-  p <- p + geom_point() + scale_y_log10() + coord_flip()
+  p <- ggplot2::ggplot(plot_subset,
+                       ggplot2::aes(x=pathway, y=q.val, size=set.size, colour=stat.mean))
+  p <- p + ggplot2::geom_point() + ggplot2::scale_y_log10() + ggplot2::coord_flip()
   return(p)
 }

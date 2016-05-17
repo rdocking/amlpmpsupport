@@ -1,7 +1,7 @@
 #' Plot predictions from a randomForest model
 #'
 #' @param voom.hits A data frame from the voom analysis, _unthresholded_
-#' @param gene_list A list of gene sets, constructed by the geneIds function above
+#' @param gsets A list of gene sets, constructed by the geneIds function above
 #' @param adj_p_threshold Threshold cutoff to use for voom adjusted p-value
 #' @param same.dir same.dir argument for the `gage` function
 #'

@@ -10,11 +10,11 @@ run_gage_for_feature(voom.hits, gsets, adj_p_threshold = 0.05,
 \arguments{
 \item{voom.hits}{A data frame from the voom analysis, _unthresholded_}
 
+\item{gsets}{A list of gene sets, constructed by the geneIds function above}
+
 \item{adj_p_threshold}{Threshold cutoff to use for voom adjusted p-value}
 
 \item{same.dir}{same.dir argument for the `gage` function}
-
-\item{gene_list}{A list of gene sets, constructed by the geneIds function above}
 }
 \value{
 pathways.merged A data frame containing up- and down-regulated pathways
