@@ -9,10 +9,20 @@ License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 5.0.1
 Imports:
+  knitr,
+  dplyr,
+  ggplot2,
+  tidyr
+Suggests:
   limma,
   edgeR,
   org.Hs.eg.db,
   AnnotationDbi,
-  knitr,
-  dplyr
+  ggrepel,
+  pheatmap,
+  caret,
+  randomForest,
+  broom,
+  gage,
+  GGally
 VignetteBuilder: knitr
