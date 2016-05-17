@@ -19,7 +19,7 @@ train_caret_rf <- function(gene_set, yvals, exp.design, counts.mat){
   caret.rf <- caret::train(x = counts.subset.transpose.mat,
                            y = yvals,
                            method="rf",
-                           trControl=trainControl(method="cv",number=5),
+                           trControl=caret::trainControl(method="cv",number=5),
                            prox=TRUE,
                            allowParallel=TRUE,
                            ntree=5000)

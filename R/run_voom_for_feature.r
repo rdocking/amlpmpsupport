@@ -31,7 +31,7 @@ run_voom_for_feature <- function(yvals, exp.design, counts.mat){
   # Add the gene name back as a column for later
   voom.hits.all$gene <- rownames(voom.hits.all)
   # Add Entrez IDs for all genes
-  voom.hits.all$entrez = as.numeric(AnnotationDbi::mapIds(org.Hs.eg.db,
+  voom.hits.all$entrez = as.numeric(AnnotationDbi::mapIds(org.Hs.eg.db::org.Hs.eg.db,
                                                           keys=voom.hits.all$gene,
                                                           column="ENTREZID",
                                                           keytype="SYMBOL",
