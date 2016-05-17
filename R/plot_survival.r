@@ -8,7 +8,7 @@
 #'
 plot_survival <- function(exp.design, label_col){
   # Generate a survival model using the survfit function
-  surv <- survival::survfit(Surv(survival_time, survival_event) ~ label_col,
+  surv <- survival::survfit(survival::Surv(survival_time, survival_event) ~ label_col,
                             data = exp.design)
   p <- GGally::ggsurv(surv, CI = TRUE) + ggplot2::ggtitle('Kaplan-Meier Estimator')
   p
