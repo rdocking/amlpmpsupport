@@ -1,0 +1,19 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+This package contains miscellaneous support code for analysis done for the AML PMP RNA-Seq Diagnostic Manuscript.
+
+At present, these functions aren't conceptually related beyond being 'supporting functions to help run analyses related to the AML PMP RNA-Seq Diagnostic Manuscript'. 

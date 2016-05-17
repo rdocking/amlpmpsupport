@@ -1,9 +1,9 @@
 Package: RNASeqMSSupport
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Support Functions for AML PMP RNA-Seq Diagnostic Manuscript
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Authors@R: person("Rod", "Docking", email = "rdocking@bcgsc.ca", role = c("aut", "cre"))
+Maintainer: Rod Docking <rdocking@bcgsc.ca>
+Description: Miscellaneous support code for analysis done for the AML PMP RNA-Seq Diagnostic Manuscript
+License: MIT + file LICENSE
 LazyData: TRUE
