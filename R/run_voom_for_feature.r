@@ -16,7 +16,7 @@ run_voom_for_feature <- function(yvals, exp.design, counts.mat){
   voom.dat <- limma::voom(counts.mat,
                           design.mat,
                           plot = TRUE,
-                          lib.size = colSums(sailfish.genes.counts.mat) * norm.factor)
+                          lib.size = colSums(counts.mat) * norm.factor)
   # Clear plots
   dev.off()
   # Run lmFit and eBayes
