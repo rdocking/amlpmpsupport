@@ -1,4 +1,4 @@
-#' Plot predictions from a randomForest model
+#' Run GAGE gene-set enrichment analysis for a given feature
 #'
 #' @param voom.hits A data frame from the voom analysis, _unthresholded_
 #' @param gsets A list of gene sets, constructed by the geneIds function above

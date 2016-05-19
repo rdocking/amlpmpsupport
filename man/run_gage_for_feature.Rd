@@ -2,7 +2,7 @@
 % Please edit documentation in R/run_gage_for_feature.r
 \name{run_gage_for_feature}
 \alias{run_gage_for_feature}
-\title{Plot predictions from a randomForest model}
+\title{Run GAGE gene-set enrichment analysis for a given feature}
 \usage{
 run_gage_for_feature(voom.hits, gsets, adj_p_threshold = 0.05,
   same.dir = TRUE)
@@ -20,6 +20,6 @@ run_gage_for_feature(voom.hits, gsets, adj_p_threshold = 0.05,
 pathways.merged A data frame containing up- and down-regulated pathways
 }
 \description{
-Plot predictions from a randomForest model
+Run GAGE gene-set enrichment analysis for a given feature
 }
 
