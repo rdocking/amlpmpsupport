@@ -25,3 +25,46 @@ construct_rna_qc_dataframe <- function(exp.design){
   # Return the data frame
   return(rna_seqc.df)
 }
+
+#' Construct a data frame of Sailfish gene-level results
+#'
+#' Given a data frame containing library names and Sailfish paths, Construct a data frame of Sailfish results
+#' NOTE that this function makes strong assumptions about the shape of the incoming data frame,
+#' and currently only fetches \emph{gene-level} results
+#'
+#' @param exp.design Experimental design data frame
+#'
+#' @return df A data frame containing the Sailfish results
+#' @export
+#'
+construct_sailfish_gene_dataframe <- function(exp.design){
+  sailfish.genes.df <- data.frame()
+  for (lib in exp.design$rna_seq_lib) {
+    # Select the row that we want
+    data_row <- filter(exp.design, rna_seq_lib == lib)
+    # Read the events data into a temporary df
+    tmp.df <- ifxparsers::sailfish_gene_parser_post_0.7.0(data_row$sailfish_path)
+    tmp.df$library_name <- lib
+    # Bind the count data to the growing df
+    sailfish.genes.df <- bind_rows(sailfish.genes.df, tmp.df)
+  }
+  return(sailfish.genes.df)
+}
+
+#' From a data frame of Sailfish gene-level results, construct an expression matrix
+#'
+#' Given a data frame containing Sailfish gene-level results, from the construct_sailfish_gene_dataframe
+#' function, convert that dataframe to a matrix suitable for downstream analysis
+#'
+#' @param sailfish.df Data frame containing sailfish results
+#' @param metric Expression metric to use (either 'NumReads' or 'TPM')
+#'
+#' @return df A data frame containing the Sailfish results
+#' @export
+#'
+#convert_sailfish_df_to_matrix <- function(sailfish.df, metric = c("NumReads", "TPM")){
+#  # Select out the relevant columns
+#  # What I want is just the gene name, the desired metric, and the library names
+#  sailfish.genes.counts.subset.df <- dplyr::select(sailfish.df, Name, metric, library_name)
+#
+#}
