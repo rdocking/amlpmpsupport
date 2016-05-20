@@ -25,5 +25,6 @@ Suggests:
   broom,
   gage,
   GGally,
-  survival
+  survival,
+  ifxparsers
 VignetteBuilder: knitr
