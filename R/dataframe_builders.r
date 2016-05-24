@@ -76,6 +76,6 @@ convert_sailfish_df_to_matrix <- function(sailfish.df, metric = c("NumReads", "T
   # Then remove the transcript column and convert to a matrix
   metric_subset.wide.df <- dplyr::select(metric_subset.wide.df, -Name)
   metric_subset.mat <- as.matrix(metric_subset.wide.df)
-  return(metric_subset.wide.df)
+  return(metric_subset.mat)
 }
 
