@@ -62,9 +62,20 @@ construct_sailfish_gene_dataframe <- function(exp.design){
 #' @return df A data frame containing the Sailfish results
 #' @export
 #'
-#convert_sailfish_df_to_matrix <- function(sailfish.df, metric = c("NumReads", "TPM")){
-#  # Select out the relevant columns
-#  # What I want is just the gene name, the desired metric, and the library names
-#  sailfish.genes.counts.subset.df <- dplyr::select(sailfish.df, Name, metric, library_name)
-#
-#}
+convert_sailfish_df_to_matrix <- function(sailfish.df, metric = c("NumReads", "TPM")){
+  # Select out the relevant columns
+  # What I want is just the gene name, the desired metric, and the library names
+  # Note that we need to use the standard evaluation versions here because of the arguments
+  metric_subset.df <- dplyr::select_(sailfish.df, "Name", metric, "library_name")
+  # Spread the data into a wide format...
+  metric_subset.wide.df <- tidyr::spread_(metric_subset.df,
+                                          key="library_name",
+                                          value=metric)
+  # Set the rownames as the transcript ID
+  rownames(metric_subset.wide.df) <- metric_subset.wide.df$Name
+  # Then remove the transcript column and convert to a matrix
+  metric_subset.wide.df <- dplyr::select(metric_subset.wide.df, -Name)
+  metric_subset.mat <- as.matrix(metric_subset.wide.df)
+  return(metric_subset.wide.df)
+}
+
