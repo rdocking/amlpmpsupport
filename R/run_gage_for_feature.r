@@ -10,10 +10,10 @@
 #'
 run_gage_for_feature <- function(voom.hits, gsets,
                                  adj_p_threshold = 0.05, same.dir = TRUE){
-  # Subset to adjusted p-value threshold <= 0.01
+  # Subset to adjusted p-value threshold <= adj_p_threshold
   threshold.hits <- dplyr::filter(voom.hits, adj.P.Val <= adj_p_threshold)
   # Set up a named vector of fold changes
-  foldchanges = threshold.hits$logFC
+  foldchanges = limma_logFC_to_signed_foldchange(threshold.hits$logFC)
   names(foldchanges) = threshold.hits$entrez
   # Run gage to find the enriched pathways:
   pathways = gage::gage(foldchanges,

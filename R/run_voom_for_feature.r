@@ -30,11 +30,53 @@ run_voom_for_feature <- function(yvals, exp.design, counts.mat){
                                    p.value = Inf)
   # Add the gene name back as a column for later
   voom.hits.all$gene <- rownames(voom.hits.all)
-  # Add Entrez IDs for all genes
-  voom.hits.all$entrez = as.numeric(AnnotationDbi::mapIds(org.Hs.eg.db::org.Hs.eg.db,
-                                                          keys=voom.hits.all$gene,
-                                                          column="ENTREZID",
-                                                          keytype="SYMBOL",
-                                                          multiVals="first"))
   return(voom.hits.all)
+}
+
+#' Add Entrez gene IDs to a data frame of voom hits
+#'
+#' @param voom_hits A data frame containing voom hits, with HUGO gene ids
+#'
+#' @return df A data frame containing the Entrez gene IDs in a column called 'entrez'
+#' @export
+#'
+add_entrez_ids_from_hugo_genes <- function(voom_hits){
+  voom_hits$entrez = as.numeric(AnnotationDbi::mapIds(org.Hs.eg.db::org.Hs.eg.db,
+                                                      keys=voom_hits$gene,
+                                                      column="ENTREZID",
+                                                      keytype="SYMBOL",
+                                                      multiVals="first"))
+  return(voom_hits)
+}
+
+
+#' Munge differential expression hits in voom format to IPA-friendly format
+#'
+#' @param voom_hits A data frame containing voom hits
+#'
+#' @return df A data frame containing the voom hits in IPA-friendly format
+#' @export
+#'
+munge_voom_to_ipa <- function(voom_hits){
+  ipa_hits <- transmute(voom_hits,
+                        ID = gene,
+                        FOLD = limma_logFC_to_signed_foldchange(logFC),
+                        P_VALUE = P.Value,
+                        Q_VALUE = adj.P.Val)
+  return(ipa_hits)
+}
+
+#' Convert limma's logFC value to signed fold-change
+#'
+#' Note that this needs to convert negative logFC numbers to absolute values to get correct fold-change estimates.
+#' limma reports `logFC` as the 'estimate of the log2-fold-change'. For fold-changes in the \emph{negative} direction
+#' we need to use the absolute value of the fold-change before applying the sign
+#'
+#' @param logFC A logFC value reported by limma
+#'
+#' @return foldchange A signed fold-change value
+#' @export
+#'
+limma_logFC_to_signed_foldchange <- function(logFC){
+  return (ifelse(abs(logFC >= 0), 2^logFC, (2^(abs(logFC)) * -1)))
 }
