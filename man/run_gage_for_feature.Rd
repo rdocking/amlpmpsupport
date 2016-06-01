@@ -4,15 +4,12 @@
 \alias{run_gage_for_feature}
 \title{Run GAGE gene-set enrichment analysis for a given feature}
 \usage{
-run_gage_for_feature(voom.hits, gsets, adj_p_threshold = 0.05,
-  same.dir = TRUE)
+run_gage_for_feature(voom.hits, gsets, same.dir = TRUE)
 }
 \arguments{
 \item{voom.hits}{A data frame from the voom analysis, _unthresholded_}
 
 \item{gsets}{A list of gene sets, constructed by the geneIds function above}
-
-\item{adj_p_threshold}{Threshold cutoff to use for voom adjusted p-value}
 
 \item{same.dir}{same.dir argument for the `gage` function}
 }

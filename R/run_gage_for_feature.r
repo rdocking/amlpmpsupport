@@ -2,19 +2,15 @@
 #'
 #' @param voom.hits A data frame from the voom analysis, _unthresholded_
 #' @param gsets A list of gene sets, constructed by the geneIds function above
-#' @param adj_p_threshold Threshold cutoff to use for voom adjusted p-value
 #' @param same.dir same.dir argument for the `gage` function
 #'
 #' @return pathways.merged A data frame containing up- and down-regulated pathways
 #' @export
 #'
-run_gage_for_feature <- function(voom.hits, gsets,
-                                 adj_p_threshold = 0.05, same.dir = TRUE){
-  # Subset to adjusted p-value threshold <= adj_p_threshold
-  threshold.hits <- dplyr::filter(voom.hits, adj.P.Val <= adj_p_threshold)
+run_gage_for_feature <- function(voom.hits, gsets, same.dir = TRUE){
   # Set up a named vector of fold changes
-  foldchanges = limma_logFC_to_signed_foldchange(threshold.hits$logFC)
-  names(foldchanges) = threshold.hits$entrez
+  foldchanges = voom.hits$logFC
+  names(foldchanges) = voom.hits$entrez
   # Run gage to find the enriched pathways:
   pathways = gage::gage(foldchanges,
                   gsets=gsets,

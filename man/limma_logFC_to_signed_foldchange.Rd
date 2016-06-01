@@ -14,7 +14,7 @@ foldchange A signed fold-change value
 }
 \description{
 Note that this needs to convert negative logFC numbers to absolute values to get correct fold-change estimates.
-limma reports `logFC` as the 'estimate of the log2-fold-change'. For fold-changes in the _negative_ direction
+limma reports `logFC` as the 'estimate of the log2-fold-change'. For fold-changes in the \emph{negative} direction
 we need to use the absolute value of the fold-change before applying the sign
 }
 
