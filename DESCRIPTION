@@ -26,5 +26,6 @@ Suggests:
   gage,
   GGally,
   survival,
-  ifxparsers
+  ifxparsers,
+  zoo
 VignetteBuilder: knitr
