@@ -63,7 +63,7 @@ retrieve_db_libraries <- function(db_conn) {
     rename(platform_name = name) %>%
     dplyr::select(-fields, -platform_id, -platform_version_id, -specimen_subset_id,
                   -specimen_id, -library_id, -sequencing_effort_id,
-                  -library_qc_info, -index_sequence, -type) ->
+                  -library_qc_info, -type) ->
     db_libraries.query
   db_libraries.df <- collect(db_libraries.query)
   return(db_libraries.df)
