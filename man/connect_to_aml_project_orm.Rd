@@ -8,10 +8,14 @@ connect_to_aml_project_orm(dbname = "aml_project_db",
   host = "karsanlab-db01", user)
 }
 \arguments{
-\item{user}{}
+\item{dbname}{Database name}
+
+\item{host}{Database host}
+
+\item{user}{Database username}
 }
 \value{
-db_conn
+db_conn A database connection object
 }
 \description{
 Connect to AML Project ORM Database

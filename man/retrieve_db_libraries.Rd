@@ -4,10 +4,13 @@
 \alias{retrieve_db_libraries}
 \title{Retrieve DB Libraries}
 \usage{
-retrieve_db_libraries(variables)
+retrieve_db_libraries(db_conn)
 }
 \arguments{
-\item{variables}{}
+\item{db_conn}{Database connection object}
+}
+\value{
+db_libraries.df A data-frame containing library information from the database
 }
 \description{
 Retrieve DB Libraries
