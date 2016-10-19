@@ -146,3 +146,37 @@ retrieve_db_paths <- function(db_conn) {
   return(db_paths.df)
 }
 
+
+#' Retrieve DB Curated Results
+#'
+#' @param db_conn Database connection object
+#'
+#' @return db_curated_results.df A data-frame containing curated result information from the database
+#' @export
+#'
+#' @examples
+retrieve_db_curated_results <- function(db_conn) {
+  # Connect to the relevant tables
+  patient.tbl <- tbl(db_conn, "patient")
+  specimen.tbl <- tbl(db_conn, "specimen")
+  curated_result.tbl <- tbl(db_conn, "curated_result")
+  # Starting from the curated results table in the database...
+  curated_result.tbl %>%
+    # Join to specimen
+    dplyr::inner_join(specimen.tbl, by = c("specimen_id" = "id")) %>%
+    dplyr::rename(specimen_external_id = external_id) %>%
+    # Join to patient
+    dplyr::inner_join(patient.tbl, by = c("patient_id" = "id")) %>%
+    # Select matching fields
+    dplyr::select(specimen_external_id, subtype, flt3_status,
+                  npm1_status, kit_status, cebpa_status,
+                  cytogenetic_risk, karyotype, fusions,
+                  tier_one_mutation_status, kmt2a_status,
+                  dnmt3a_status) %>%
+    # Sort by specimen ID
+    arrange(specimen_external_id) ->
+    curated_results.query
+    # Collect results into a data frame
+    curated_results.df <- collect(curated_results.query)
+    return(curated_results.df)
+}
