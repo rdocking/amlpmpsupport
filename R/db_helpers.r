@@ -180,3 +180,38 @@ retrieve_db_curated_results <- function(db_conn) {
     curated_results.df <- collect(curated_results.query)
     return(curated_results.df)
 }
+
+
+#' Retrieve DB Specimens
+#'
+#' @param db_conn Database connection object
+#'
+#' @return db_specimens.df A data-frame containing specimen information from the database
+#' @export
+#'
+#' @examples
+retrieve_db_specimens <- function(db_conn) {
+  # Connect to the relevant tables
+  patient.tbl <- tbl(db_conn, "patient")
+  specimen.tbl <- tbl(db_conn, "specimen")
+  specimen_subset.tbl <- tbl(db_conn, "specimen_subset")
+  # Start from patient, and query downwards
+  patient.tbl %>%
+    dplyr::select(id, external_id, is_patient) %>%
+    dplyr::rename(patient_id = id,
+                  patient_external_id = external_id) %>%
+    # Join to specimen
+    dplyr::left_join(specimen.tbl, by = "patient_id") %>%
+    dplyr::rename(specimen_id = id,
+                  specimen_external_id = external_id) %>%
+    dplyr::select(-patient_id) %>%
+    # Join to specimen_subset
+    dplyr::left_join(specimen_subset.tbl, by = "specimen_id") %>%
+    dplyr::rename(specimen_subset_id = id,
+                  specimen_subset_external_id = external_id) %>%
+    dplyr::select(-specimen_subset_id, -specimen_id) ->
+    db_specimens.query
+  db_specimens.df <- collect(db_specimens.query)
+  return(db_specimens.df)
+}
+
