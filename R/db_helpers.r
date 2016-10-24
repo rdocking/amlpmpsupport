@@ -167,8 +167,10 @@ retrieve_db_curated_results <- function(db_conn) {
     dplyr::rename(specimen_external_id = external_id) %>%
     # Join to patient
     dplyr::inner_join(patient.tbl, by = c("patient_id" = "id")) %>%
+    dplyr::rename(patient_external_id = external_id) %>%
     # Select matching fields
-    dplyr::select(specimen_external_id, subtype, flt3_status,
+    dplyr::select(patient_external_id, specimen_external_id,
+                  subtype, flt3_status,
                   npm1_status, kit_status, cebpa_status,
                   cytogenetic_risk, karyotype, fusions,
                   tier_one_mutation_status, kmt2a_status,
