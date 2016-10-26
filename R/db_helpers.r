@@ -217,3 +217,35 @@ retrieve_db_specimens <- function(db_conn) {
   return(db_specimens.df)
 }
 
+#' Retrieve DB Comments
+#'
+#' @param db_conn Database connection object
+#'
+#' @return db_comments.df A data-frame containing curated result comments from the database
+#' @export
+#'
+#' @examples
+retrieve_db_comments <- function(db_conn) {
+  # Connect to the relevant tables
+  patient.tbl <- tbl(db_conn, "patient")
+  specimen.tbl <- tbl(db_conn, "specimen")
+  curated_result.tbl <- tbl(db_conn, "curated_result")
+  curated_result_comment.tbl <- tbl(db_conn, "curated_result_comment")
+  # Starting from the curated results table in the database...
+  curated_result_comment.tbl %>%
+    dplyr::inner_join(curated_result.tbl, by = c("curated_result_id" = "id")) %>%
+    # dplyr::rename(specimen_external_id = external_id) %>%
+    # Join to specimen
+    dplyr::inner_join(specimen.tbl, by = c("specimen_id" = "id")) %>%
+    dplyr::rename(specimen_external_id = external_id) %>%
+    # Join to patient
+    dplyr::inner_join(patient.tbl, by = c("patient_id" = "id")) %>%
+    dplyr::rename(patient_external_id = external_id) %>%
+    # Select matching fields
+    dplyr::select(patient_external_id, specimen_external_id,
+                  comment, added_by, added_date) ->
+    curated_comments.query
+  # Collect results into a data frame
+  curated_comments.df <- collect(curated_comments.query)
+  return(curated_comments.df)
+}
