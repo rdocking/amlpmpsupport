@@ -147,6 +147,28 @@ retrieve_db_paths <- function(db_conn) {
 }
 
 
+# From a subtype indication, return a simplified disease type
+#' Convert subtype indications to disease status
+#'
+#' @param subtype Curated disease subtype
+#'
+#' @return disease A simplified disease name
+#' @export
+#'
+#' @examples
+subtype_to_disease <- function(subtype) {
+  disease <- NA
+  if(subtype == 'AML-MDS'){
+    disease <- subtype
+  } else if(startsWith(subtype, "AML")){
+    disease <- 'AML'
+  } else {
+    disease <- subtype
+  }
+  return(disease)
+}
+
+
 #' Retrieve DB Curated Results
 #'
 #' @param db_conn Database connection object
@@ -180,6 +202,9 @@ retrieve_db_curated_results <- function(db_conn) {
     curated_results.query
     # Collect results into a data frame
     curated_results.df <- collect(curated_results.query)
+    # Add a simplified disease type
+    curated_results.df$disease <- purrr::map_chr(curated_results.df$subtype,
+                                                 subtype_to_disease)
     return(curated_results.df)
 }
 
