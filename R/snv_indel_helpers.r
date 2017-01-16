@@ -11,11 +11,16 @@ read_filled_variant_tsv <- function(tsv_file) {
                         col_names = c('chr', 'pos', 'ref', 'alt', 'sample', 'gene',
                                       'transcript', 'protein', 'genotype',
                                       'hq_depth', 'vaf')) %>%
+                  # Calculate a numeric variant allele frequency
     dplyr::mutate(vaf_numeric = as.numeric(gsub('%', '', vaf)),
-           var_key = paste(chr, pos, ref, alt, sep='_'),
-           var_hgvs = paste(gene, transcript, protein, sep=';'),
-           bool_genotype = as.integer(if_else(genotype %in% c('0/1', '1/1', '1|1', '0|1'),
-                                              1, 0)))
+                  # Calculate a 'variant key' - chr_pos_ref_alt
+                  var_key = paste(chr, pos, ref, alt, sep='_'),
+                  # Paste together the HGVS names
+                  var_hgvs = paste(gene, transcript, protein, sep=';'),
+                  # Add a simple yes/no for 'was a variant called?'
+                  # Note that we handleweird genotypes (0|1, 1|0, 1|1) here
+                  bool_genotype = as.integer(if_else(genotype %in% c('0/1', '1/1', '0|1', '1|0', '1|1'),
+                                                     1, 0)))
   return(filled.df)
 }
 
@@ -29,8 +34,11 @@ read_filled_variant_tsv <- function(tsv_file) {
 #' @examples
 spread_filled_snv_df_to_wide <- function(df) {
   df %>%
+    # Add a default concordance colour for plotting
     dplyr::mutate(concordance_col = 'black') %>%
+    # Remove redundant columns
     dplyr::select(-genotype, -hq_depth, -vaf, -vaf_numeric) %>%
+    # Spread to wide to compare samples by genotypes
     tidyr::spread(sample, bool_genotype) %>%
     as.data.frame() %>%
     return()
