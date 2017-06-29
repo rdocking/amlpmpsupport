@@ -15,4 +15,3 @@ ret.mat
 \description{
 Transform long dataframe to sorted matrix
 }
-

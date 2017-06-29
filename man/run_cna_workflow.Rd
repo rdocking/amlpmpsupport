@@ -14,4 +14,3 @@ run_cna_workflow(expr.mat, genes.bed, window_size = NA,
 \description{
 Run the CNA workflow
 }
-

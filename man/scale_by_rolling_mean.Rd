@@ -12,4 +12,3 @@ scale_by_rolling_mean(expr.mat, genes.bed, window_size)
 \description{
 Scale expression estimates by rolling mean
 }
-

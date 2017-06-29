@@ -15,4 +15,3 @@ db_curated_results.df A data-frame containing curated result information from th
 \description{
 Retrieve DB Curated Results
 }
-

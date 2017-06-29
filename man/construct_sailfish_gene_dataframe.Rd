@@ -17,4 +17,3 @@ Given a data frame containing library names and Sailfish paths, Construct a data
 NOTE that this function makes strong assumptions about the shape of the incoming data frame,
 and currently only fetches \emph{gene-level} results
 }
-

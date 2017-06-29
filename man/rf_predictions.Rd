@@ -17,4 +17,3 @@ rf.predict A vector of predictions from the randomForest model
 \description{
 Extract predictions from a random forest model
 }
-

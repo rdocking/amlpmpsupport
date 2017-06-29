@@ -15,4 +15,3 @@ p A ggplot plot
 \description{
 Plot predictions from a randomForest model
 }
-

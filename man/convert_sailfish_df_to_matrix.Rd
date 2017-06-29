@@ -18,4 +18,3 @@ df A data frame containing the Sailfish results
 Given a data frame containing Sailfish gene-level results, from the construct_sailfish_gene_dataframe
 function, convert that dataframe to a matrix suitable for downstream analysis
 }
-

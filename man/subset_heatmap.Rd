@@ -19,4 +19,3 @@ p A ggplot plot
 \description{
 Generate a heatmap for a subset of genes
 }
-

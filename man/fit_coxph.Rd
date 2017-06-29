@@ -17,4 +17,3 @@ cx The cox proportional hazards model
 \description{
 Fit a Cox proportional hazards model
 }
-

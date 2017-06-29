@@ -19,4 +19,3 @@ pathways.merged A data frame containing up- and down-regulated pathways
 \description{
 Run GAGE gene-set enrichment analysis for a given feature
 }
-

@@ -19,4 +19,3 @@ hits_to_plot_long A data frame containing hits for plotting
 \description{
 Subset the TPM matrix to the genes of interest
 }
-

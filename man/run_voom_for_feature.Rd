@@ -19,4 +19,3 @@ df A data frame containing the differential expression scores for all genes
 \description{
 Run voom for a given feature comparison
 }
-

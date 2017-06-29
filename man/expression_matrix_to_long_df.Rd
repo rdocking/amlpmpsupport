@@ -19,4 +19,3 @@ This function takes a matrix (columns are samples, rows are genes),
 and converts it into a 'long' data frame suitable for plotting
 It also handles sorting the data by chromosomal coordinate
 }
-

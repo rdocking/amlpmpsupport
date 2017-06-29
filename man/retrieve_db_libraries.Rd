@@ -15,4 +15,3 @@ db_libraries.df A data-frame containing library information from the database
 \description{
 Retrieve DB Libraries
 }
-

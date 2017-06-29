@@ -20,4 +20,3 @@ db_conn A database connection object
 \description{
 Connect to AML Project ORM Database
 }
-

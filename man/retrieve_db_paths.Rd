@@ -15,4 +15,3 @@ db_paths.df A data-frame containing path information from the database
 \description{
 Retrieve DB Paths
 }
-

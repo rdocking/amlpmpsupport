@@ -15,4 +15,3 @@ db_specimens.df A data-frame containing specimen information from the database
 \description{
 Retrieve DB Specimens
 }
-

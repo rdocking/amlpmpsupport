@@ -7,7 +7,7 @@ Maintainer: Rod Docking <rdocking@bcgsc.ca>
 Description: Miscellaneous support code for analysis done for the AML PMP RNA-Seq Diagnostic Manuscript.
 License: MIT + file LICENSE
 LazyData: TRUE
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Imports:
   knitr,
   dplyr,
@@ -27,5 +27,7 @@ Suggests:
   GGally,
   survival,
   ifxparsers,
-  zoo
+  zoo,
+  grid, 
+  gridExtra
 VignetteBuilder: knitr

@@ -17,4 +17,3 @@ p A ggplot object containing the generated plot
 \description{
 Generate a volcano plot of expression hits
 }
-

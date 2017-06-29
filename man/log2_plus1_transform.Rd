@@ -18,4 +18,3 @@ Transform data by taking the log2(TPM+1)
 \examples{
 tpm.log2.mat <- log2_plus1_transform(tpm.mat)
 }
-

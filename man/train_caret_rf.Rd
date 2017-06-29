@@ -21,4 +21,3 @@ caret.rf A an object containing a caret Randomforest
 \description{
 Train a random forest model with caret
 }
-

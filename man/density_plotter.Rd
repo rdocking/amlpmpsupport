@@ -17,4 +17,3 @@ p A ggplot object containing the generated plot
 \description{
 Generate a density-plot of expression of selected genes, facetted by selected feature
 }
-

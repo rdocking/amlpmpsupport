@@ -17,4 +17,3 @@ p A ggplot object containing the generated plot
 \description{
 Plot survival curves
 }
-

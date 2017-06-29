@@ -24,4 +24,3 @@ expr.mat
 \description{
 Subset expression matrix by thresholds
 }
-

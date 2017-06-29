@@ -12,4 +12,3 @@ plot_vars_by_coverage(wide.df, long.df, sample_name)
 \description{
 This function takes the long and wide data frames, and plots all variants by covearge, colouring them by concordance status
 }
-

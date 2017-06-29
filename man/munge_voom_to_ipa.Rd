@@ -15,4 +15,3 @@ df A data frame containing the voom hits in IPA-friendly format
 \description{
 Munge differential expression hits in voom format to IPA-friendly format
 }
-

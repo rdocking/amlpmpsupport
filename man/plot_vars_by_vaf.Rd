@@ -12,4 +12,3 @@ plot_vars_by_vaf(wide.df, long.df, sample_name)
 \description{
 Join to the plotting frame and re-plot for VAF
 }
-

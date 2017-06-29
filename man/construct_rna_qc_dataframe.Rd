@@ -16,4 +16,3 @@ df A data frame containing the RNA-SeQC results
 Given a data frame containing library names and RNA-SeQC paths, Construct a data frame of RNA-SeQC results
 NOTE that this function makes strong assumptions about the shape of the incoming data frame
 }
-

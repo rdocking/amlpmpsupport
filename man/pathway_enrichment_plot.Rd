@@ -17,4 +17,3 @@ p A ggplot object containing the generated plot
 \description{
 Generate a plot of enriched pathways
 }
-

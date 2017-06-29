@@ -21,4 +21,3 @@ p A ggplot object containing the generated plot
 \description{
 Generate a prinicple component plot for a subset of genes, coloured by a given feature
 }
-

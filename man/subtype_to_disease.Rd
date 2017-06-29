@@ -15,4 +15,3 @@ disease A simplified disease name
 \description{
 Convert subtype indications to disease status
 }
-

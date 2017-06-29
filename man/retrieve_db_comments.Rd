@@ -15,4 +15,3 @@ db_comments.df A data-frame containing curated result comments from the database
 \description{
 Retrieve DB Comments
 }
-

@@ -15,4 +15,3 @@ df A data frame containing the Entrez gene IDs in a column called 'entrez'
 \description{
 Add Entrez gene IDs to a data frame of voom hits
 }
-
