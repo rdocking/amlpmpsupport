@@ -153,16 +153,16 @@ grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, 
   gl <- lapply(plots, function(x) x + theme(legend.position="none"))
   gl <- c(gl, ncol = ncol, nrow = nrow)
   combined <- switch(position,
-                     "bottom" = arrangeGrob(do.call(arrangeGrob, gl),
+                     "bottom" = gridExtra::arrangeGrob(do.call(gridExtra::arrangeGrob, gl),
                                             legend,
                                             ncol = 1,
-                                            heights = unit.c(unit(1, "npc") - lheight, lheight)),
-                     "right" = arrangeGrob(do.call(arrangeGrob, gl),
+                                            heights = grid::unit.c(unit(1, "npc") - lheight, lheight)),
+                     "right" = gridExtra::arrangeGrob(do.call(gridExtra::arrangeGrob, gl),
                                            legend,
                                            ncol = 2,
-                                           widths = unit.c(unit(1, "npc") - lwidth, lwidth)))
-  grid.newpage()
-  grid.draw(combined)
+                                           widths = grid::unit.c(unit(1, "npc") - lwidth, lwidth)))
+  grid::grid.newpage()
+  grid::grid.draw(combined)
   # return gtable invisibly
   invisible(combined)
 }
