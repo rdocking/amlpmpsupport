@@ -39,27 +39,27 @@ retrieve_db_libraries <- function(db_conn) {
   # Start from patient, and query downwards
   patient.tbl %>%
     dplyr::select(id, external_id, is_patient) %>%
-    dplyr::rename(patient_id = id,
-           patient_external_id = external_id) %>%
+    dplyr::rename(patient_id = id) %>%
+    dplyr::rename(patient_external_id = external_id) %>%
     # Join to specimen
     dplyr::left_join(specimen.tbl, by = "patient_id") %>%
-    dplyr::rename(specimen_id = id,
-           specimen_external_id = external_id) %>%
+    dplyr::rename(specimen_id = id) %>%
+    dplyr::rename(specimen_external_id = external_id) %>%
     dplyr::select(-patient_id, -meta) %>%
     # Join to specimen_subset
     dplyr::left_join(specimen_subset.tbl, by = "specimen_id") %>%
-    dplyr::rename(specimen_subset_id = id,
-           specimen_subset_external_id = external_id) %>%
+    dplyr::rename(specimen_subset_id = id) %>%
+    dplyr::rename(specimen_subset_external_id = external_id) %>%
     # Join to library
     left_join(library.tbl, by = "specimen_subset_id") %>%
-    dplyr::rename(library_id = id,
-           library_name = name) %>%
+    dplyr::rename(library_id = id) %>%
+    dplyr::rename(library_name = name) %>%
     # Join to platform and platform_version
     dplyr::left_join(platform_version.tbl,
-              by = c("platform_version_id" = "id")) %>%
+                     by = c("platform_version_id" = "id")) %>%
     dplyr::rename(platform_version_name = name) %>%
     dplyr::left_join(platform.tbl,
-              by = c("platform_id" = "id")) %>%
+                     by = c("platform_id" = "id")) %>%
     dplyr::rename(platform_name = name) %>%
     dplyr::select(-fields, -platform_id, -platform_version_id, -specimen_subset_id,
                   -specimen_id, -library_id, -sequencing_effort_id,
