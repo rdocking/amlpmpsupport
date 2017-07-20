@@ -37,7 +37,7 @@ retrieve_db_libraries <- function(db_conn) {
   platform_version.tbl <- tbl(db_conn, "platform_version")
   platform.tbl <- tbl(db_conn, "platform")
   # Start from patient, and query downwards
-  patient.tbl %>%
+  db_libraries.query <- patient.tbl %>%
     dplyr::select(id, external_id, is_patient) %>%
     dplyr::rename(patient_id = id) %>%
     dplyr::rename(patient_external_id = external_id) %>%
@@ -63,8 +63,9 @@ retrieve_db_libraries <- function(db_conn) {
     dplyr::rename(platform_name = name) %>%
     dplyr::select(-fields, -platform_id, -platform_version_id, -specimen_subset_id,
                   -specimen_id, -library_id, -sequencing_effort_id,
-                  -library_qc_info, -type) ->
-    db_libraries.query
+                  -library_qc_info, -type) %>%
+    # Filter out rows with no library name
+    dplyr::filter(!is.na(library_name))
   db_libraries.df <- collect(db_libraries.query)
   return(db_libraries.df)
 }
