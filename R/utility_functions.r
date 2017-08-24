@@ -7,7 +7,7 @@
 #' @return patients.w_libs.df A data frame patients with nested library information
 #' @export
 #'
-nest_libraries_by_patient <- function(patients.df, libraries.df, key = 'tfl_id') {
+nest_libraries_by_patient <- function(patients.df, libraries.df) {
 
   # Map functions - find all the library names and concatenate them
   select_fun <- function(df) dplyr::select(df, library_name)
@@ -17,10 +17,10 @@ nest_libraries_by_patient <- function(patients.df, libraries.df, key = 'tfl_id')
   #  to a list of libraries associated with each tfl_id and joins it back
   #  to the patient-level data frame
   libraries.df %>%
-    dplyr::group_by(!!key) %>%
+    dplyr::group_by(tfl_id) %>%
     tidyr::nest() %>%
     dplyr::mutate(lib_list = purrr::map(data, select_fun),
                   libraries = purrr::map_chr(lib_list, cat_fun)) %>%
     # dplyr::select(-data, -lib_list) %>%
-    dplyr::right_join(patients.df, by = !!key)
+    dplyr::right_join(patients.df, by = 'tfl_id')
 }
