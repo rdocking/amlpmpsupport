@@ -87,27 +87,26 @@ subset_genes_by_thresholds <- function(expr.mat, mean_tpm_threshold,
 #' In this case, we have a matrix of expression values, and a character vector of samples in the reference set
 #' What we want to do is calculate the rowMeans from just the samples in the reference set
 #'
-#' @param expr.mat
-#' @param reference_set
+#' @param expr.mat A matrix of expression values
+#' @param reference_set The referene set
 #'
-#' @return
+#' @return A transformed matrix
 #' @export
 #'
-#' @examples
 calculate_reference_set_mean_expression <- function(expr.mat, reference_set){
   return(apply(expr.mat[,reference_set], 1, mean))
 }
 
 
-#' Calculate reference set mean expression
+#' Calculate reference set coefficient of variation
 #'
 #' In this case, we have a matrix of expression values, and a character vector of samples in the reference set
 #' What we want to do is calculate the CVs from just the samples in the reference set
 #'
-#' @param expr.mat
-#' @param reference_set
+#' @param expr.mat A matrix of expression values
+#' @param reference_set The referene set
 #'
-#' @return
+#' @return A transformed matrix
 #' @export
 #'
 calculate_reference_set_coefficient_of_variation <- function(expr.mat, reference_set){

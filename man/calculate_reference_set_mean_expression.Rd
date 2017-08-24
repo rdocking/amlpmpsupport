@@ -7,7 +7,12 @@
 calculate_reference_set_mean_expression(expr.mat, reference_set)
 }
 \arguments{
-\item{reference_set}{}
+\item{expr.mat}{A matrix of expression values}
+
+\item{reference_set}{The referene set}
+}
+\value{
+A transformed matrix
 }
 \description{
 In this case, we have a matrix of expression values, and a character vector of samples in the reference set

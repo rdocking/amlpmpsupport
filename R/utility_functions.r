@@ -24,3 +24,20 @@ nest_libraries_by_patient <- function(patients.df, libraries.df) {
     # dplyr::select(-data, -lib_list) %>%
     dplyr::right_join(patients.df, by = 'tfl_id')
 }
+
+#' # Set a function for pretty-printing kables
+#'
+#' @param df Data frame containing data to format as a table
+#' @param ... Additional options to be passed to kable
+#'
+#' @return A kable table
+#' @export
+#'
+#' @examples pretty_kable(data.frame(x = c(1000, 999), y = c(0.345:0.351)))
+pretty_kable <- function(df, ...){
+  # This has options I like - comma separator for thousands, small number of sig digits
+  knitr::kable(df, digits = 2,
+               format.args = list(big.mark = ','),
+               ...)
+}
+

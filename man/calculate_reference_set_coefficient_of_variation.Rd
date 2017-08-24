@@ -2,12 +2,17 @@
 % Please edit documentation in R/cna_workflow.r
 \name{calculate_reference_set_coefficient_of_variation}
 \alias{calculate_reference_set_coefficient_of_variation}
-\title{Calculate reference set mean expression}
+\title{Calculate reference set coefficient of variation}
 \usage{
 calculate_reference_set_coefficient_of_variation(expr.mat, reference_set)
 }
 \arguments{
-\item{reference_set}{}
+\item{expr.mat}{A matrix of expression values}
+
+\item{reference_set}{The referene set}
+}
+\value{
+A transformed matrix
 }
 \description{
 In this case, we have a matrix of expression values, and a character vector of samples in the reference set

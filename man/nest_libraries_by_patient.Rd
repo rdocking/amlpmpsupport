@@ -4,7 +4,7 @@
 \alias{nest_libraries_by_patient}
 \title{Add nested library information to a patient-level data frame}
 \usage{
-nest_libraries_by_patient(patients.df, libraries.df, key = "tfl_id")
+nest_libraries_by_patient(patients.df, libraries.df)
 }
 \arguments{
 \item{patients.df}{Data frame containing patient-level data}
