@@ -41,3 +41,18 @@ pretty_kable <- function(df, ...){
                ...)
 }
 
+#' # Report basic information about a matrix
+#'
+#' @param mat A matrix
+#'
+#' @export
+#'
+#' @examples matrix_glimpse(mat)
+matrix_glimpse <- function(mat) {
+  print("Dimensions: ")
+  print(dim(mat))
+  print("Range: ")
+  print(range(mat))
+  print("Head: ")
+  print(mat[1:3,1:3])
+}
