@@ -56,3 +56,13 @@ matrix_glimpse <- function(mat) {
   print("Head: ")
   print(mat[1:3,1:3])
 }
+
+#' Quick function for mapping to select out list items
+#'
+#' @param x A vector
+#' @param position The position to select out
+#'
+#' @export
+#'
+#' @examples select_by_position(lst, 1)
+select_by_position <- function(x, position) x[position]

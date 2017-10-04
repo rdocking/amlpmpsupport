@@ -95,11 +95,34 @@ plot_vars_by_vaf <- function(wide.df, long.df, sample_name) {
                y = vaf_numeric,
                shape = genotype,
                colour = concordance_col)) +
-    geom_point(size=3) + scale_colour_identity() +
-    theme(axis.text.x=element_text(angle = 90, hjust = 0)) +
+    geom_point(size = 3) + scale_colour_identity() +
+    theme(axis.text.x = element_text(angle = 90, hjust = 0)) +
     coord_flip() +
     labs(title = title,
          x = "Variant",
          y = "Variant Allele Fraction") %>%
     return()
 }
+
+#' Split a FORMAT string from GATK-haplotype to get simpler statistics
+#'
+#' @param df
+#'
+#' @return updated_df
+#' @export
+#'
+#' @examples df %>% split_gatk_format_vals()
+split_gatk_format_vals <- function(df){
+
+  df %>%
+    mutate(format_split = stringr::str_split(format_vals, ':'),
+    genotype = map_chr(format_split, select_by_position, 1),
+    allele_depth = map_chr(format_split, select_by_position, 2),
+    depth_split = stringr::str_split(allele_depth, ','),
+    ref_depth = as.integer(map_chr(depth_split, select_by_position, 1)),
+    alt_depth = as.integer(map_chr(depth_split, select_by_position, 2)),
+    vaf = alt_depth / (ref_depth + alt_depth) * 100.0,
+    reported_depth = as.integer(map_chr(format_split, select_by_position, 3)),
+    genotype_quality = as.integer(map_chr(format_split, select_by_position, 4)))
+}
+
