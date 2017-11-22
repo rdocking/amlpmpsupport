@@ -150,7 +150,7 @@ grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, 
   legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
   lheight <- sum(legend$height)
   lwidth <- sum(legend$width)
-  gl <- lapply(plots, function(x) x + theme(legend.position="none"))
+  gl <- lapply(plots, function(x) x + theme(legend.position = "none"))
   gl <- c(gl, ncol = ncol, nrow = nrow)
   combined <- switch(position,
                      "bottom" = gridExtra::arrangeGrob(do.call(gridExtra::arrangeGrob, gl),
@@ -166,4 +166,25 @@ grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, 
   # return gtable invisibly
   invisible(combined)
 }
+
+#' Generate a set of breaks using the 'Engineer's log scale'
+#'
+#' @param x A vector of numeric data
+#'
+#' @return breaks A set of breaks suitable for ggplot breaks functions
+#' @export
+#'
+eng_log_breaks <- function(x){
+  # What power of 10 for the min and the max?
+  scale_min <- round(log10(min(x)))
+  scale_max <- round(log10(max(x)))
+  # Set out breaks according to the range of the data
+  breaks <- c(1,2,5) * sort(rep(10^c(scale_min:scale_max), 3))
+  names(breaks) <- attr(breaks, "labels")
+  return(breaks)
+}
+
+#x <- c(1,10000)
+#eng_log_breaks(x)
+# [1]     1     2     5    10    20    50   100   200   500  1000  2000  5000 10000 20000 50000
 
