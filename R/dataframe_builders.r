@@ -79,3 +79,54 @@ convert_sailfish_df_to_matrix <- function(sailfish.df, metric = c("NumReads", "T
   return(metric_subset.mat)
 }
 
+#' From a data frame of Sailfish gene-level results, construct an expression matrix
+#'
+#' Given a data frame containing Sailfish gene-level results, from the construct_sailfish_gene_dataframe
+#' function, convert that dataframe to a matrix suitable for downstream analysis
+#'
+#' @param sailfish.df Data frame containing sailfish results
+#' @param metric Expression metric to use (either 'NumReads' or 'TPM')
+#'
+#' @return df A data frame containing the Sailfish results
+#' @export
+#'
+
+#' Convert a 'tidy' expression DF to a matrix
+#'
+#' Assumes the only other columns other than 'key' and 'val' are expression measurements
+#'
+#' @param df A tidy data frame
+#' @param key Column name for the column containing gene names
+#' @param val Column name for the column containing sample IDs
+#'
+#' @return x A matrix containing the expression results
+#' @export
+#'
+spread_expression_df_to_matrix <- function(df, key, value){
+  # Quote the input variables
+  key <- enquo(key)
+  value <- enquo(value)
+  # Spread to wide and convert to DF
+  tmp.df <- spread(df, key = !!key, value = !!value) %>% as.data.frame()
+  # Set the first column as the rownames and return as a matrix
+  rownames(tmp.df) <- tmp.df[,1]
+  return(as.matrix(tmp.df[,-1]))
+}
+
+#' Convert an expression matrix to a tidy DF
+#'
+#' @param x Expression matrix
+#' @param gene_col Column name for the column containing gene names
+#' @param id_col Column name for the column containing sample IDs
+#' @param expr_col Column name for the column containing expression values
+#'
+#' @return df A tidy data frame containing the expression results
+#' @export
+#'
+gather_expression_matrix_to_tidy_df <- function(x, gene_col, id_col, expr_col){
+  x %>%
+    as.data.frame() %>%
+    rownames_to_column(gene_col) %>%
+    gather(key = !!id_col, value = !!expr_col, -gene_col)
+}
+
