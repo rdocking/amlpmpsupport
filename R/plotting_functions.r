@@ -188,3 +188,66 @@ eng_log_breaks <- function(x){
 #eng_log_breaks(x)
 # [1]     1     2     5    10    20    50   100   200   500  1000  2000  5000 10000 20000 50000
 
+
+#' Plot a pheatmap for a single value of k
+#'
+#' @export
+#'
+plot_heatmap_for_k <- function(cluster_assignments.df,
+                               annotation_col.df,
+                               ann_colours.lst,
+                               cluster_input.mat){
+
+  # Add cluster assignments to the annotation column
+  # Test - try arranging by cluster name
+  annotation_col.w_cluster.df <-
+    annotation_col.df %>%
+    dplyr::right_join(cluster_assignments.df, by = "library_name") %>%
+    arrange(cluster)
+
+  # Convert the rownames back to the library identifier
+  rownames(annotation_col.w_cluster.df) <-
+    annotation_col.w_cluster.df$library_name
+  annotation_col.w_cluster.df <-
+    dplyr::select(annotation_col.w_cluster.df, -library_name)
+
+  # Find where the gaps between clusters are by checking
+  #  if the current cluster equals the next one
+  gap_locations.df <-
+    annotation_col.w_cluster.df %>%
+    mutate(start_gap = cluster != lag(cluster),
+           rownum = row_number()) %>%
+    filter(start_gap)
+  # Offset to get the correct location
+  gap_locations <- gap_locations.df$rownum - 1
+
+  # Set the cluster palette to be as long as the largest number of clusters
+  #cluster_palette <- viridis(n = k, option = "C")
+  cluster_palette <- brewer.pal(n = k, "Paired")
+  names(cluster_palette) <- seq(1, k)
+  cluster_list <- list("cluster" = cluster_palette)
+
+  # Update the annotation colour list with the cluster palette
+  ann_colours.w_cluster.lst <- c(ann_colours.lst, cluster_list)
+
+  # Original way of manually specifying breaks
+  # PRGn palette test (using breaks similar to what Jess does above)
+  prgn_pal <- RColorBrewer::brewer.pal(n = 9, "PRGn")
+  colfunc <- colorRampPalette(c(prgn_pal[1], prgn_pal[5], prgn_pal[9]))(9)
+  colfunc = colfunc[c(1:3,5,7:9)]
+  breaks2 = c(min(cluster_input.mat),-6,-2,-0.5,0.5,2,6,max(cluster_input.mat))
+
+  # Replot the heatmap from above, adding on an annotation column
+  # Note that we re-sort the input matrix into 'cluster' order
+  pheatmap(cluster_input.mat[,rownames(annotation_col.w_cluster.df)],
+           breaks = breaks2,
+           col = colfunc,
+           cluster_rows = T, cluster_cols = F,
+           scale = "row",
+           show_rownames = F, show_colnames = F,
+           annotation_col = annotation_col.w_cluster.df,
+           annotation_colors = ann_colours.w_cluster.lst,
+           clustering_method = "ward.D2",
+           gaps_col = gap_locations,
+           annotation_legend = FALSE)
+}
