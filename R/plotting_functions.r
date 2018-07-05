@@ -196,7 +196,8 @@ eng_log_breaks <- function(x){
 plot_heatmap_for_k <- function(cluster_assignments.df,
                                annotation_col.df,
                                ann_colours.lst,
-                               cluster_input.mat){
+                               cluster_input.mat,
+                               annotation_legend = FALSE){
 
   # Add cluster assignments to the annotation column
   # Test - try arranging by cluster name
@@ -249,5 +250,5 @@ plot_heatmap_for_k <- function(cluster_assignments.df,
            annotation_colors = ann_colours.w_cluster.lst,
            clustering_method = "ward.D2",
            gaps_col = gap_locations,
-           annotation_legend = FALSE)
+           annotation_legend = annotation_legend)
 }
