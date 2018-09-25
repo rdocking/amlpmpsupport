@@ -56,33 +56,57 @@ test_that("Testing ELN2017-Cyto", {
   expect_equal(df$status, 'intermediate')
   expect_equal(df$rationale, 'Intermediate-risk cytogenetics')
 
+  # CEBPA biallelic
+  cebpa <- 'CEBPAbi'
+  df <- apply_eln2017_cyto(cyto_status, npm1, flt3_itd, flt3_itd_support,
+                           cebpa, tp53, runx1, asxl1)
+  expect_equal(df$status, 'favourable')
+  expect_equal(df$rationale, 'Intermediate SVs, biallelic CEBPA')
+  cebpa <- NA
 
-#   # CEBPA biallelic
-#   if (cebpa == 'CEBPAbi') {
-#     status <- 'favourable'
-#     rationale <- 'Intermediate SVs, biallelic CEBPA'
-#     # Then FLT3 and NPM1
-#   } else if (npm1 == 'NPM1fs' & flt3_status == 'low') {
-#     status <- 'favourable'
-#     rationale <- 'Intermediate SVs, NPM1+FLT3-'
-#     # Then FLT3 positive - note the use of a hard-coded cutoff here
-#   } else if (npm1 == 'NPM1fs' & flt3_status == 'high') {
-#     status <- 'intermediate'
-#     rationale <- 'Intermediate SVs, NPM1+FLT3+'
-#   } else if (flt3_status == 'high') {
-#     status <- 'adverse'
-#     rationale <- 'Intermediate SVs, NPM1-FLT3+'
-#     # Then TP53, RUNX1, ASXL1
-#   } else if (!tp53 == 'missing') {
-#     status <- 'adverse'
-#     rationale <- 'Intermediate SVs, TP53 mutation'
-#   } else if (!runx1 == 'missing') {
-#     status <- 'adverse'
-#     rationale <- 'Intermediate SVs, RUNX1 mutation'
-#   } else if (!asxl1 == 'missing') {
-#     status <- 'adverse'
-#     rationale <- 'Intermediate SVs, ASXL1 mutation'
-#   }
-#
+  # Then FLT3 and NPM1
+  npm1 <- 'NPM1fs'
+  df <- apply_eln2017_cyto(cyto_status, npm1, flt3_itd, flt3_itd_support,
+                           cebpa, tp53, runx1, asxl1)
+  expect_equal(df$status, 'favourable')
+  expect_equal(df$rationale, 'Intermediate SVs, NPM1+FLT3-')
+
+  # Then FLT3 positive - note the use of a hard-coded cutoff here
+  flt3_itd <- 'positive'
+  flt3_itd_support <- 'FLT3-ITD_high'
+  df <- apply_eln2017_cyto(cyto_status, npm1, flt3_itd, flt3_itd_support,
+                           cebpa, tp53, runx1, asxl1)
+  expect_equal(df$status, 'intermediate')
+  expect_equal(df$rationale, 'Intermediate SVs, NPM1+FLT3+')
+
+  # FLT3 without NPM1
+  npm1 <- NA
+  df <- apply_eln2017_cyto(cyto_status, npm1, flt3_itd, flt3_itd_support,
+                           cebpa, tp53, runx1, asxl1)
+  expect_equal(df$status, 'adverse')
+  expect_equal(df$rationale, 'Intermediate SVs, NPM1-FLT3+')
+
+  # Then TP53, RUNX1, ASXL1
+  flt3_itd <- NA
+  flt3_itd_support <- NA
+  tp53 <- 'mutated'
+  df <- apply_eln2017_cyto(cyto_status, npm1, flt3_itd, flt3_itd_support,
+                           cebpa, tp53, runx1, asxl1)
+  expect_equal(df$status, 'adverse')
+  expect_equal(df$rationale, 'Intermediate SVs, TP53 mutation')
+
+  tp53 <- NA
+  runx1 <- 'mutated'
+  df <- apply_eln2017_cyto(cyto_status, npm1, flt3_itd, flt3_itd_support,
+                           cebpa, tp53, runx1, asxl1)
+  expect_equal(df$status, 'adverse')
+  expect_equal(df$rationale, 'Intermediate SVs, RUNX1 mutation')
+
+  runx1 <- NA
+  asxl1 <- 'mutated'
+  df <- apply_eln2017_cyto(cyto_status, npm1, flt3_itd, flt3_itd_support,
+                           cebpa, tp53, runx1, asxl1)
+  expect_equal(df$status, 'adverse')
+  expect_equal(df$rationale, 'Intermediate SVs, ASXL1 mutation')
 
 })
