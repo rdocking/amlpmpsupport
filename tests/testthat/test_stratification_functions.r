@@ -253,27 +253,49 @@ test_that("Testing ELN2017-RNA", {
   expect_equal(df$status, 'adverse')
   expect_equal(df$rationale, 'Intermediate SVs, TP53 mutation')
 
-  # # RUNX1
-  # tp53 <- 0
-  # runx1 <- 'missense_variant'
-  # df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
-  #                         cebpa, tp53, runx1, asxl1, expression_outlier)
-  # expect_equal(df$status, 'adverse')
-  # expect_equal(df$rationale, 'Intermediate SVs, RUNX1 mutation')
-  # runx1 <- 0
+  # RUNX1
+  tp53 <- NA
+  runx1 <- 'missense_variant'
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'adverse')
+  expect_equal(df$rationale, 'Intermediate SVs, RUNX1 mutation')
+  runx1 <- NA
+
+  asxl1 <- 'missense_variant'
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'adverse')
+  expect_equal(df$rationale, 'Intermediate SVs, ASXL1 mutation')
+  asxl1 <- NA
+
+  cebpa <- 'CEBPAbi'
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'favourable')
+  expect_equal(df$rationale, 'Intermediate SVs, biallelic CEBPA')
+  cebpa <- NA
+
+  # t(9;11)
+  sv_status <- 't_9_11'
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'intermediate')
+  expect_equal(df$rationale, 'MLL translocation')
+  sv_status <- 'intermediate_risk'
+
+  # KMT2A-PTD
+  sv_status <- 'KMT2A-PTD positive'
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'adverse')
+  expect_equal(df$rationale, 'KMT2A-PTD positive')
+  sv_status <- 'intermediate_risk'
+
+  expression_outlier <- 'MECOM high'
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'adverse')
+  expect_equal(df$rationale, 'Outlier MECOM expression')
 
 })
-
-
-
-
-# # Test the function
-# eln_fusion_tests <- tribble(
-#   ~sv_status, ~npm1, ~flt3_itd, ~flt3_support, ~cebpa, ~tp53, ~runx1, ~asxl1, ~expression_outlier, ~out_status, # ~out_rationale,
-#   'intermediate_risk', 0, 0, 0, 0, NA_character_, 'missense_variant', 0, NA, 'adverse', 'Intermediate SVs, RUNX1 # mutation',          # RUNX1
-#   'intermediate_risk', 0, 0, 0, 0, NA_character_, NA_character_, 'missense_variant', NA, 'adverse', 'Intermediate SVs, # ASXL1 mutation',          # ASXL1
-#   'intermediate_risk', 0, 0, 0, 'CEBPAbi', NA_character_, NA_character_, NA_character_, NA, 'favourable', 'Intermediate # SVs, biallelic CEBPA',           # CEBPA
-#   't_9_11', 0, 0, 0, 0, NA_character_, NA_character_, NA_character_, NA, 'intermediate', 'MLL translocation', # MLL # fusion
-#   'KMT2A-PTD positive', 0, 0, 0, 0, NA_character_, NA_character_, NA_character_, NA, 'adverse', 'KMT2A-PTD positive', # # KMT2A-PTD
-#   '', 0, 0, 0, 0, 0, 0, 0, 'MECOM high', 'adverse', 'Outlier MECOM expression'
-# )
