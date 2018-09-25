@@ -133,7 +133,7 @@ apply_eln2015_cyto <- function(cyto_status, npm1, flt3_itd, cebpa){
       status <- 'intermediate-II'
       rationale <- 'Intermediate-risk cytogenetics'
 
-      # True intermediates
+      # True intermediates - KMT2A fusions and other alterations
       if (cyto_status %in% 'intermediate_risk') {
         status <- 'intermediate-II'
         rationale <- 'Intermediate-risk cytogenetics'
@@ -147,11 +147,14 @@ apply_eln2015_cyto <- function(cyto_status, npm1, flt3_itd, cebpa){
         rationale <- 'Intermediate SVs, NPM1+FLT3-'
       # Then FLT3 positive
       } else if (npm1 == 'NPM1fs' & flt3_status == 'positive') {
-        status <- 'intermediate'
+        status <- 'intermediate-I'
         rationale <- 'Intermediate SVs, NPM1+FLT3+'
-      } else if (flt3_status == 'positive') {
-        status <- 'adverse'
+      } else if (npm1 != 'NPM1fs' & flt3_status == 'positive') {
+        status <- 'intermediate-I'
         rationale <- 'Intermediate SVs, NPM1-FLT3+'
+      } else if (npm1 != 'NPM1fs' & flt3_status == 'negative') {
+        status <- 'intermediate-I'
+        rationale <- 'Intermediate SVs, NPM1-FLT3-'
       }
     }
     # Return the status and rationale
