@@ -1,4 +1,4 @@
 library(testthat)
-library(RNASeqMSSupport)
+library(amlpmpsupprt)
 
-test_check("RNASeqMSSupport")
+test_check("amlpmpsupport")
