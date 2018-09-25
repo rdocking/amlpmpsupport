@@ -14,8 +14,6 @@
 #'
 #' @return A stratification status and rationale
 #' @export
-#'
-#' @examples
 apply_eln2017_cyto <-
   function(cyto_status, npm1, flt3_itd, flt3_itd_support,
            cebpa, tp53, runx1, asxl1){
@@ -96,8 +94,6 @@ apply_eln2017_cyto <-
 #'
 #' @return A stratification status and rationale
 #' @export
-#'
-#' @examples
 apply_eln2015_cyto <- function(cyto_status, npm1, flt3_itd, cebpa){
 
     # Treat NA values as 'missing'
