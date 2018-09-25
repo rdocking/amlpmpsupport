@@ -9,7 +9,7 @@ calculate_reference_set_mean_expression(expr.mat, reference_set)
 \arguments{
 \item{expr.mat}{A matrix of expression values}
 
-\item{reference_set}{The referene set}
+\item{reference_set}{The reference set}
 }
 \value{
 A transformed matrix

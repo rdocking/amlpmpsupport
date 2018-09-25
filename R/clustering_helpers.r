@@ -5,8 +5,6 @@
 #'
 #' @return cluster_assignments.df A dataframe containing cluster assignments for each sample
 #' @export
-#'
-#' @examples
 get_cluster_assignments_for_k <- function(k, cluster_obj){
   # Extract the cluster membership from the clustering object
   cluster_for_k <- cluster_obj[[k]]

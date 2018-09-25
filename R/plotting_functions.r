@@ -5,14 +5,15 @@
 #'
 #' @return p A ggplot object containing the generated plot
 #' @export
-#'
 hit_plotter <- function(expression_df, feature_label){
-  p <- ggplot2::ggplot(expression_df)
-  p <- p + ggplot2::aes_string(x=feature_label, colour=feature_label)
-  p <- p + ggplot2::aes(y=TPM)
-  p <- p + ggplot2::geom_jitter(size=4) + ggplot2::scale_y_log10() + ggplot2::scale_colour_brewer(palette='Set1')
-  p <- p + ggplot2::theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
-  p <- p + ggplot2::facet_wrap(~ gene) + ggplot2::theme(legend.position="none")
+  p <- ggplot2::ggplot(expression_df) +
+    ggplot2::aes_string(x = feature_label, colour = feature_label) +
+    ggplot2::aes(y = TPM) +
+    ggplot2::geom_jitter(size = 4) +
+    ggplot2::scale_y_log10() +
+    ggplot2::scale_colour_brewer(palette = 'Set1') +
+    ggplot2::theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+    ggplot2::facet_wrap(~ gene) + ggplot2::theme(legend.position = "none")
   return(p)
 }
 
@@ -23,13 +24,13 @@ hit_plotter <- function(expression_df, feature_label){
 #'
 #' @return p A ggplot object containing the generated plot
 #' @export
-#'
 density_plotter <- function(expression_df, feature_label){
-  p <- ggplot2::ggplot(expression_df)
-  p <- p + ggplot2::aes_string(fill=feature_label)
-  p <- p + ggplot2::aes(x=TPM) + ggplot2::scale_x_log10()
-  p <- p + ggplot2::geom_density(alpha=0.5) + ggplot2::scale_fill_brewer(palette='Set1')
-  p <- p + ggplot2::facet_wrap(~ gene, scales = "free_y")
+  p <- ggplot2::ggplot(expression_df) +
+    ggplot2::aes_string(fill = feature_label) +
+    ggplot2::aes(x = TPM) + ggplot2::scale_x_log10() +
+    ggplot2::geom_density(alpha = 0.5) +
+    ggplot2::scale_fill_brewer(palette = 'Set1') +
+    ggplot2::facet_wrap(~ gene, scales = "free_y")
   return(p)
 }
 
@@ -40,16 +41,18 @@ density_plotter <- function(expression_df, feature_label){
 #'
 #' @return p A ggplot object containing the generated plot
 #' @export
-#'
 pathway_enrichment_plot <- function(gage_hits, plot_limit = 20){
   # Subset the data frame to the top plot_limit hits
   plot_subset <- head(gage_hits, plot_limit)
   # Arrange by q-value - reverse because of the coordinate flip below
   plot_subset$pathway <- factor(plot_subset$pathway,
                                 levels = rev(plot_subset$pathway))
-  p <- ggplot2::ggplot(plot_subset,
-                       ggplot2::aes(x=pathway, y=q.val, size=set.size, colour=stat.mean))
-  p <- p + ggplot2::geom_point() + ggplot2::scale_y_log10() + ggplot2::coord_flip()
+  p <-
+    ggplot2::ggplot(plot_subset, ggplot2::aes(x = pathway, y = q.val,
+                                              size = set.size, colour = stat.mean)) +
+    ggplot2::geom_point() +
+    ggplot2::scale_y_log10() +
+    ggplot2::coord_flip()
   return(p)
 }
 
@@ -60,7 +63,6 @@ pathway_enrichment_plot <- function(gage_hits, plot_limit = 20){
 #'
 #' @return p A ggplot object containing the generated plot
 #' @export
-#'
 volcano_plotter <- function(voom_hits, label_threshold = 30){
   # Use 'negative log10p' to get a Phred-like scale
   voom_hits$neg_log10_p <- log10(voom_hits$adj.P.Val) * -1
@@ -69,11 +71,11 @@ volcano_plotter <- function(voom_hits, label_threshold = 30){
                             voom_hits$gene,
                             NA)
   # Set up the plot
-  p <- ggplot2::ggplot(voom_hits, aes(x=logFC, y=neg_log10_p,
-                                      colour=neg_log10_p, label=label))
-  p <- p + ggplot2::geom_point(alpha=0.6)
-  p <- p + ggrepel::geom_label_repel(box.padding = unit(0.5, "lines"),
-                                     na.rm=TRUE)
+  p <-
+    ggplot2::ggplot(voom_hits, aes(x = logFC, y = neg_log10_p,
+                                   colour = neg_log10_p, label = label)) +
+    ggplot2::geom_point(alpha = 0.6) +
+    ggrepel::geom_label_repel(box.padding = unit(0.5, "lines"), na.rm = TRUE)
   return(p)
 }
 
@@ -86,7 +88,6 @@ volcano_plotter <- function(voom_hits, label_threshold = 30){
 #'
 #' @return p A ggplot object containing the generated plot
 #' @export
-#'
 subset_pc_plot <- function(gene_set, exp.design, feature_label, counts.mat){
   # Find rows to keep
   rows_to_keep <- rownames(counts.mat) %in% gene_set
@@ -98,11 +99,11 @@ subset_pc_plot <- function(gene_set, exp.design, feature_label, counts.mat){
   # Extract the first two components, and add labels from the design data frame
   pc1_pc2 <- subset(rotations, select = c("PC1", "PC2"))
   pc1_pc2$rna_seq_lib <- rownames(pc1_pc2)
-  pc1_pc2_w_design <- dplyr::left_join(pc1_pc2, exp.design, by='rna_seq_lib')
-  p <- ggplot2::ggplot(pc1_pc2_w_design, aes(x=PC1, y=PC2))
-  p <- p + ggplot2::aes_string(colour=feature_label)
-  # p <- p + geom_label_repel(box.padding = unit(0.5, "lines"), na.rm=TRUE)
-  p <- p + ggplot2::geom_point(size = 5) + ggplot2::scale_colour_brewer(palette = "Set1")
+  pc1_pc2_w_design <- dplyr::left_join(pc1_pc2, exp.design, by = 'rna_seq_lib')
+  p <- ggplot2::ggplot(pc1_pc2_w_design, aes(x = PC1, y = PC2)) +
+    ggplot2::aes_string(colour = feature_label) +
+    ggplot2::geom_point(size = 5) +
+    ggplot2::scale_colour_brewer(palette = "Set1")
   return(p)
 }
 
@@ -114,7 +115,6 @@ subset_pc_plot <- function(gene_set, exp.design, feature_label, counts.mat){
 #'
 #' @return p A ggplot plot
 #' @export
-#'
 subset_heatmap <- function(gene_set, annotation_col, counts.mat){
   # Find rows to keep
   rows_to_keep <- rownames(counts.mat) %in% gene_set
@@ -142,7 +142,6 @@ subset_heatmap <- function(gene_set, annotation_col, counts.mat){
 #'
 #' @return A ggplot plot
 #' @export
-#'
 grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, position = c("bottom", "right")) {
   plots <- list(...)
   position <- match.arg(position)
@@ -173,7 +172,6 @@ grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, 
 #'
 #' @return breaks A set of breaks suitable for ggplot breaks functions
 #' @export
-#'
 eng_log_breaks <- function(x){
   # What power of 10 for the min and the max?
   scale_min <- round(log10(min(x)))
@@ -183,11 +181,6 @@ eng_log_breaks <- function(x){
   names(breaks) <- attr(breaks, "labels")
   return(breaks)
 }
-
-#x <- c(1,10000)
-#eng_log_breaks(x)
-# [1]     1     2     5    10    20    50   100   200   500  1000  2000  5000 10000 20000 50000
-
 
 #' Plot a pheatmap for a single value of k
 #'

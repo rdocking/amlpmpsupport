@@ -16,5 +16,5 @@ updated_df
 Split a FORMAT string from GATK-haplotype to get simpler statistics
 }
 \examples{
-df \%>\% split_gatk_format_vals()
+split_gatk_format_vals(df)
 }

@@ -6,8 +6,6 @@
 #'
 #' @return db_conn A database connection object
 #' @export
-#'
-#' @examples
 connect_to_aml_project_orm <- function(dbname = 'aml_project_db',
                                        host = 'karsanlab-db01',
                                        user) {
@@ -26,8 +24,6 @@ connect_to_aml_project_orm <- function(dbname = 'aml_project_db',
 #'
 #' @return db_libraries.df A data-frame containing library information from the database
 #' @export
-#'
-#' @examples
 retrieve_db_libraries <- function(db_conn) {
   # Connect to the relevant tables
   patient.tbl <- tbl(db_conn, "patient")
@@ -76,8 +72,6 @@ retrieve_db_libraries <- function(db_conn) {
 #'
 #' @return db_paths.df A data-frame containing path information from the database
 #' @export
-#'
-#' @examples
 retrieve_db_paths <- function(db_conn) {
   # Connect to the relevant tables
   patient.tbl <- tbl(db_conn, "patient")
@@ -155,13 +149,11 @@ retrieve_db_paths <- function(db_conn) {
 #'
 #' @return disease A simplified disease name
 #' @export
-#'
-#' @examples
 subtype_to_disease <- function(subtype) {
   disease <- NA
-  if(subtype == 'AML-MDS'){
+  if (subtype == 'AML-MDS') {
     disease <- subtype
-  } else if(startsWith(subtype, "AML")){
+  } else if (startsWith(subtype, "AML")) {
     disease <- 'AML'
   } else {
     disease <- subtype
@@ -176,8 +168,6 @@ subtype_to_disease <- function(subtype) {
 #'
 #' @return db_curated_results.df A data-frame containing curated result information from the database
 #' @export
-#'
-#' @examples
 retrieve_db_curated_results <- function(db_conn) {
   # Connect to the relevant tables
   patient.tbl <- tbl(db_conn, "patient")
@@ -209,15 +199,12 @@ retrieve_db_curated_results <- function(db_conn) {
     return(curated_results.df)
 }
 
-
 #' Retrieve DB Specimens
 #'
 #' @param db_conn Database connection object
 #'
 #' @return db_specimens.df A data-frame containing specimen information from the database
 #' @export
-#'
-#' @examples
 retrieve_db_specimens <- function(db_conn) {
   # Connect to the relevant tables
   patient.tbl <- tbl(db_conn, "patient")
@@ -249,8 +236,6 @@ retrieve_db_specimens <- function(db_conn) {
 #'
 #' @return db_comments.df A data-frame containing curated result comments from the database
 #' @export
-#'
-#' @examples
 retrieve_db_comments <- function(db_conn) {
   # Connect to the relevant tables
   patient.tbl <- tbl(db_conn, "patient")

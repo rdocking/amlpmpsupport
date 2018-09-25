@@ -7,7 +7,14 @@
 plot_vars_by_coverage(wide.df, long.df, sample_name)
 }
 \arguments{
-\item{sample_name}{}
+\item{wide.df}{A wide dataframe containing variant observations}
+
+\item{long.df}{A long dataframe containing variant observations}
+
+\item{sample_name}{Sample name}
+}
+\value{
+A plot
 }
 \description{
 This function takes the long and wide data frames, and plots all variants by covearge, colouring them by concordance status

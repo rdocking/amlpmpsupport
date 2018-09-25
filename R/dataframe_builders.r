@@ -79,18 +79,6 @@ convert_sailfish_df_to_matrix <- function(sailfish.df, metric = c("NumReads", "T
   return(metric_subset.mat)
 }
 
-#' From a data frame of Sailfish gene-level results, construct an expression matrix
-#'
-#' Given a data frame containing Sailfish gene-level results, from the construct_sailfish_gene_dataframe
-#' function, convert that dataframe to a matrix suitable for downstream analysis
-#'
-#' @param sailfish.df Data frame containing sailfish results
-#' @param metric Expression metric to use (either 'NumReads' or 'TPM')
-#'
-#' @return df A data frame containing the Sailfish results
-#' @export
-#'
-
 #' Convert a 'tidy' expression DF to a matrix
 #'
 #' Assumes the only other columns other than 'key' and 'val' are expression measurements

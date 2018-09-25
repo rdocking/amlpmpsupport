@@ -4,7 +4,7 @@
 \alias{log2_plus1_transform}
 \title{Transform data by taking the log2(TPM+1)}
 \usage{
-log2_plus1_transform(tpm.mat)
+log2_plus1_transform(x)
 }
 \arguments{
 \item{expr.mat}{A matrix containing untransformed expression (in transcripts per million)}

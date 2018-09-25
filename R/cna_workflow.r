@@ -6,8 +6,8 @@
 #' @export
 #'
 #' @examples tpm.log2.mat <- log2_plus1_transform(tpm.mat)
-log2_plus1_transform <- function(tpm.mat){
-  tpm.log2.mat <- log2(tpm.mat + 1)
+log2_plus1_transform <- function(x){
+  tpm.log2.mat <- log2(x + 1)
   return(tpm.log2.mat)
 }
 
@@ -88,7 +88,7 @@ subset_genes_by_thresholds <- function(expr.mat, mean_tpm_threshold,
 #' What we want to do is calculate the rowMeans from just the samples in the reference set
 #'
 #' @param expr.mat A matrix of expression values
-#' @param reference_set The referene set
+#' @param reference_set The reference set
 #'
 #' @return A transformed matrix
 #' @export
@@ -104,7 +104,7 @@ calculate_reference_set_mean_expression <- function(expr.mat, reference_set){
 #' What we want to do is calculate the CVs from just the samples in the reference set
 #'
 #' @param expr.mat A matrix of expression values
-#' @param reference_set The referene set
+#' @param reference_set The reference set
 #'
 #' @return A transformed matrix
 #' @export
@@ -130,11 +130,11 @@ rescale_genes_by_reference <- function(expr.mat, reference_means){
 
 #' Scale expression estimates by rolling mean
 #'
-#' @param expr.mat
-#' @param genes.bed
-#' @param window_size
+#' @param expr.mat a matrix of expression values
+#' @param genes.bed A bed-like file containing gene coordinates
+#' @param window_size Window size to use for rolling mean
 #'
-#' @return
+#' @return A transformed matrix
 #' @export
 #'
 scale_by_rolling_mean <- function(expr.mat, genes.bed, window_size){
@@ -158,15 +158,15 @@ scale_by_rolling_mean <- function(expr.mat, genes.bed, window_size){
 
 #' Run the CNA workflow
 #'
-#' @param expr.mat
-#' @param genes.bed
-#' @param window_size
-#' @param mean_tpm_threshold
-#' @param cv_threshold
-#' @param reference_labels
-#' @param scale_samples_by_zero
+#' @param expr.mat A matrix of gene-expression values
+#' @param genes.bed A bed-like file of gene coordinates
+#' @param window_size Window size to use for rolling mean
+#' @param mean_tpm_threshold TPM threshold
+#' @param cv_threshold CV threshold
+#' @param reference_labels Reference labels
+#' @param scale_samples_by_zero Scale samples by zero?
 #'
-#' @return
+#' @return A re-scaled matrix
 #' @export
 #'
 run_cna_workflow <- function(expr.mat, genes.bed, window_size = NA,

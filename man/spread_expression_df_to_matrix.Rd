@@ -2,7 +2,7 @@
 % Please edit documentation in R/dataframe_builders.r
 \name{spread_expression_df_to_matrix}
 \alias{spread_expression_df_to_matrix}
-\title{From a data frame of Sailfish gene-level results, construct an expression matrix}
+\title{Convert a 'tidy' expression DF to a matrix}
 \usage{
 spread_expression_df_to_matrix(df, key, value)
 }
@@ -11,18 +11,11 @@ spread_expression_df_to_matrix(df, key, value)
 
 \item{key}{Column name for the column containing gene names}
 
-\item{sailfish.df}{Data frame containing sailfish results}
-
-\item{metric}{Expression metric to use (either 'NumReads' or 'TPM')}
-
 \item{val}{Column name for the column containing sample IDs}
 }
 \value{
-df A data frame containing the Sailfish results
-
 x A matrix containing the expression results
 }
 \description{
-Given a data frame containing Sailfish gene-level results, from the construct_sailfish_gene_dataframe
-function, convert that dataframe to a matrix suitable for downstream analysis
+Assumes the only other columns other than 'key' and 'val' are expression measurements
 }

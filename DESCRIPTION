@@ -8,6 +8,7 @@ Description: Support code for analysis done for the AML PMP RNA-Seq Diagnostic M
 License: MIT + file LICENSE
 LazyData: TRUE
 RoxygenNote: 6.1.0
+Encoding: UTF-8
 Imports:
   knitr,
   dplyr,

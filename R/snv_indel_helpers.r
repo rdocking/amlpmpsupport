@@ -4,8 +4,6 @@
 #'
 #' @return filled.df A data frame containing filled SNV data
 #' @export
-#'
-#' @examples
 read_filled_variant_tsv <- function(tsv_file) {
   filled.df <- readr::read_tsv(tsv_file,
                         col_names = c('chr', 'pos', 'ref', 'alt', 'sample', 'gene',
@@ -14,9 +12,9 @@ read_filled_variant_tsv <- function(tsv_file) {
                   # Calculate a numeric variant allele frequency
     dplyr::mutate(vaf_numeric = as.numeric(gsub('%', '', vaf)),
                   # Calculate a 'variant key' - chr_pos_ref_alt
-                  var_key = paste(chr, pos, ref, alt, sep='_'),
+                  var_key = paste(chr, pos, ref, alt, sep = '_'),
                   # Paste together the HGVS names
-                  var_hgvs = paste(gene, transcript, protein, sep=';'),
+                  var_hgvs = paste(gene, transcript, protein, sep = ';'),
                   # Add a simple yes/no for 'was a variant called?'
                   # Note that we handleweird genotypes (0|1, 1|0, 1|1) here
                   bool_genotype = as.integer(if_else(genotype %in% c('0/1', '1/1', '0|1', '1|0', '1|1'),
@@ -28,10 +26,8 @@ read_filled_variant_tsv <- function(tsv_file) {
 #'
 #' @param df
 #'
-#' @return
+#' @return df
 #' @export
-#'
-#' @examples
 spread_filled_snv_df_to_wide <- function(df) {
   df %>%
     # Add a default concordance colour for plotting
@@ -39,21 +35,19 @@ spread_filled_snv_df_to_wide <- function(df) {
     # Remove redundant columns
     dplyr::select(-genotype, -hq_depth, -vaf, -vaf_numeric) %>%
     # Spread to wide to compare samples by genotypes
-    tidyr::spread(sample, bool_genotype) %>%
+    tidyr::spread(key = sample, value = bool_genotype) %>%
     as.data.frame() %>%
     return()
 }
 
 #' This function takes the long and wide data frames, and plots all variants by covearge, colouring them by concordance status
 #'
-#' @param wide.df
-#' @param long.df
-#' @param sample_name
+#' @param wide.df A wide dataframe containing variant observations
+#' @param long.df A long dataframe containing variant observations
+#' @param sample_name Sample name
 #'
-#' @return
+#' @return A plot
 #' @export
-#'
-#' @examples
 plot_vars_by_coverage <- function(wide.df, long.df, sample_name) {
   title <- paste0("Coverage Depth for ", sample_name, " Replicate SNVs")
   wide.df %>%
@@ -64,9 +58,9 @@ plot_vars_by_coverage <- function(wide.df, long.df, sample_name) {
                y = hq_depth,
                shape = genotype,
                colour = concordance_col)) +
-    geom_point(size=3) + scale_colour_identity() +
+    geom_point(size = 3) + scale_colour_identity() +
     scale_y_log10(breaks = c(1,2,5,10,20,50,100,200,500,1000, 2000)) +
-    theme(axis.text.x=element_text(angle = 90, hjust = 0)) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 0)) +
     coord_flip() +
     labs(title = title,
          x = "Variant",
@@ -74,17 +68,14 @@ plot_vars_by_coverage <- function(wide.df, long.df, sample_name) {
     return()
 }
 
-
 #' Join to the plotting frame and re-plot for VAF
 #'
-#' @param wide.df
-#' @param long.df
-#' @param sample_name
+#' @param wide.df A wide dataframe containing variant observations
+#' @param long.df A long dataframe containing variant observations
+#' @param sample_name Sample name
 #'
-#' @return
+#' @return A plot
 #' @export
-#'
-#' @examples
 plot_vars_by_vaf <- function(wide.df, long.df, sample_name) {
   title <- paste0("Variant allele fraction for ", sample_name, " Replicate SNVs")
   wide.df %>%
@@ -111,7 +102,7 @@ plot_vars_by_vaf <- function(wide.df, long.df, sample_name) {
 #' @return updated_df
 #' @export
 #'
-#' @examples df %>% split_gatk_format_vals()
+#' @examples split_gatk_format_vals(df)
 split_gatk_format_vals <- function(df){
 
   df %>%

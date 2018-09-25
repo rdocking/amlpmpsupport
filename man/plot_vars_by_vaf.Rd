@@ -7,7 +7,14 @@
 plot_vars_by_vaf(wide.df, long.df, sample_name)
 }
 \arguments{
-\item{sample_name}{}
+\item{wide.df}{A wide dataframe containing variant observations}
+
+\item{long.df}{A long dataframe containing variant observations}
+
+\item{sample_name}{Sample name}
+}
+\value{
+A plot
 }
 \description{
 Join to the plotting frame and re-plot for VAF

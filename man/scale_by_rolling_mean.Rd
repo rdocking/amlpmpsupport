@@ -7,7 +7,14 @@
 scale_by_rolling_mean(expr.mat, genes.bed, window_size)
 }
 \arguments{
-\item{window_size}{}
+\item{expr.mat}{a matrix of expression values}
+
+\item{genes.bed}{A bed-like file containing gene coordinates}
+
+\item{window_size}{Window size to use for rolling mean}
+}
+\value{
+A transformed matrix
 }
 \description{
 Scale expression estimates by rolling mean

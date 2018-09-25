@@ -9,7 +9,22 @@ run_cna_workflow(expr.mat, genes.bed, window_size = NA,
   scale_samples_by_zero = TRUE)
 }
 \arguments{
-\item{scale_samples_by_zero}{}
+\item{expr.mat}{A matrix of gene-expression values}
+
+\item{genes.bed}{A bed-like file of gene coordinates}
+
+\item{window_size}{Window size to use for rolling mean}
+
+\item{mean_tpm_threshold}{TPM threshold}
+
+\item{cv_threshold}{CV threshold}
+
+\item{reference_labels}{Reference labels}
+
+\item{scale_samples_by_zero}{Scale samples by zero?}
+}
+\value{
+A re-scaled matrix
 }
 \description{
 Run the CNA workflow

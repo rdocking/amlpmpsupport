@@ -9,6 +9,9 @@ spread_filled_snv_df_to_wide(df)
 \arguments{
 \item{df}{}
 }
+\value{
+df
+}
 \description{
 This function takes the 'long, filled' data frames with variant observations, and converts them to 'wide' format
 }
