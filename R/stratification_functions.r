@@ -171,7 +171,7 @@ apply_eln2017_rna <- function(sv_status, npm1, flt3_itd, flt3_itd_support, cebpa
                               tp53, runx1, asxl1, expression_outlier, debug = FALSE){
 
   if (debug) {
-    print(glue("In: SV status: {sv_status} NPM1: {npm1} FLT3: {flt3_itd} {flt3_itd_support}"))
+    print(glue::glue("In: SV status: {sv_status} NPM1: {npm1} FLT3: {flt3_itd} {flt3_itd_support}"))
   }
 
   # Treat NA values as 'missing'

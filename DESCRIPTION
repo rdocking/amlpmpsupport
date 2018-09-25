@@ -13,7 +13,8 @@ Imports:
   knitr,
   dplyr,
   ggplot2,
-  tidyr
+  tidyr,
+  glue
 Suggests:
   limma,
   edgeR,
@@ -31,5 +32,5 @@ Suggests:
   zoo,
   grid, 
   gridExtra,
-    testthat
+  testthat
 VignetteBuilder: knitr

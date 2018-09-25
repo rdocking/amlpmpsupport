@@ -1,6 +1,7 @@
 context("Stratification function checks")
 library(amlpmpsupport)
 library(tidyverse)
+library(glue)
 
 # Examples adapted from http://r-pkgs.had.co.nz/tests.html
 #test_that("Test examples", {
@@ -175,3 +176,104 @@ test_that("Testing ELN2015-Cyto", {
   expect_equal(df$rationale, 'Intermediate SVs, NPM1-FLT3+')
 })
 
+test_that("Testing ELN2017-RNA", {
+
+  # Set up default inputs
+  sv_status <- NA
+  npm1 <- 'wt'
+  flt3_itd <- 'negative'
+  flt3_itd_support <- NA
+  cebpa <- NA
+  tp53 <- NA
+  runx1 <- NA
+  asxl1 <- NA
+  expression_outlier <- NA
+
+  # t_15_17
+  sv_status <- 't_15_17'
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'favourable')
+  expect_equal(df$rationale, 'Favourable structural variant')
+
+  # cbf_fusion
+  sv_status <- 't_8_21'
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'favourable')
+  expect_equal(df$rationale, 'Favourable structural variant')
+
+  # No mutations
+  sv_status <- ''
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'intermediate')
+  expect_equal(df$rationale, 'No rules applied')
+
+  # Adverse-risk fusion
+  sv_status <- 'adverse_risk_fusion'
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'adverse')
+  expect_equal(df$rationale, 'Adverse-risk structural variant')
+
+  # NPM1+FLT3+
+  sv_status <- 'intermediate_risk'
+  npm1 <- 'NPM1fs'
+  flt3_itd <- 'positive'
+  flt3_itd_support <- 'FLT3-ITD_high'
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'intermediate')
+  expect_equal(df$rationale, 'Intermediate SVs, NPM1+FLT3+')
+
+  # NPM1+FLT3-
+  flt3_itd <- 'negative'
+  flt3_itd_support <- 0
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'favourable')
+  expect_equal(df$rationale, 'Intermediate SVs, NPM1+FLT3-')
+
+  # NPM1-FLT3+
+  npm1 <- 'wt'
+  flt3_itd <- 'positive'
+  flt3_itd_support <- 'FLT3-ITD_high'
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'adverse')
+  expect_equal(df$rationale, 'Intermediate SVs, NPM1-FLT3+')
+
+  # TP53
+  flt3_itd <- 0
+  flt3_itd_support <- 0
+  tp53 <- 'missense_variant'
+  df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+                          cebpa, tp53, runx1, asxl1, expression_outlier)
+  expect_equal(df$status, 'adverse')
+  expect_equal(df$rationale, 'Intermediate SVs, TP53 mutation')
+
+  # # RUNX1
+  # tp53 <- 0
+  # runx1 <- 'missense_variant'
+  # df <- apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support,
+  #                         cebpa, tp53, runx1, asxl1, expression_outlier)
+  # expect_equal(df$status, 'adverse')
+  # expect_equal(df$rationale, 'Intermediate SVs, RUNX1 mutation')
+  # runx1 <- 0
+
+})
+
+
+
+
+# # Test the function
+# eln_fusion_tests <- tribble(
+#   ~sv_status, ~npm1, ~flt3_itd, ~flt3_support, ~cebpa, ~tp53, ~runx1, ~asxl1, ~expression_outlier, ~out_status, # ~out_rationale,
+#   'intermediate_risk', 0, 0, 0, 0, NA_character_, 'missense_variant', 0, NA, 'adverse', 'Intermediate SVs, RUNX1 # mutation',          # RUNX1
+#   'intermediate_risk', 0, 0, 0, 0, NA_character_, NA_character_, 'missense_variant', NA, 'adverse', 'Intermediate SVs, # ASXL1 mutation',          # ASXL1
+#   'intermediate_risk', 0, 0, 0, 'CEBPAbi', NA_character_, NA_character_, NA_character_, NA, 'favourable', 'Intermediate # SVs, biallelic CEBPA',           # CEBPA
+#   't_9_11', 0, 0, 0, 0, NA_character_, NA_character_, NA_character_, NA, 'intermediate', 'MLL translocation', # MLL # fusion
+#   'KMT2A-PTD positive', 0, 0, 0, 0, NA_character_, NA_character_, NA_character_, NA, 'adverse', 'KMT2A-PTD positive', # # KMT2A-PTD
+#   '', 0, 0, 0, 0, 0, 0, 0, 'MECOM high', 'adverse', 'Outlier MECOM expression'
+# )
