@@ -10,7 +10,7 @@ library(tidyverse)
 #  expect_match("Testing is fun!", "Testing")
 #})
 
-# Test basic foreign key constraints for Path table
+# Test plotting utility functions
 test_that("Plotting function tests", {
 
   # Test that the `eng_log_breaks` function returns appropriate breaks
