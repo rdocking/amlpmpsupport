@@ -93,9 +93,6 @@ apply_eln2017_cyto <-
 #' @param npm1 NPM1 status
 #' @param flt3_itd FLT3-ITD status
 #' @param cebpa CEBPA status
-#' @param tp53 TP53 status
-#' @param runx1 RUNX1 status
-#' @param asxl1 ASXL1 status
 #'
 #' @return A stratification status and rationale
 #' @export
@@ -107,9 +104,6 @@ apply_eln2015_cyto <- function(cyto_status, npm1, flt3_itd, cebpa){
     if (is.na(cyto_status)) cyto_status = 'missing'
     if (is.na(npm1)) npm1 = 'missing'
     if (is.na(cebpa)) cebpa = 'missing'
-    if (is.na(tp53)) tp53 = 'missing'
-    if (is.na(asxl1)) asxl1 = 'missing'
-    if (is.na(runx1)) runx1 = 'missing'
     if (is.na(flt3_itd)) flt3_itd = 'missing'
 
     # Convert all values except 'positive' for FLT3-ITD to 'negative'
@@ -117,7 +111,7 @@ apply_eln2015_cyto <- function(cyto_status, npm1, flt3_itd, cebpa){
 
     # Start as intermediate, no rules applied
     status <- 'intermediate-II'
-    rationale <- 'No rules applied'
+    rationale <- 'Intermediate SVs, NPM1-FLT3-'
 
     # Check cytogenetics, then mutations
     if (cyto_status %in% c('t_15_17', 'cbf_fusion')) {
@@ -146,13 +140,13 @@ apply_eln2015_cyto <- function(cyto_status, npm1, flt3_itd, cebpa){
         status <- 'favourable'
         rationale <- 'Intermediate SVs, NPM1+FLT3-'
       # Then FLT3 positive
-      } else if (npm1 == 'NPM1fs' & flt3_status == 'positive') {
+      } else if (npm1 == 'NPM1fs' & flt3_itd == 'positive') {
         status <- 'intermediate-I'
         rationale <- 'Intermediate SVs, NPM1+FLT3+'
-      } else if (npm1 != 'NPM1fs' & flt3_status == 'positive') {
+      } else if (npm1 != 'NPM1fs' & flt3_itd == 'positive') {
         status <- 'intermediate-I'
         rationale <- 'Intermediate SVs, NPM1-FLT3+'
-      } else if (npm1 != 'NPM1fs' & flt3_status == 'negative') {
+      } else if (npm1 != 'NPM1fs' & flt3_itd == 'negative') {
         status <- 'intermediate-I'
         rationale <- 'Intermediate SVs, NPM1-FLT3-'
       }
