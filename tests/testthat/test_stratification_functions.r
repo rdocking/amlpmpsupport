@@ -304,14 +304,17 @@ test_that("Testing expression re-classification", {
 
   # No change in category
   x1 <- apply_expression_signature_reclassification('orig', 0, -1, 1)
-  expect_equal(x1, 'orig')
+  expect_equal(x1$status, 'orig')
+  expect_equal(x1$rationale, "Second tertile expression")
 
   # Adjust up
   x2 <- apply_expression_signature_reclassification('orig', -4, -1, 1)
-  expect_equal(x2, 'favorable')
+  expect_equal(x2$status, 'favourable')
+  expect_equal(x2$rationale, "First tertile expression")
 
   # Adjust down
   x3 <- apply_expression_signature_reclassification('orig', 4, -1, 1)
-  expect_equal(x3, 'adverse')
+  expect_equal(x3$status, 'adverse')
+  expect_equal(x3$rationale, "Third tertile expression")
 
   })

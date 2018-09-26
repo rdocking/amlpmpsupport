@@ -270,15 +270,18 @@ apply_eln2017_rna <- function(sv_status, npm1, flt3_itd, flt3_itd_support, cebpa
 #'
 #' @return A revised stratification category and justification
 #' @export
-apply_expression_signature_reclassification <- function(original_cat, expression_score, fav_theshold, adverse_threshold){
+apply_expression_signature_reclassification <- function(original_cat, expression_score, fav_threshold, adverse_threshold){
 
   # Note that the signatures are scaled so that higher-values = worse outcomes
-  revised_cat <- original_cat
-  if (expression_score <= fav_theshold) {
-    revised_cat <- 'favorable'
+  status <- original_cat
+  rationale <- "Second tertile expression"
+  if (expression_score <= fav_threshold) {
+    status <- 'favourable'
+    rationale <- "First tertile expression"
   } else if (expression_score >= adverse_threshold) {
-    revised_cat <- 'adverse'
+    status <- 'adverse'
+    rationale <- "Third tertile expression"
   }
-  return(revised_cat)
+  return(data_frame(status = status, rationale = rationale))
 
 }
