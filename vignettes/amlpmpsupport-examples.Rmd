@@ -1,0 +1,23 @@
+---
+title: "amlpmpsupport - Examples"
+author: "R. Docking"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{amlpmpsupport - Examples}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Stratification Helpers
+
+These functions take as input sets of molecular alterations, and apply stratifications according to different schema. 
+
+

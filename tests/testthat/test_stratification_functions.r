@@ -299,3 +299,19 @@ test_that("Testing ELN2017-RNA", {
   expect_equal(df$rationale, 'Outlier MECOM expression')
 
 })
+
+test_that("Testing expression re-classification", {
+
+  # No change in category
+  x1 <- apply_expression_signature_reclassification('orig', 0, -1, 1)
+  expect_equal(x1, 'orig')
+
+  # Adjust up
+  x2 <- apply_expression_signature_reclassification('orig', -4, -1, 1)
+  expect_equal(x2, 'favorable')
+
+  # Adjust down
+  x3 <- apply_expression_signature_reclassification('orig', 4, -1, 1)
+  expect_equal(x3, 'adverse')
+
+  })
