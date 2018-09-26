@@ -44,7 +44,7 @@ apply_eln2017_cyto <-
     status <- 'favourable'
     rationale <- 'Favourable cytogenetics'
   # Poor-risk cytogenetics
-  } else if (cyto_status == 'adverse_risk') {
+  } else if (cyto_status %in% c('adverse_risk', 'poor_risk')) {
     status <- 'adverse'
     rationale <- 'Adverse-risk cytogenetics'
   # Intermediate-risk cyto and normal karyotype - check mutations
@@ -114,7 +114,7 @@ apply_eln2015_cyto <- function(cyto_status, npm1, flt3_itd, cebpa){
       status <- 'favourable'
       rationale <- 'Favourable cytogenetics'
     # Poor-risk cytogenetics
-    } else if (cyto_status == 'adverse_risk') {
+    } else if (cyto_status %in% c('adverse_risk', 'poor_risk')) {
       status <- 'adverse'
       rationale <- 'Adverse-risk cytogenetics'
     # Intermediate-risk cyto and normal karyotype - check mutations

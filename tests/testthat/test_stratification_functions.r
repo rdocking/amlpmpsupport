@@ -50,6 +50,13 @@ test_that("Testing ELN2017-Cyto", {
   expect_equal(df$status, 'adverse')
   expect_equal(df$rationale, 'Adverse-risk cytogenetics')
 
+  # Allow for 'poor' as well
+  cyto_status <- 'poor_risk'
+  df <- apply_eln2017_cyto(cyto_status, npm1, flt3_itd, flt3_itd_support,
+                           cebpa, tp53, runx1, asxl1)
+  expect_equal(df$status, 'adverse')
+  expect_equal(df$rationale, 'Adverse-risk cytogenetics')
+
   # Intermediate with no mutations
   cyto_status <- 'intermediate_risk'
   df <- apply_eln2017_cyto(cyto_status, npm1, flt3_itd, flt3_itd_support,
@@ -139,6 +146,12 @@ test_that("Testing ELN2015-Cyto", {
 
   # Adverse-risk cyto
   cyto_status <- 'adverse_risk'
+  df <- apply_eln2015_cyto(cyto_status, npm1, flt3_itd, cebpa)
+  expect_equal(df$status, 'adverse')
+  expect_equal(df$rationale, 'Adverse-risk cytogenetics')
+
+  # Allow for 'poor' as well
+  cyto_status <- 'poor_risk'
   df <- apply_eln2015_cyto(cyto_status, npm1, flt3_itd, cebpa)
   expect_equal(df$status, 'adverse')
   expect_equal(df$rationale, 'Adverse-risk cytogenetics')
