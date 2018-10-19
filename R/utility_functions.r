@@ -25,7 +25,7 @@ nest_libraries_by_patient <- function(patients.df, libraries.df) {
     dplyr::right_join(patients.df, by = 'tfl_id')
 }
 
-#' # Set a function for pretty-printing kables
+#' Set a function for pretty-printing kables
 #'
 #' @param df Data frame containing data to format as a table
 #' @param ... Additional options to be passed to kable
@@ -39,6 +39,20 @@ pretty_kable <- function(df, ...){
   knitr::kable(df, digits = 2,
                format.args = list(big.mark = ','),
                ...)
+}
+
+#' Set a function for pretty-printing numbers in the text
+#'
+#' @param x Number to print
+#' @param ... Additional options to be passed to prettyNum
+#'
+#' @return A formatted number
+#' @export
+#'
+#' @examples pretty_num(5.55654)
+pretty_num <- function(x, ...){
+  # This has options I like - small number of sig digits
+  prettyNum(x, digits = 3, ...)
 }
 
 #' # Report basic information about a matrix

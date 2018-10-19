@@ -2,7 +2,7 @@
 % Please edit documentation in R/utility_functions.r
 \name{pretty_kable}
 \alias{pretty_kable}
-\title{# Set a function for pretty-printing kables}
+\title{Set a function for pretty-printing kables}
 \usage{
 pretty_kable(df, ...)
 }
@@ -15,7 +15,7 @@ pretty_kable(df, ...)
 A kable table
 }
 \description{
-# Set a function for pretty-printing kables
+Set a function for pretty-printing kables
 }
 \examples{
 pretty_kable(data.frame(x = c(1000, 999), y = c(0.345:0.351)))

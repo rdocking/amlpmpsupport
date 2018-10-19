@@ -5,16 +5,16 @@
 \title{Update an existing stratification by applying a gene expression score}
 \usage{
 apply_expression_signature_reclassification(original_cat, expression_score,
-  fav_theshold, adverse_threshold)
+  fav_threshold, adverse_threshold)
 }
 \arguments{
 \item{original_cat}{The original stratification category}
 
 \item{expression_score}{The gene expression signature score}
 
-\item{fav_theshold}{Threshold for adjusting stratification to 'favourable' category}
-
 \item{adverse_threshold}{Threshold for adjusting stratification to 'adverse' category}
+
+\item{fav_theshold}{Threshold for adjusting stratification to 'favourable' category}
 }
 \value{
 A revised stratification category and justification
