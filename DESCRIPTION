@@ -7,7 +7,7 @@ Maintainer: Rod Docking <rdocking@bcgsc.ca>
 Description: Support code for analysis done for the AML PMP RNA-Seq Diagnostic Manuscript.
 License: MIT + file LICENSE
 LazyData: TRUE
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 Encoding: UTF-8
 Imports:
   knitr,
