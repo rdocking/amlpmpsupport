@@ -245,3 +245,51 @@ plot_heatmap_for_k <- function(cluster_assignments.df,
            gaps_col = gap_locations,
            annotation_legend = annotation_legend)
 }
+
+#' Draw Volcano Plot for APS DE Comparison
+#'
+#' @param df
+#' @param title
+#' @param label_q_threshold
+#' @param label_fc_threshold
+#' @param draw_labels
+#'
+#' @return
+#' @export
+#'
+#' @examples
+aps_volcano_plot <- function(df, title, label_q_threshold, label_fc_threshold, draw_labels = FALSE){
+
+  # Set up labels and colours for volcano plot
+  labelled_hits <-
+    dplyr::filter(df, `-10log10(padj)` > label_q_threshold,
+                  abs(log2FoldChange) >= label_fc_threshold) %>%
+    dplyr::pull(gene_name)
+
+  labelled.df <-
+    df %>%
+    dplyr::mutate(label_text = if_else(gene_name %in% labelled_hits,
+                                       true = gene_name, false = NA_character_),
+           point_colour = case_when(
+             padj <= 0.05 & log2FoldChange >= 1 ~ "#E41A1C",
+             padj <= 0.05 & log2FoldChange <= -1 ~ "#377EB8",
+             TRUE ~ "black"))
+
+  # Base plot without labels
+  p <- ggplot(labelled.df,
+              aes(x = log2FoldChange, y = `-10log10(padj)`,
+                  label = label_text, colour = point_colour)) +
+    geom_point() +
+    scale_color_identity() +
+    geom_vline(xintercept = 0, linetype = 1) +
+    geom_vline(xintercept = c(-1, 1), linetype = 2) +
+    geom_hline(yintercept = -10 * log10(0.05), linetype = 2)
+
+  # Optionally label points
+  if (draw_labels) {
+    p <- p + ggrepel::geom_label_repel()
+  }
+
+  return(p)
+}
+
