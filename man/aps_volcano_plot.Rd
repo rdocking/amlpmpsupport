@@ -4,11 +4,11 @@
 \alias{aps_volcano_plot}
 \title{Draw Volcano Plot for APS DE Comparison}
 \usage{
-aps_volcano_plot(df, title, label_q_threshold, label_fc_threshold,
-  draw_labels = FALSE)
+aps_volcano_plot(df, q_threshold, fc_threshold, label_q_threshold,
+  label_fc_threshold, draw_labels = FALSE)
 }
 \arguments{
-\item{draw_labels}{}
+\item{fc_threshold}{}
 }
 \description{
 Draw Volcano Plot for APS DE Comparison

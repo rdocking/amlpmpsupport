@@ -249,20 +249,23 @@ plot_heatmap_for_k <- function(cluster_assignments.df,
 #' Draw Volcano Plot for APS DE Comparison
 #'
 #' @param df
-#' @param title
 #' @param label_q_threshold
 #' @param label_fc_threshold
 #' @param draw_labels
+#' @param q_threshold
+#' @param fc_threshold
 #'
 #' @return
 #' @export
 #'
 #' @examples
-aps_volcano_plot <- function(df, title, label_q_threshold, label_fc_threshold, draw_labels = FALSE){
+aps_volcano_plot <- function(df, q_threshold, fc_threshold,
+                             label_q_threshold, label_fc_threshold,
+                             draw_labels = FALSE){
 
   # Set up labels and colours for volcano plot
   labelled_hits <-
-    dplyr::filter(df, `-10log10(padj)` > label_q_threshold,
+    dplyr::filter(df, padj > label_q_threshold,
                   abs(log2FoldChange) >= label_fc_threshold) %>%
     dplyr::pull(gene_name)
 
@@ -271,8 +274,8 @@ aps_volcano_plot <- function(df, title, label_q_threshold, label_fc_threshold, d
     dplyr::mutate(label_text = if_else(gene_name %in% labelled_hits,
                                        true = gene_name, false = NA_character_),
            point_colour = case_when(
-             padj <= 0.05 & log2FoldChange >= 1 ~ "#E41A1C",
-             padj <= 0.05 & log2FoldChange <= -1 ~ "#377EB8",
+             padj <= q_threshold & log2FoldChange >= fc_threshold ~ "#E41A1C",
+             padj <= q_threshold & log2FoldChange <= -1 * fc_threshold ~ "#377EB8",
              TRUE ~ "black"))
 
   # Base plot without labels
@@ -282,8 +285,8 @@ aps_volcano_plot <- function(df, title, label_q_threshold, label_fc_threshold, d
     geom_point() +
     scale_color_identity() +
     geom_vline(xintercept = 0, linetype = 1) +
-    geom_vline(xintercept = c(-1, 1), linetype = 2) +
-    geom_hline(yintercept = -10 * log10(0.05), linetype = 2)
+    geom_vline(xintercept = c(-1 * fc_threshold, fc_threshold), linetype = 2) +
+    geom_hline(yintercept = -10 * log10(q_threshold), linetype = 2)
 
   # Optionally label points
   if (draw_labels) {
