@@ -265,7 +265,7 @@ aps_volcano_plot <- function(df, q_threshold, fc_threshold,
 
   # Set up labels and colours for volcano plot
   labelled_hits <-
-    dplyr::filter(df, padj > label_q_threshold,
+    dplyr::filter(df, padj <= label_q_threshold,
                   abs(log2FoldChange) >= label_fc_threshold) %>%
     dplyr::pull(gene_name)
 
