@@ -33,6 +33,7 @@ Suggests:
   grid, 
   gridExtra,
   testthat,
-    knitr,
-    rmarkdown
+  knitr,
+  rmarkdown,
+  survminer
 VignetteBuilder: knitr
