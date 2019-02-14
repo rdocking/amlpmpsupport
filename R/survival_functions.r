@@ -71,5 +71,6 @@ surv_panel_plot <- function(surv.fit, data, palette, title, pval.coord = c(600, 
 
   # Hack into the object to tweak further
   p[["table"]][["labels"]][["x"]] <- ""
+  p[["table"]][["labels"]][["y"]] <- ""
   p
 }
