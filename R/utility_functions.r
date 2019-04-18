@@ -119,3 +119,38 @@ num_to_text <- function(x, capitalize = FALSE){
   return(ret)
 }
 
+
+#' upregulated_genes
+#'
+#' @param df
+#' @param adjpval_threshold
+#' @param log2fc_threshold
+#'
+#' @return
+#' @export
+#'
+#' @examples
+upregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
+  dplyr::filter(df,
+         padj <= adjpval_threshold,
+         log2FoldChange >= log2fc_threshold) %>%
+    dplyr::pull(gene_name)
+}
+
+#' downregulated_genes
+#'
+#' @param df
+#' @param adjpval_threshold
+#' @param log2fc_threshold
+#'
+#' @return
+#' @export
+#'
+#' @examples
+downregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
+  dplyr::filter(df,
+         padj <= adjpval_threshold,
+         log2FoldChange <= -1 * log2fc_threshold) %>%
+    dplyr::pull(gene_name)
+}
+
