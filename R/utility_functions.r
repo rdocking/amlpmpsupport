@@ -154,3 +154,18 @@ downregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
     dplyr::pull(gene_name)
 }
 
+
+#' Group / Tally / Table
+#'
+#' @param x A data frame
+#' @param ... Unquoted variables to group by
+#'
+#' @return A knitr::kable()
+#' @export
+#'
+#' @examples group_tally_table(iris, Species)
+group_tally_table <- function(x, ...) {
+  x %>% dplyr::group_by(...) %>% dplyr::tally(., wt = NULL) %>% knitr::kable()
+}
+
+
