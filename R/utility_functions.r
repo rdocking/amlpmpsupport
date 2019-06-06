@@ -174,10 +174,12 @@ group_tally_table <- function(x, ...) {
 #' @param plot ggplot object
 #' @param width plot width in inches
 #' @param height plot height in inches
-#' @param height plot height in inches
 #' @param ... parameters passed to ggsave
 #'
-ggsave_pdf_and_png <- function(filename_root, plot, width, height, ...){
+#' @export
+#'
+#' @examples ggsave_pdf_and_png(foo, p)
+ggsave_pdf_and_png <- function(filename_root, plot, width = 4, height = 2.472, ...){
 
   plot_file_pdf <- fs::path_ext_set(filename_root, 'pdf')
   ggsave(plot_file_pdf, plot = plot,

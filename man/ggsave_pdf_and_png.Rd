@@ -4,7 +4,7 @@
 \alias{ggsave_pdf_and_png}
 \title{Save plot to PDF and PNG}
 \usage{
-ggsave_pdf_and_png(filename_root, plot, width, height, ...)
+ggsave_pdf_and_png(filename_root, plot, width = 4, height = 2.472, ...)
 }
 \arguments{
 \item{filename_root}{Root filename (without extension)}
@@ -16,9 +16,10 @@ ggsave_pdf_and_png(filename_root, plot, width, height, ...)
 \item{height}{plot height in inches}
 
 \item{...}{parameters passed to ggsave}
-
-\item{height}{plot height in inches}
 }
 \description{
 Save plot to PDF and PNG
+}
+\examples{
+ggsave_pdf_and_png(foo, p)
 }
