@@ -168,4 +168,25 @@ group_tally_table <- function(x, ...) {
   x %>% dplyr::group_by(...) %>% dplyr::tally(., wt = NULL) %>% knitr::kable()
 }
 
+#' Save plot to PDF and PNG
+#'
+#' @param filename_root Root filename (without extension)
+#' @param plot ggplot object
+#' @param width plot width in inches
+#' @param height plot height in inches
+#' @param height plot height in inches
+#' @param ... parameters passed to ggsave
+#'
+ggsave_pdf_and_png <- function(filename_root, plot, width, height, ...){
+
+  plot_file_pdf <- fs::path_ext_set(filename_root, 'pdf')
+  ggsave(plot_file_pdf, plot = plot,
+         device = "pdf", width = width, height = height,
+         ...)
+
+  plot_file_png <- fs::path_ext_set(filename_root, 'png')
+  ggsave(plot_file_png, plot = plot,
+         device = "png", width = width, height = height,
+         ...)
+}
 
