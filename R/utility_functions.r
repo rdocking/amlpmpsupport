@@ -95,7 +95,7 @@ num_to_text <- function(x, capitalize = FALSE){
 
   # Input checks
   assertthat::is.number(x)
-  assertthat::assert_that(x <= 10)
+  assertthat::assert_that(x <= 30)
 
   num_table <- tibble::tribble(
     ~x, ~small,
@@ -108,8 +108,28 @@ num_to_text <- function(x, capitalize = FALSE){
     7, 'seven',
     8, 'eight',
     9, 'nine',
-    10, 'ten') %>%
-    dplyr::mutate(big = stringr::str_to_title(small))
+    10, 'ten',
+    11, 'eleven',
+    12, 'twelve',
+    13, 'thirteen',
+    14, 'fourteen',
+    15, 'fifteen',
+    16, 'sixteen',
+    17, 'seventeen',
+    18, 'eighteen',
+    19, 'nineteen',
+    20, 'twenty',
+    21, 'twenty-one',
+    22, 'twenty-two',
+    23, 'twenty-three',
+    24, 'twenty-four',
+    25, 'twenty-five',
+    26, 'twenty-six',
+    27, 'twenty-seven',
+    28, 'twenty-eight',
+    29, 'twenty-nine',
+    30, 'thirty') %>%
+    dplyr::mutate(big = stringr::str_to_sentence(small))
 
   if (capitalize) {
     ret <- num_table[x,]$big
