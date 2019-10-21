@@ -212,3 +212,25 @@ ggsave_pdf_and_png <- function(filename_root, plot, width = 4, height = 2.472, .
          ...)
 }
 
+#' A function to sort TFL IDs into ascending order
+#'
+#' @param df
+#'
+#' @return
+#' @export
+#'
+#' @examples
+tfl_split_sort <- function(df){
+
+  # Split identifier
+  tmp.df <- df %>%
+    tidyr::separate(patient_external_id, into = c('prefix', 'suffix'),
+                    sep = '-', remove = FALSE, fill = "right",
+                    convert = TRUE)
+
+  tmp.df$prefix <- as.integer(tmp.df$prefix)
+  tmp.df$suffix <- as.integer(tmp.df$suffix)
+
+  dplyr::arrange(tmp.df, prefix, suffix) %>%
+    dplyr::select(-prefix, -suffix)
+}
