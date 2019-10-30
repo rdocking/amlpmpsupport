@@ -18,7 +18,7 @@ nest_libraries_by_patient <- function(patients.df, libraries.df) {
   #  to the patient-level data frame
   libraries.df %>%
     dplyr::group_by(tfl_id) %>%
-    tidyr::nest() %>%
+    tidyr::nest_legacy() %>%
     dplyr::mutate(lib_list = purrr::map(data, select_fun),
                   libraries = purrr::map_chr(lib_list, cat_fun)) %>%
     # dplyr::select(-data, -lib_list) %>%
