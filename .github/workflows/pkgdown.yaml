@@ -21,6 +21,8 @@ jobs:
           install.packages('remotes')
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
+          message(paste('****', Sys.time(), 'installing BiocManager ****'))
+          remotes::install_cran("BiocManager")
         shell: Rscript {0}
 
       - name: Cache R packages
@@ -35,6 +37,11 @@ jobs:
           install.packages("remotes")
           remotes::install_deps(dependencies = TRUE)
           remotes::install_dev("pkgdown")
+
+          # Add BioConductor - https://github.com/lcolladotor/biocthis/blob/master/actions/check-bioc.yml
+          local_deps <- remotes::local_package_deps(dependencies = TRUE)
+          deps <- remotes::dev_package_deps(dependencies = TRUE, repos = BiocManager::repositories())
+          BiocManager::install(local_deps[local_deps %in% deps$package[deps$diff != 0]])
         shell: Rscript {0}
 
       - name: Install package
