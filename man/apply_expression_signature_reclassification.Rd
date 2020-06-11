@@ -4,8 +4,12 @@
 \alias{apply_expression_signature_reclassification}
 \title{Update an existing stratification by applying a gene expression score}
 \usage{
-apply_expression_signature_reclassification(original_cat, expression_score,
-  fav_threshold, adverse_threshold)
+apply_expression_signature_reclassification(
+  original_cat,
+  expression_score,
+  fav_threshold,
+  adverse_threshold
+)
 }
 \arguments{
 \item{original_cat}{The original stratification category}

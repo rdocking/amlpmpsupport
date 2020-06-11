@@ -4,8 +4,13 @@
 \alias{plot_heatmap_for_k}
 \title{Plot a pheatmap for a single value of k}
 \usage{
-plot_heatmap_for_k(cluster_assignments.df, annotation_col.df,
-  ann_colours.lst, cluster_input.mat, annotation_legend = FALSE)
+plot_heatmap_for_k(
+  cluster_assignments.df,
+  annotation_col.df,
+  ann_colours.lst,
+  cluster_input.mat,
+  annotation_legend = FALSE
+)
 }
 \description{
 Plot a pheatmap for a single value of k

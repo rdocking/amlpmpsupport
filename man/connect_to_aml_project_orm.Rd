@@ -4,8 +4,11 @@
 \alias{connect_to_aml_project_orm}
 \title{Connect to AML Project ORM Database}
 \usage{
-connect_to_aml_project_orm(dbname = "aml_project_db",
-  host = "karsanlab-db01", user)
+connect_to_aml_project_orm(
+  dbname = "aml_project_db",
+  host = "karsanlab-db01",
+  user
+)
 }
 \arguments{
 \item{dbname}{Database name}

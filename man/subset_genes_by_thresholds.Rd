@@ -4,8 +4,13 @@
 \alias{subset_genes_by_thresholds}
 \title{Subset expression matrix by thresholds}
 \usage{
-subset_genes_by_thresholds(expr.mat, mean_tpm_threshold, cv_threshold,
-  reference_means, reference_cvs)
+subset_genes_by_thresholds(
+  expr.mat,
+  mean_tpm_threshold,
+  cv_threshold,
+  reference_means,
+  reference_cvs
+)
 }
 \arguments{
 \item{expr.mat}{A matrix of expression values}

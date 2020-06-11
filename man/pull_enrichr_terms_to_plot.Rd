@@ -9,6 +9,9 @@ pull_enrichr_terms_to_plot(long_df)
 \arguments{
 \item{long_df}{Long dataframe containing enrichment results across cohorts}
 }
+\value{
+
+}
 \description{
 Identify enriched terms across cohorts
 }

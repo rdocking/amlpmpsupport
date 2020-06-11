@@ -4,8 +4,12 @@
 \alias{pull_enrichr_enriched_terms}
 \title{Pull EnrichR enriched terms for a single pathway source}
 \usage{
-pull_enrichr_enriched_terms(enrichr_lst, pathway_source, cohort_name,
-  padj_thresh)
+pull_enrichr_enriched_terms(
+  enrichr_lst,
+  pathway_source,
+  cohort_name,
+  padj_thresh
+)
 }
 \arguments{
 \item{enrichr_lst}{Result list returned from EnrichR}
@@ -15,6 +19,9 @@ pull_enrichr_enriched_terms(enrichr_lst, pathway_source, cohort_name,
 \item{cohort_name}{Cohort name to apply}
 
 \item{padj_thresh}{Adjusted p-value threshold}
+}
+\value{
+
 }
 \description{
 Pull EnrichR enriched terms for a single pathway source

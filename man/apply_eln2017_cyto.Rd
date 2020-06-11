@@ -4,8 +4,16 @@
 \alias{apply_eln2017_cyto}
 \title{Apply ELN2017 stratification based on cytogenetics}
 \usage{
-apply_eln2017_cyto(cyto_status, npm1, flt3_itd, flt3_itd_support, cebpa,
-  tp53, runx1, asxl1)
+apply_eln2017_cyto(
+  cyto_status,
+  npm1,
+  flt3_itd,
+  flt3_itd_support,
+  cebpa,
+  tp53,
+  runx1,
+  asxl1
+)
 }
 \arguments{
 \item{cyto_status}{Cytogenetic status}

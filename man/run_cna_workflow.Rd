@@ -4,9 +4,15 @@
 \alias{run_cna_workflow}
 \title{Run the CNA workflow}
 \usage{
-run_cna_workflow(expr.mat, genes.bed, window_size = NA,
-  mean_tpm_threshold = 0, cv_threshold = 0, reference_labels,
-  scale_samples_by_zero = TRUE)
+run_cna_workflow(
+  expr.mat,
+  genes.bed,
+  window_size = NA,
+  mean_tpm_threshold = 0,
+  cv_threshold = 0,
+  reference_labels,
+  scale_samples_by_zero = TRUE
+)
 }
 \arguments{
 \item{expr.mat}{A matrix of gene-expression values}

@@ -4,8 +4,18 @@
 \alias{apply_eln2017_rna}
 \title{Apply ELN2017-RNA stratification}
 \usage{
-apply_eln2017_rna(sv_status, npm1, flt3_itd, flt3_itd_support, cebpa, tp53,
-  runx1, asxl1, expression_outlier, debug = FALSE)
+apply_eln2017_rna(
+  sv_status,
+  npm1,
+  flt3_itd,
+  flt3_itd_support,
+  cebpa,
+  tp53,
+  runx1,
+  asxl1,
+  expression_outlier,
+  debug = FALSE
+)
 }
 \arguments{
 \item{sv_status}{Structural variant status}

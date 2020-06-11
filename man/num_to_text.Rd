@@ -11,6 +11,9 @@ num_to_text(x, capitalize = FALSE)
 
 \item{capitalize}{Boolean whether to capitalize text}
 }
+\value{
+
+}
 \description{
 Convert a small number to a text representation
 }

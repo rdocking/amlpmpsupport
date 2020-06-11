@@ -33,21 +33,21 @@ run_voom_for_feature <- function(yvals, exp.design, counts.mat){
   return(voom.hits.all)
 }
 
-#' Add Entrez gene IDs to a data frame of voom hits
-#'
-#' @param voom_hits A data frame containing voom hits, with HUGO gene ids
-#'
-#' @return df A data frame containing the Entrez gene IDs in a column called 'entrez'
-#' @export
-#'
-add_entrez_ids_from_hugo_genes <- function(voom_hits){
-  voom_hits$entrez = as.numeric(AnnotationDbi::mapIds(org.Hs.eg.db::org.Hs.eg.db,
-                                                      keys=voom_hits$gene,
-                                                      column="ENTREZID",
-                                                      keytype="SYMBOL",
-                                                      multiVals="first"))
-  return(voom_hits)
-}
+# Add Entrez gene IDs to a data frame of voom hits
+#
+# @param voom_hits A data frame containing voom hits, with HUGO gene ids
+#
+# @return df A data frame containing the Entrez gene IDs in a column called 'entrez'
+# @export
+#
+#add_entrez_ids_from_hugo_genes <- function(voom_hits){
+#  voom_hits$entrez = as.numeric(AnnotationDbi::mapIds(org.Hs.eg.db::org.Hs.eg.db,
+#                                                      keys=voom_hits$gene,
+#                                                      column="ENTREZID",
+#                                                      keytype="SYMBOL",
+#                                                      multiVals="first"))
+#  return(voom_hits)
+#}
 
 
 #' Munge differential expression hits in voom format to IPA-friendly format

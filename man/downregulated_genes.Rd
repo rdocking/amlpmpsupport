@@ -9,6 +9,9 @@ downregulated_genes(df, adjpval_threshold, log2fc_threshold)
 \arguments{
 \item{log2fc_threshold}{}
 }
+\value{
+
+}
 \description{
 downregulated_genes
 }

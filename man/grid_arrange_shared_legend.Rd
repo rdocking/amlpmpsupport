@@ -4,8 +4,12 @@
 \alias{grid_arrange_shared_legend}
 \title{Generate a grid of plots with a shared legend}
 \usage{
-grid_arrange_shared_legend(..., ncol = length(list(...)), nrow = 1,
-  position = c("bottom", "right"))
+grid_arrange_shared_legend(
+  ...,
+  ncol = length(list(...)),
+  nrow = 1,
+  position = c("bottom", "right")
+)
 }
 \arguments{
 \item{...}{A set of plots to arrange with a shared legend}
