@@ -19,7 +19,6 @@ Imports:
 Suggests:
   limma,
   edgeR,
-  org.Hs.eg.db,
   AnnotationDbi,
   ggrepel,
   pheatmap,
@@ -40,7 +39,6 @@ Suggests:
 VignetteBuilder: knitr
 Remotes: 
   bioc::release/AnnotationDbi,
-  bioc::release/org.Hs.eg.db,
   bioc::release/edgeR,
   bioc::release/limma
   
