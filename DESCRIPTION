@@ -38,5 +38,5 @@ Suggests:
 VignetteBuilder: knitr
 Remotes: 
   bioc::release/edgeR,
-  bioc::release/limma
+  bioc::release/limma,
   bioc::release/gage
