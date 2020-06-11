@@ -39,9 +39,9 @@ Suggests:
   survminer
 VignetteBuilder: knitr
 Remotes: 
-  bioc/AnnotationDbi,
-  bioc/org.Hs.eg.db,
-  bioc/edgeR,
-  bioc/limma
+  bioc::release/AnnotationDbi,
+  bioc::release/org.Hs.eg.db,
+  bioc::release/edgeR,
+  bioc::release/limma
   
   
