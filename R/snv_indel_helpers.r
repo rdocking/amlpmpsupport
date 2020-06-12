@@ -17,7 +17,7 @@ read_filled_variant_tsv <- function(tsv_file) {
                   var_hgvs = paste(gene, transcript, protein, sep = ';'),
                   # Add a simple yes/no for 'was a variant called?'
                   # Note that we handleweird genotypes (0|1, 1|0, 1|1) here
-                  bool_genotype = as.integer(if_else(genotype %in% c('0/1', '1/1', '0|1', '1|0', '1|1'),
+                  bool_genotype = as.integer(dplyr::if_else(genotype %in% c('0/1', '1/1', '0|1', '1|0', '1|1'),
                                                      1, 0)))
   return(filled.df)
 }

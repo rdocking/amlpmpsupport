@@ -81,7 +81,7 @@ apply_eln2017_cyto <-
     }
   }
   # Return the status and rationale
-  return(tibble(status = status, rationale = rationale))
+  return(tibble::tibble(status = status, rationale = rationale))
 }
 
 
@@ -148,7 +148,7 @@ apply_eln2015_cyto <- function(cyto_status, npm1, flt3_itd, cebpa){
       }
     }
     # Return the status and rationale
-    return(tibble(status = status, rationale = rationale))
+    return(tibble::tibble(status = status, rationale = rationale))
   }
 
 
@@ -253,11 +253,11 @@ apply_eln2017_rna <- function(sv_status, npm1, flt3_itd, flt3_itd_support, cebpa
 
   # Debug statements
   if (debug) {
-    print(glue("Out: {status} Rationale: {rationale}"))
+    print(glue::glue("Out: {status} Rationale: {rationale}"))
   }
 
   # Return the status and rationale
-  return(tibble(status = status, rationale = rationale))
+  return(tibble::tibble(status = status, rationale = rationale))
 }
 
 
@@ -282,6 +282,6 @@ apply_expression_signature_reclassification <- function(original_cat, expression
     status <- 'adverse'
     rationale <- "Third tertile expression"
   }
-  return(tibble(status = status, rationale = rationale))
+  return(tibble::tibble(status = status, rationale = rationale))
 
 }

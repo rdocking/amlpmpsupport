@@ -271,7 +271,7 @@ aps_volcano_plot <- function(df, q_threshold, fc_threshold,
 
   labelled.df <-
     df %>%
-    dplyr::mutate(label_text = if_else(gene_name %in% labelled_hits,
+    dplyr::mutate(label_text = dplyr::if_else(gene_name %in% labelled_hits,
                                        true = gene_name, false = NA_character_),
            point_colour = case_when(
              padj <= q_threshold & log2FoldChange >= fc_threshold ~ "#E41A1C",
@@ -279,14 +279,14 @@ aps_volcano_plot <- function(df, q_threshold, fc_threshold,
              TRUE ~ "black"))
 
   # Base plot without labels
-  p <- ggplot(labelled.df,
+  p <- ggplot2::ggplot(labelled.df,
               aes(x = log2FoldChange, y = `-10log10(padj)`,
                   label = label_text, colour = point_colour)) +
-    geom_point() +
-    scale_color_identity() +
-    geom_vline(xintercept = 0, linetype = 1) +
-    geom_vline(xintercept = c(-1 * fc_threshold, fc_threshold), linetype = 2) +
-    geom_hline(yintercept = -10 * log10(q_threshold), linetype = 2)
+    ggplot2::geom_point() +
+    ggplot2::scale_color_identity() +
+    ggplot2::geom_vline(xintercept = 0, linetype = 1) +
+    ggplot2::geom_vline(xintercept = c(-1 * fc_threshold, fc_threshold), linetype = 2) +
+    ggplot2::geom_hline(yintercept = -10 * log10(q_threshold), linetype = 2)
 
   # Optionally label points
   if (draw_labels) {

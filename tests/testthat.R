@@ -1,4 +1,4 @@
 library(testthat)
-library(amlpmpsupprt)
+library(amlpmpsupport)
 
 test_check("amlpmpsupport")
