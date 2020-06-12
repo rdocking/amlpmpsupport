@@ -76,9 +76,10 @@ matrix_glimpse <- function(mat) {
 #' @param x A vector
 #' @param position The position to select out
 #'
+#' @return
 #' @export
 #'
-#' @examples select_by_position(lst, 1)
+#' @examples select_by_position(c(1,2,3), 2)
 select_by_position <- function(x, position) x[position]
 
 

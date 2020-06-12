@@ -11,9 +11,12 @@ select_by_position(x, position)
 
 \item{position}{The position to select out}
 }
+\value{
+
+}
 \description{
 Quick function for mapping to select out list items
 }
 \examples{
-select_by_position(lst, 1)
+select_by_position(c(1,2,3), 2)
 }

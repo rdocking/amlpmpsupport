@@ -102,11 +102,11 @@ plot_vars_by_vaf <- function(wide.df, long.df, sample_name) {
 #' @return updated_df
 #' @export
 #'
-#' @examples split_gatk_format_vals(df)
+#' @examples \dontrun{split_gatk_format_vals(df)}
 split_gatk_format_vals <- function(df){
 
   df %>%
-    mutate(format_split = stringr::str_split(format_vals, ':'),
+    dplyr::mutate(format_split = stringr::str_split(format_vals, ':'),
     genotype = map_chr(format_split, select_by_position, 1),
     allele_depth = map_chr(format_split, select_by_position, 2),
     depth_split = stringr::str_split(allele_depth, ','),

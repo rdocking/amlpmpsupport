@@ -13,5 +13,5 @@ matrix_glimpse(mat)
 # Report basic information about a matrix
 }
 \examples{
-matrix_glimpse(mat)
+matrix_glimpse(matrix(runif(1000), nrow = 200, ncol = 500))
 }
