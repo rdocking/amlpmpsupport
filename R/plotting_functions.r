@@ -209,7 +209,7 @@ plot_heatmap_for_k <- function(cluster_assignments.df,
   #  if the current cluster equals the next one
   gap_locations.df <-
     annotation_col.w_cluster.df %>%
-    mutate(start_gap = cluster != lag(cluster),
+    dplyr::mutate(start_gap = cluster != lag(cluster),
            rownum = row_number()) %>%
     filter(start_gap)
   # Offset to get the correct location

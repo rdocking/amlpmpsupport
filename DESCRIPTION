@@ -11,30 +11,36 @@ RoxygenNote: 7.1.0
 Encoding: UTF-8
 Depends: R (>= 3.5)
 Imports:
-  knitr,
+  assertthat,
   dplyr,
   ggplot2,
-  tidyr,
   glue,
-  magrittr
+  knitr,
+  magrittr,
+  tibble,
+  tidyr
 Suggests:
-  limma,
-  edgeR,
-  ggrepel,
-  pheatmap,
-  caret,
-  randomForest,
   broom,
+  caret,
+  edgeR,
+  fs,
   gage,
   GGally,
-  survival,
-  zoo,
+  ggrepel,
   grid, 
   gridExtra,
-  testthat,
-  knitr,
+  limma,
+  RColorBrewer,
+  randomForest,
+  readr,
   rmarkdown,
-  survminer
+  testthat,
+  pheatmap,
+  purrr,
+  survival,
+  survminer,
+  stringr,
+  zoo
 VignetteBuilder: knitr
 Remotes: 
   bioc::release/edgeR,

@@ -145,7 +145,7 @@ scale_by_rolling_mean <- function(expr.mat, genes.bed, window_size){
   # Split by chromosome and sample and apply rollmean
   tmp.long.df %>%
     group_by(chrom, library) %>%
-    mutate(cnv_est = zoo::rollmean(x = cnv_est, k = window_size,
+    dplyr::mutate(cnv_est = zoo::rollmean(x = cnv_est, k = window_size,
                                    align = "center", fill = c(0,0,0))) ->
     tmp.rollmean_by_chrom.long.df
   # Ungroup and convert back to matrix
