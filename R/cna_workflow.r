@@ -1,11 +1,11 @@
-#' Transform data by taking the log2(TPM+1)
+#' Transform data by taking the log2(count+1)
 #'
-#' @param expr.mat A matrix containing untransformed expression (in transcripts per million)
+#' @param expr.mat A matrix containing un-transformed expression (in some count format)
 #'
-#' @return tpm.log2.mat A matrix with transformed values
+#' @return expr.log2.mat A matrix with transformed values
 #' @export
 #'
-#' @examples tpm.log2.mat <- log2_plus1_transform(tpm.mat)
+#' @examples log2_plus1_transform(matrix(c(1, 2, 4, 8)))
 log2_plus1_transform <- function(x){
   tpm.log2.mat <- log2(x + 1)
   return(tpm.log2.mat)

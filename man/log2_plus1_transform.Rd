@@ -2,19 +2,19 @@
 % Please edit documentation in R/cna_workflow.r
 \name{log2_plus1_transform}
 \alias{log2_plus1_transform}
-\title{Transform data by taking the log2(TPM+1)}
+\title{Transform data by taking the log2(count+1)}
 \usage{
 log2_plus1_transform(x)
 }
 \arguments{
-\item{expr.mat}{A matrix containing untransformed expression (in transcripts per million)}
+\item{expr.mat}{A matrix containing un-transformed expression (in some count format)}
 }
 \value{
-tpm.log2.mat A matrix with transformed values
+expr.log2.mat A matrix with transformed values
 }
 \description{
-Transform data by taking the log2(TPM+1)
+Transform data by taking the log2(count+1)
 }
 \examples{
-tpm.log2.mat <- log2_plus1_transform(tpm.mat)
+log2_plus1_transform(matrix(c(1, 2, 4, 8)))
 }

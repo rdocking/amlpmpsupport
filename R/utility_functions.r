@@ -61,7 +61,7 @@ pretty_num <- function(x, ...){
 #'
 #' @export
 #'
-#' @examples matrix_glimpse(mat)
+#' @examples matrix_glimpse(matrix(runif(1000), nrow = 200, ncol = 500))
 matrix_glimpse <- function(mat) {
   print("Dimensions: ")
   print(dim(mat))
