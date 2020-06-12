@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Split a FORMAT string from GATK-haplotype to get simpler statistics — split_gatk_format_vals • amlpmpsupport</title>
+<title>Pipe operator — %&gt;% • amlpmpsupport</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Split a FORMAT string from GATK-haplotype to get simpler statistics — split_gatk_format_vals" />
-<meta property="og:description" content="Split a FORMAT string from GATK-haplotype to get simpler statistics" />
+<meta property="og:title" content="Pipe operator — %&gt;%" />
+<meta property="og:description" content="See magrittr::%&amp;gt;% for details." />
 
 
 
@@ -118,32 +118,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Split a FORMAT string from GATK-haplotype to get simpler statistics</h1>
+    <h1>Pipe operator</h1>
     
-    <div class="hidden name"><code>split_gatk_format_vals.Rd</code></div>
+    <div class="hidden name"><code>pipe.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Split a FORMAT string from GATK-haplotype to get simpler statistics</p>
+    <p>See <code>magrittr::%&gt;%</code> for details.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>split_gatk_format_vals</span>(<span class='no'>df</span>)</pre>
+    <pre class="usage"><span class='no'>lhs</span> <span class='kw'>%&gt;%</span> <span class='no'>rhs</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>df</th>
-      <td></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>updated_df</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>split_gatk_format_vals</span>(<span class='no'>df</span>)</div><div class='output co'>#&gt; <span class='error'>Error in mutate(., format_split = stringr::str_split(format_vals, ":"),     genotype = map_chr(format_split, select_by_position, 1),     allele_depth = map_chr(format_split, select_by_position,         2), depth_split = stringr::str_split(allele_depth, ","),     ref_depth = as.integer(map_chr(depth_split, select_by_position,         1)), alt_depth = as.integer(map_chr(depth_split, select_by_position,         2)), vaf = alt_depth/(ref_depth + alt_depth) * 100, reported_depth = as.integer(map_chr(format_split,         select_by_position, 3)), genotype_quality = as.integer(map_chr(format_split,         select_by_position, 4))): could not find function "mutate"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
