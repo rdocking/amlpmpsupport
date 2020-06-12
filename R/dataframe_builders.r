@@ -15,7 +15,7 @@ construct_rna_qc_dataframe <- function(exp.design){
     # Select the row that we want from the experimental design
     data_row <- filter(exp.design, rna_seq_lib == lib)
     # Read the QC data into a temporary df
-    tmp.df <- ifxparsers::rna_seqc_parser(data_row$rna_seqc_path)
+    tmp.df <- rna_seqc_parser(data_row$rna_seqc_path)
     tmp.df$library_name <- lib
     # Bind the count data to the growing df
     rna_seqc.df <- bind_rows(rna_seqc.df, tmp.df)
@@ -43,7 +43,7 @@ construct_sailfish_gene_dataframe <- function(exp.design){
     # Select the row that we want
     data_row <- filter(exp.design, rna_seq_lib == lib)
     # Read the events data into a temporary df
-    tmp.df <- ifxparsers::sailfish_gene_parser_post_0.7.0(data_row$sailfish_path)
+    tmp.df <- sailfish_gene_parser_post_0.7.0(data_row$sailfish_path)
     tmp.df$library_name <- lib
     # Bind the count data to the growing df
     sailfish.genes.df <- bind_rows(sailfish.genes.df, tmp.df)
