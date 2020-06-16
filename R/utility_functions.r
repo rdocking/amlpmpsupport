@@ -140,17 +140,14 @@ num_to_text <- function(x, capitalize = FALSE){
   return(ret)
 }
 
-
-#' upregulated_genes
+#' Pull up-regulated genes
 #'
-#' @param df
-#' @param adjpval_threshold
-#' @param log2fc_threshold
+#' @param df Data frame containing DE results
+#' @param adjpval_threshold Adjusted p-value threshold
+#' @param log2fc_threshold Log2-fold-change threshold
 #'
 #' @return
 #' @export
-#'
-#' @examples
 upregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
   dplyr::filter(df,
          padj <= adjpval_threshold,
@@ -158,16 +155,14 @@ upregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
     dplyr::pull(gene_name)
 }
 
-#' downregulated_genes
+#' Pull down-regulated genes
 #'
-#' @param df
-#' @param adjpval_threshold
-#' @param log2fc_threshold
+#' @param df Data frame containing DE results
+#' @param adjpval_threshold Adjusted p-value threshold
+#' @param log2fc_threshold Log2-fold-change threshold
 #'
 #' @return
 #' @export
-#'
-#' @examples
 downregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
   dplyr::filter(df,
          padj <= adjpval_threshold,
@@ -175,11 +170,10 @@ downregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
     dplyr::pull(gene_name)
 }
 
-
 #' Group / Tally / Table
 #'
-#' @param x A data frame
-#' @param ... Unquoted variables to group by
+#' @param x A data frame.
+#' @param ... Unquoted variables to group by.
 #'
 #' @return A knitr::kable()
 #' @export
@@ -189,13 +183,13 @@ group_tally_table <- function(x, ...) {
   x %>% dplyr::group_by(...) %>% dplyr::tally(., wt = NULL) %>% knitr::kable()
 }
 
-#' Save plot to PDF and PNG
+#' Save ggplot to PDF and PNG
 #'
-#' @param filename_root Root filename (without extension)
-#' @param plot ggplot object
-#' @param width plot width in inches
-#' @param height plot height in inches
-#' @param ... parameters passed to ggsave
+#' @param filename_root Root filename (without extension).
+#' @param plot ggplot object.
+#' @param width plot width in inches.
+#' @param height plot height in inches.
+#' @param ... parameters passed on to ggsave.
 #'
 #' @export
 #'
@@ -215,12 +209,10 @@ ggsave_pdf_and_png <- function(filename_root, plot, width = 4, height = 2.472, .
 
 #' A function to sort TFL IDs into ascending order
 #'
-#' @param df
+#' @param df Data frame containing TFL IDs in 'patient_external_id' column.
 #'
 #' @return
 #' @export
-#'
-#' @examples
 tfl_split_sort <- function(df){
 
   # Split identifier

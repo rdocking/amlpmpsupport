@@ -7,7 +7,7 @@
 tfl_split_sort(df)
 }
 \arguments{
-\item{df}{}
+\item{df}{Data frame containing TFL IDs in 'patient_external_id' column.}
 }
 \value{
 

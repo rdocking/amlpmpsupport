@@ -10,7 +10,7 @@ pull_enrichr_terms_to_plot(long_df)
 \item{long_df}{Long dataframe containing enrichment results across cohorts}
 }
 \value{
-
+List containing two data frames: a list of ranked terms, and a list of terms occurring multiple times.
 }
 \description{
 Identify enriched terms across cohorts

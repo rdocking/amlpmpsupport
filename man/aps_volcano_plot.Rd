@@ -14,10 +14,20 @@ aps_volcano_plot(
 )
 }
 \arguments{
-\item{fc_threshold}{}
+\item{df}{Data-frame containing DE results.}
+
+\item{q_threshold}{Q-threshold for colouring points.}
+
+\item{fc_threshold}{Fold-change threshold for colouring points.}
+
+\item{label_q_threshold}{Q-value threshold for adding labels.}
+
+\item{label_fc_threshold}{Fold-change threshold for adding labels.}
+
+\item{draw_labels}{Boolean - add labels?}
 }
 \value{
-
+A ggplot object
 }
 \description{
 Draw Volcano Plot for APS DE Comparison

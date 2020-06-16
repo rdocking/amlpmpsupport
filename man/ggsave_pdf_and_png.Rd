@@ -2,23 +2,23 @@
 % Please edit documentation in R/utility_functions.r
 \name{ggsave_pdf_and_png}
 \alias{ggsave_pdf_and_png}
-\title{Save plot to PDF and PNG}
+\title{Save ggplot to PDF and PNG}
 \usage{
 ggsave_pdf_and_png(filename_root, plot, width = 4, height = 2.472, ...)
 }
 \arguments{
-\item{filename_root}{Root filename (without extension)}
+\item{filename_root}{Root filename (without extension).}
 
-\item{plot}{ggplot object}
+\item{plot}{ggplot object.}
 
-\item{width}{plot width in inches}
+\item{width}{plot width in inches.}
 
-\item{height}{plot height in inches}
+\item{height}{plot height in inches.}
 
-\item{...}{parameters passed to ggsave}
+\item{...}{parameters passed on to ggsave.}
 }
 \description{
-Save plot to PDF and PNG
+Save ggplot to PDF and PNG
 }
 \examples{
 \dontrun{ggsave_pdf_and_png(foo, p)}

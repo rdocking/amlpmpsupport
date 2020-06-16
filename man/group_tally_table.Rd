@@ -7,9 +7,9 @@
 group_tally_table(x, ...)
 }
 \arguments{
-\item{x}{A data frame}
+\item{x}{A data frame.}
 
-\item{...}{Unquoted variables to group by}
+\item{...}{Unquoted variables to group by.}
 }
 \value{
 A knitr::kable()

@@ -248,17 +248,15 @@ plot_heatmap_for_k <- function(cluster_assignments.df,
 
 #' Draw Volcano Plot for APS DE Comparison
 #'
-#' @param df
-#' @param label_q_threshold
-#' @param label_fc_threshold
-#' @param draw_labels
-#' @param q_threshold
-#' @param fc_threshold
+#' @param df Data-frame containing DE results.
+#' @param label_q_threshold Q-value threshold for adding labels.
+#' @param label_fc_threshold Fold-change threshold for adding labels.
+#' @param draw_labels Boolean - add labels?
+#' @param q_threshold Q-threshold for colouring points.
+#' @param fc_threshold Fold-change threshold for colouring points.
 #'
-#' @return
+#' @return A ggplot object
 #' @export
-#'
-#' @examples
 aps_volcano_plot <- function(df, q_threshold, fc_threshold,
                              label_q_threshold, label_fc_threshold,
                              draw_labels = FALSE){

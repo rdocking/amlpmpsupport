@@ -21,7 +21,7 @@ pull_enrichr_enriched_terms(
 \item{padj_thresh}{Adjusted p-value threshold}
 }
 \value{
-
+Data frame of enriched pathways.
 }
 \description{
 Pull EnrichR enriched terms for a single pathway source

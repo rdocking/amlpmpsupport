@@ -126,10 +126,8 @@ gather_expression_matrix_to_tidy_df <- function(x, gene_col, id_col, expr_col){
 #' @param cohort_name Cohort name to apply
 #' @param padj_thresh Adjusted p-value threshold
 #'
-#' @return
+#' @return Data frame of enriched pathways.
 #' @export
-#'
-#' @examples
 pull_enrichr_enriched_terms <- function(enrichr_lst, pathway_source, cohort_name, padj_thresh){
     enrichr_lst[pathway_source][[1]] %>%
       dplyr::select(Term, Overlap, padj = Adjusted.P.value) %>%
@@ -141,10 +139,8 @@ pull_enrichr_enriched_terms <- function(enrichr_lst, pathway_source, cohort_name
 #'
 #' @param long_df Long dataframe containing enrichment results across cohorts
 #'
-#' @return
+#' @return List containing two data frames: a list of ranked terms, and a list of terms occurring multiple times.
 #' @export
-#'
-#' @examples
 pull_enrichr_terms_to_plot <- function(long_df){
 
   ranked_terms.df <-

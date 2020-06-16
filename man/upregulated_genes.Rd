@@ -2,16 +2,20 @@
 % Please edit documentation in R/utility_functions.r
 \name{upregulated_genes}
 \alias{upregulated_genes}
-\title{upregulated_genes}
+\title{Pull up-regulated genes}
 \usage{
 upregulated_genes(df, adjpval_threshold, log2fc_threshold)
 }
 \arguments{
-\item{log2fc_threshold}{}
+\item{df}{Data frame containing DE results}
+
+\item{adjpval_threshold}{Adjusted p-value threshold}
+
+\item{log2fc_threshold}{Log2-fold-change threshold}
 }
 \value{
 
 }
 \description{
-upregulated_genes
+Pull up-regulated genes
 }
