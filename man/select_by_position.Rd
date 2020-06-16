@@ -7,15 +7,15 @@
 select_by_position(x, position)
 }
 \arguments{
-\item{x}{A vector}
+\item{x}{A vector.}
 
-\item{position}{The position to select out}
+\item{position}{The position to select out.}
 }
 \value{
-
+The vector at the given index.
 }
 \description{
-Quick function for mapping to select out list items
+This is mostly useful in the context of purrr::map pipelines.
 }
 \examples{
 select_by_position(c(1,2,3), 2)

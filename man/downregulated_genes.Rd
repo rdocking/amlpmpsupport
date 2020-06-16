@@ -14,7 +14,7 @@ downregulated_genes(df, adjpval_threshold, log2fc_threshold)
 \item{log2fc_threshold}{Log2-fold-change threshold}
 }
 \value{
-
+A vector of down-regulated genes
 }
 \description{
 Pull down-regulated genes

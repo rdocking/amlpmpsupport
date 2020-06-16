@@ -7,16 +7,17 @@
 num_to_text(x, capitalize = FALSE)
 }
 \arguments{
-\item{x}{An integer to convert to text}
+\item{x}{An integer to convert to text.}
 
-\item{capitalize}{Boolean whether to capitalize text}
+\item{capitalize}{Boolean - whether or not to capitalize text}
 }
 \value{
-
+A character string.
 }
 \description{
 Convert a small number to a text representation
 }
 \examples{
 num_to_text(5, capitalize = TRUE)
+num_to_text(23, capitalize = FALSE)
 }

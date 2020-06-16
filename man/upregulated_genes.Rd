@@ -14,7 +14,7 @@ upregulated_genes(df, adjpval_threshold, log2fc_threshold)
 \item{log2fc_threshold}{Log2-fold-change threshold}
 }
 \value{
-
+A vector of up-regulated genes
 }
 \description{
 Pull up-regulated genes

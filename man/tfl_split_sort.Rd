@@ -10,7 +10,7 @@ tfl_split_sort(df)
 \item{df}{Data frame containing TFL IDs in 'patient_external_id' column.}
 }
 \value{
-
+A re-sorted data frame.
 }
 \description{
 A function to sort TFL IDs into ascending order

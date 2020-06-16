@@ -73,25 +73,28 @@ matrix_glimpse <- function(mat) {
 
 #' Quick function for mapping to select out list items
 #'
-#' @param x A vector
-#' @param position The position to select out
+#' This is mostly useful in the context of purrr::map pipelines.
 #'
-#' @return
+#' @param x A vector.
+#' @param position The position to select out.
+#'
+#' @return The vector at the given index.
 #' @export
 #'
 #' @examples select_by_position(c(1,2,3), 2)
 select_by_position <- function(x, position) x[position]
 
-
 #' Convert a small number to a text representation
 #'
-#' @param x An integer to convert to text
-#' @param capitalize Boolean whether to capitalize text
+#' @param x An integer to convert to text.
+#' @param capitalize Boolean - whether or not to capitalize text
 #'
-#' @return
+#' @return A character string.
 #' @export
 #'
-#' @examples num_to_text(5, capitalize = TRUE)
+#' @examples
+#' num_to_text(5, capitalize = TRUE)
+#' num_to_text(23, capitalize = FALSE)
 num_to_text <- function(x, capitalize = FALSE){
 
   # Input checks
@@ -146,7 +149,7 @@ num_to_text <- function(x, capitalize = FALSE){
 #' @param adjpval_threshold Adjusted p-value threshold
 #' @param log2fc_threshold Log2-fold-change threshold
 #'
-#' @return
+#' @return A vector of up-regulated genes
 #' @export
 upregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
   dplyr::filter(df,
@@ -161,7 +164,7 @@ upregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
 #' @param adjpval_threshold Adjusted p-value threshold
 #' @param log2fc_threshold Log2-fold-change threshold
 #'
-#' @return
+#' @return A vector of down-regulated genes
 #' @export
 downregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
   dplyr::filter(df,
@@ -211,7 +214,7 @@ ggsave_pdf_and_png <- function(filename_root, plot, width = 4, height = 2.472, .
 #'
 #' @param df Data frame containing TFL IDs in 'patient_external_id' column.
 #'
-#' @return
+#' @return A re-sorted data frame.
 #' @export
 tfl_split_sort <- function(df){
 

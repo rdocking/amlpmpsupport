@@ -2,7 +2,7 @@
 % Please edit documentation in R/ifxparsers.r
 \name{parse_pavfinder_0.2.0}
 \alias{parse_pavfinder_0.2.0}
-\title{Parse pavfinder 0.2.0 output}
+\title{Parse PAVfinder 0.2.0 output}
 \usage{
 parse_pavfinder_0.2.0(events_path)
 }
@@ -10,8 +10,8 @@ parse_pavfinder_0.2.0(events_path)
 \item{events_path}{Path to the PAVfinder events file}
 }
 \value{
-
+A data frame with parsed PAVfincer results
 }
 \description{
-Parse pavfinder 0.2.0 output
+Parse PAVfinder 0.2.0 output
 }

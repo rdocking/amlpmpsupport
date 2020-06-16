@@ -1,13 +1,12 @@
 # Note - Rod migrated some of this code from the older CCG `ifxparsers` R package
 
-#' Parse pavfinder 0.2.0 output
+#' Parse PAVfinder 0.2.0 output
 #'
 #' @param events_path Path to the PAVfinder events file
 #'
-#' @return
+#' @return A data frame with parsed PAVfincer results
 #' @export
-#'
-parse_pavfinder_0.2.0 <- function ( events_path ) {
+parse_pavfinder_0.2.0 <- function (events_path) {
   col_names = c("ID", "event", "chrom1", "pos1", "orient1", "chrom2",
                 "pos2", "orient2", "size", "contigs", "contig_breaks",
                 "contig_support_span", "homol_seq", "homol_coords",
@@ -33,14 +32,13 @@ parse_pavfinder_0.2.0 <- function ( events_path ) {
 }
 
 
-#' Parse pavfinder 0.2.0 output
+#' Parse PAVfinder 0.3.0 output
 #'
 #' @param events_path Path to the PAVfinder events file
 #'
-#' @return
+#' @return A data frame with parsed PAVfincer results
 #' @export
-#'
-parse_pavfinder_0.3.0 <- function ( events_path ) {
+parse_pavfinder_0.3.0 <- function (events_path) {
   # Set column names
   col_names = c('chrom1', 'start1', 'end1', 'chrom2', 'start2', 'end2',
                 'name', 'score', 'strand1', 'strand2', 'orient1', 'orient2',
