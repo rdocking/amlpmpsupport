@@ -128,28 +128,46 @@
     </div>
 
     <pre class="usage"><span class='fu'>aps_volcano_plot</span>(
-  <span class='no'>df</span>,
-  <span class='no'>q_threshold</span>,
-  <span class='no'>fc_threshold</span>,
-  <span class='no'>label_q_threshold</span>,
-  <span class='no'>label_fc_threshold</span>,
-  <span class='kw'>draw_labels</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  <span class='kw'>df</span>,
+  <span class='kw'>q_threshold</span>,
+  <span class='kw'>fc_threshold</span>,
+  <span class='kw'>label_q_threshold</span>,
+  <span class='kw'>label_fc_threshold</span>,
+  draw_labels = <span class='fl'>FALSE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>df</th>
+      <td><p>Data-frame containing DE results.</p></td>
+    </tr>
+    <tr>
+      <th>q_threshold</th>
+      <td><p>Q-threshold for colouring points.</p></td>
+    </tr>
+    <tr>
       <th>fc_threshold</th>
-      <td></td>
+      <td><p>Fold-change threshold for colouring points.</p></td>
+    </tr>
+    <tr>
+      <th>label_q_threshold</th>
+      <td><p>Q-value threshold for adding labels.</p></td>
+    </tr>
+    <tr>
+      <th>label_fc_threshold</th>
+      <td><p>Fold-change threshold for adding labels.</p></td>
+    </tr>
+    <tr>
+      <th>draw_labels</th>
+      <td><p>Boolean - add labels?</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-
+    <p>A ggplot object</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
