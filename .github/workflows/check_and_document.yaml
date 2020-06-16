@@ -2,20 +2,18 @@ on:
   push:
     branches: master
 
-name: pkgdown
+name: check_and_document
 
 jobs:
-  pkgdown:
+  check_and_document:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: "3.6"
-
       - uses: r-lib/actions/setup-pandoc@master
 
       - name: Query dependencies
@@ -38,6 +36,10 @@ jobs:
           remotes::install_deps(dependencies = TRUE)
           remotes::install_dev("pkgdown")
 
+        shell: Rscript {0}
+
+      - name: Run R CMD CHECK
+        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
         shell: Rscript {0}
 
       - name: Install package

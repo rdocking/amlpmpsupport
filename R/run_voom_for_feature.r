@@ -18,7 +18,7 @@ run_voom_for_feature <- function(yvals, exp.design, counts.mat){
                           plot = TRUE,
                           lib.size = colSums(counts.mat) * norm.factor)
   # Clear plots
-  dev.off()
+  grDevices::dev.off()
   # Run lmFit and eBayes
   voom.fit <- limma::lmFit(voom.dat, design.mat)
   voom.fit <- limma::eBayes(voom.fit)

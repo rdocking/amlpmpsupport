@@ -46,7 +46,6 @@ random_forest_summary <- function(caret.rf, yvals){
                                                observed=yvals)
   plot(caret.forest.margins, main='Margin Plot')
   abline(h=0, lty=2)
-  #dev.off()
   # Return a data-frame of the selected variables
   caret.forest.importance <- as.data.frame(caret.forest$importance)
   caret.forest.importance$gene <- rownames(caret.forest.importance)

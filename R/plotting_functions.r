@@ -227,7 +227,7 @@ plot_heatmap_for_k <- function(cluster_assignments.df,
   # Original way of manually specifying breaks
   # PRGn palette test (using breaks similar to what Jess does above)
   prgn_pal <- RColorBrewer::brewer.pal(n = 9, "PRGn")
-  colfunc <- colorRampPalette(c(prgn_pal[1], prgn_pal[5], prgn_pal[9]))(9)
+  colfunc <- grDevices::colorRampPalette(c(prgn_pal[1], prgn_pal[5], prgn_pal[9]))(9)
   colfunc = colfunc[c(1:3,5,7:9)]
   breaks2 = c(min(cluster_input.mat),-6,-2,-0.5,0.5,2,6,max(cluster_input.mat))
 
