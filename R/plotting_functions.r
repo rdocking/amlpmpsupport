@@ -3,18 +3,23 @@
 #' @param expression_df Data frame containing expression values
 #' @param feature_label Label in the data frame to facet by
 #' @importFrom ggplot2 aes
+#' @importFrom rlang .data
 #'
 #' @return p A ggplot object containing the generated plot
 #' @export
+#'
+#' @examples
+#' df <- tibble::tibble(lab = "Label", TPM = c(10, 100, 1000), gene = c('Foo', 'Bar', 'Baz'))
+#' hit_plotter(expression_df = df, feature_label = "lab")
 hit_plotter <- function(expression_df, feature_label){
   p <- ggplot2::ggplot(expression_df) +
     ggplot2::aes_string(x = feature_label, colour = feature_label) +
-    ggplot2::aes(y = TPM) +
+    ggplot2::aes(y = .data$TPM) +
     ggplot2::geom_jitter(size = 4) +
     ggplot2::scale_y_log10() +
     ggplot2::scale_colour_brewer(palette = 'Set1') +
-    ggplot2::theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
-    ggplot2::facet_wrap(~ gene) + ggplot2::theme(legend.position = "none")
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, vjust = 1, hjust = 1)) +
+    ggplot2::facet_wrap(~ .data$gene) + ggplot2::theme(legend.position = "none")
   return(p)
 }
 

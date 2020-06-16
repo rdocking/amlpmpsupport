@@ -17,6 +17,7 @@ Imports:
   glue,
   knitr,
   magrittr,
+  rlang,
   tibble,
   tidyr,
   tidyverse

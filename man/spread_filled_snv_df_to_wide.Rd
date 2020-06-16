@@ -7,10 +7,10 @@
 spread_filled_snv_df_to_wide(df)
 }
 \arguments{
-\item{df}{}
+\item{df}{A data frame containing SNV data in the 'long, filled' format}
 }
 \value{
-df
+df A wide-format data frame containing simplified SNV data
 }
 \description{
 This function takes the 'long, filled' data frames with variant observations, and converts them to 'wide' format

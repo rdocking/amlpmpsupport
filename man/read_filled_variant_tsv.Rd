@@ -7,7 +7,7 @@
 read_filled_variant_tsv(tsv_file)
 }
 \arguments{
-\item{tsv_file}{}
+\item{tsv_file}{A TSV-formatted file containing SNV data.}
 }
 \value{
 filled.df A data frame containing filled SNV data

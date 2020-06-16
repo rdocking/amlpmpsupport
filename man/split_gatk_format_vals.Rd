@@ -7,10 +7,10 @@
 split_gatk_format_vals(df)
 }
 \arguments{
-\item{df}{}
+\item{df}{A data frame containing GATK-formatted variant calls}
 }
 \value{
-updated_df
+updated_df An augmented data frame.
 }
 \description{
 Split a FORMAT string from GATK-haplotype to get simpler statistics

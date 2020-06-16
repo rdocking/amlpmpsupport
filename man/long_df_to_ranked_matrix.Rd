@@ -7,7 +7,7 @@
 long_df_to_ranked_matrix(long.df)
 }
 \arguments{
-\item{long.df}{}
+\item{long.df}{A tidy-formatted data frame of CNA data}
 }
 \value{
 ret.mat
