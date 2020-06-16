@@ -111,7 +111,7 @@ calculate_reference_set_mean_expression <- function(expr.mat, reference_set){
 #'
 calculate_reference_set_coefficient_of_variation <- function(expr.mat, reference_set){
   row_mean <- apply(expr.mat[,reference_set], 1, mean)
-  row_sd <- apply(expr.mat[,reference_set], 1, sd)
+  row_sd <- apply(expr.mat[,reference_set], 1, stats::sd)
   return(row_sd / row_mean * 100)
 }
 

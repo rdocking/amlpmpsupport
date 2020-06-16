@@ -44,8 +44,8 @@ random_forest_summary <- function(caret.rf, yvals){
   # And the margin plot
   caret.forest.margins <- randomForest::margin(caret.forest,
                                                observed=yvals)
-  plot(caret.forest.margins, main='Margin Plot')
-  abline(h=0, lty=2)
+  graphics::plot(caret.forest.margins, main='Margin Plot')
+  graphics::abline(h=0, lty=2)
   # Return a data-frame of the selected variables
   caret.forest.importance <- as.data.frame(caret.forest$importance)
   caret.forest.importance$gene <- rownames(caret.forest.importance)
@@ -64,8 +64,8 @@ rf_predictions <- function(caret.rf, yvals){
   # Extract the final forest
   caret.forest <- caret.rf$finalModel
   # Generate predictions and tidy
-  rf.call <- broom::tidy(predict(caret.forest))
-  rf.probs <- broom::tidy(predict(caret.forest, type="prob"))
+  rf.call <- broom::tidy(stats::predict(caret.forest))
+  rf.probs <- broom::tidy(stats::predict(caret.forest, type="prob"))
   rf.predict <- dplyr::bind_cols(rf.call, rf.probs)
   rf.predict <- rf.predict %>%
     dplyr::mutate(rna_seq_lib = .rownames,

@@ -2,6 +2,7 @@
 #'
 #' @param expression_df Data frame containing expression values
 #' @param feature_label Label in the data frame to facet by
+#' @importFrom ggplot2 aes
 #'
 #' @return p A ggplot object containing the generated plot
 #' @export
@@ -43,7 +44,7 @@ density_plotter <- function(expression_df, feature_label){
 #' @export
 pathway_enrichment_plot <- function(gage_hits, plot_limit = 20){
   # Subset the data frame to the top plot_limit hits
-  plot_subset <- head(gage_hits, plot_limit)
+  plot_subset <- utils::head(gage_hits, plot_limit)
   # Arrange by q-value - reverse because of the coordinate flip below
   plot_subset$pathway <- factor(plot_subset$pathway,
                                 levels = rev(plot_subset$pathway))
@@ -94,7 +95,7 @@ subset_pc_plot <- function(gene_set, exp.design, feature_label, counts.mat){
   # Subset the count matrix to the genes of interest
   counts.subset.mat <- counts.mat[rows_to_keep,]
   # Calculate the principle components
-  components <- prcomp(counts.subset.mat, center = F, scale = F)
+  components <- stats::prcomp(counts.subset.mat, center = F, scale = F)
   rotations <- as.data.frame(components$rotation)
   # Extract the first two components, and add labels from the design data frame
   pc1_pc2 <- subset(rotations, select = c("PC1", "PC2"))
@@ -209,9 +210,9 @@ plot_heatmap_for_k <- function(cluster_assignments.df,
   #  if the current cluster equals the next one
   gap_locations.df <-
     annotation_col.w_cluster.df %>%
-    dplyr::mutate(start_gap = cluster != lag(cluster),
+    dplyr::mutate(start_gap = cluster != dplyr::lag(cluster),
            rownum = row_number()) %>%
-    filter(start_gap)
+    dplyr::filter(start_gap)
   # Offset to get the correct location
   gap_locations <- gap_locations.df$rownum - 1
 

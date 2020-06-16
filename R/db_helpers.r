@@ -129,7 +129,7 @@ retrieve_db_paths <- function(db_conn) {
                      by = c("pipeline_version_id" = "id")) %>%
     dplyr::rename(pipeline_version_name = name) %>%
     # Remove rows that have no path information
-    filter(!is.na(path)) %>%
+    dplyr::filter(!is.na(path)) %>%
     # Select out UUID fields and unused fields
     dplyr::select(-fields, -platform_id, -platform_version_id, -specimen_subset_id,
                   -specimen_id, -library_id, -sequencing_effort_id,

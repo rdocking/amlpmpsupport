@@ -9,7 +9,7 @@
 #'
 run_voom_for_feature <- function(yvals, exp.design, counts.mat){
   # Set up the design matrix
-  design.mat <- model.matrix(~yvals, exp.design)
+  design.mat <- stats::model.matrix(~yvals, exp.design)
   # Calculate the normalizing factor for each library
   norm.factor <- edgeR::calcNormFactors(counts.mat)
   # Run voom
