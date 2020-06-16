@@ -12,6 +12,17 @@ plot_heatmap_for_k(
   annotation_legend = FALSE
 )
 }
+\arguments{
+\item{cluster_assignments.df}{A data frame containing cluster assignments for samples}
+
+\item{annotation_col.df}{A data frame containing sample annotations}
+
+\item{ann_colours.lst}{A named list containing annotation colours}
+
+\item{cluster_input.mat}{A matrix of expression values for the heatmap body.}
+
+\item{annotation_legend}{Boolean - whether or not to include an annotation legend.}
+}
 \description{
 Plot a pheatmap for a single value of k
 }

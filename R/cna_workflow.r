@@ -1,14 +1,14 @@
 #' Transform data by taking the log2(count+1)
 #'
-#' @param expr.mat A matrix containing un-transformed expression (in some count format)
+#' @param x A matrix containing un-transformed expression (in some count format)
 #'
-#' @return expr.log2.mat A matrix with transformed values
+#' @return A matrix with transformed values
 #' @export
 #'
 #' @examples log2_plus1_transform(matrix(c(1, 2, 4, 8)))
 log2_plus1_transform <- function(x){
-  tpm.log2.mat <- log2(x + 1)
-  return(tpm.log2.mat)
+  log2_plus_one.mat <- log2(x + 1)
+  return(log2_plus_one.mat)
 }
 
 #' Transform expression matrix to long dataframe

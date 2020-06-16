@@ -7,11 +7,11 @@
 spread_expression_df_to_matrix(df, key, value)
 }
 \arguments{
-\item{df}{A tidy data frame}
+\item{df}{A tidy data frame.}
 
-\item{key}{Column name for the column containing gene names}
+\item{key}{Column name for the column containing gene names.}
 
-\item{val}{Column name for the column containing sample IDs}
+\item{value}{Column name for the column containing sample IDs.}
 }
 \value{
 x A matrix containing the expression results

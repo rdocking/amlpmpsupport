@@ -83,9 +83,9 @@ convert_sailfish_df_to_matrix <- function(sailfish.df, metric = c("NumReads", "T
 #'
 #' Assumes the only other columns other than 'key' and 'val' are expression measurements
 #'
-#' @param df A tidy data frame
-#' @param key Column name for the column containing gene names
-#' @param val Column name for the column containing sample IDs
+#' @param df A tidy data frame.
+#' @param key Column name for the column containing gene names.
+#' @param value Column name for the column containing sample IDs.
 #'
 #' @return x A matrix containing the expression results
 #' @export

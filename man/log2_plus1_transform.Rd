@@ -7,10 +7,10 @@
 log2_plus1_transform(x)
 }
 \arguments{
-\item{expr.mat}{A matrix containing un-transformed expression (in some count format)}
+\item{x}{A matrix containing un-transformed expression (in some count format)}
 }
 \value{
-expr.log2.mat A matrix with transformed values
+A matrix with transformed values
 }
 \description{
 Transform data by taking the log2(count+1)

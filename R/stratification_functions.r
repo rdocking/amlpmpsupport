@@ -263,10 +263,10 @@ apply_eln2017_rna <- function(sv_status, npm1, flt3_itd, flt3_itd_support, cebpa
 
 #' Update an existing stratification by applying a gene expression score
 #'
-#' @param original_cat The original stratification category
-#' @param expression_score The gene expression signature score
-#' @param fav_theshold Threshold for adjusting stratification to 'favourable' category
-#' @param adverse_threshold Threshold for adjusting stratification to 'adverse' category
+#' @param original_cat The original stratification category.
+#' @param expression_score The gene expression signature score.
+#' @param fav_threshold Threshold for adjusting stratification to 'favourable' category.
+#' @param adverse_threshold Threshold for adjusting stratification to 'adverse' category.
 #'
 #' @return A revised stratification category and justification
 #' @export
@@ -274,13 +274,13 @@ apply_expression_signature_reclassification <- function(original_cat, expression
 
   # Note that the signatures are scaled so that higher-values = worse outcomes
   status <- original_cat
-  rationale <- "Second tertile expression"
+  rationale <- 'Second tertile expression'
   if (expression_score <= fav_threshold) {
     status <- 'favourable'
-    rationale <- "First tertile expression"
+    rationale <- 'First tertile expression'
   } else if (expression_score >= adverse_threshold) {
     status <- 'adverse'
-    rationale <- "Third tertile expression"
+    rationale <- 'Third tertile expression'
   }
   return(tibble::tibble(status = status, rationale = rationale))
 

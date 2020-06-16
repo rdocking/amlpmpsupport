@@ -139,12 +139,14 @@ subset_heatmap <- function(gene_set, annotation_col, counts.mat){
 
 #' Generate a grid of plots with a shared legend
 #'
-#' Adapted from:
-#'   https://github.com/tidyverse/ggplot2/wiki/Share-a-legend-between-two-ggplot2-graphs
-#'   http://rpubs.com/sjackman/grid_arrange_shared_legend
-#'   http://stackoverflow.com/questions/13649473/add-a-common-legend-for-combined-ggplots
+#' @references \url{https://github.com/tidyverse/ggplot2/wiki/Share-a-legend-between-two-ggplot2-graphs}
+#' @references \url{http://rpubs.com/sjackman/grid_arrange_shared_legend}
+#' @references \url{http://stackoverflow.com/questions/13649473/add-a-common-legend-for-combined-ggplots}
 #'
-#' @param ... A set of plots to arrange with a shared legend
+#' @param ... A set of plots to arrange with a shared legend.
+#' @param ncol Number of columns to plot.
+#' @param nrow Number of rows to plot.
+#' @param position Position of legend ("bottom" or "right").
 #'
 #' @return A ggplot plot
 #' @export
@@ -190,6 +192,12 @@ eng_log_breaks <- function(x){
 
 #' Plot a pheatmap for a single value of k
 #'
+#' @param cluster_assignments.df A data frame containing cluster assignments for samples
+#' @param annotation_col.df A data frame containing sample annotations
+#' @param ann_colours.lst A named list containing annotation colours
+#' @param cluster_input.mat A matrix of expression values for the heatmap body.
+#' @param annotation_legend Boolean - whether or not to include an annotation legend.
+#'
 #' @export
 #'
 plot_heatmap_for_k <- function(cluster_assignments.df,
@@ -203,7 +211,7 @@ plot_heatmap_for_k <- function(cluster_assignments.df,
   annotation_col.w_cluster.df <-
     annotation_col.df %>%
     dplyr::right_join(cluster_assignments.df, by = "library_name") %>%
-    arrange(cluster)
+    dplyr::arrange(cluster)
 
   # Convert the rownames back to the library identifier
   rownames(annotation_col.w_cluster.df) <-

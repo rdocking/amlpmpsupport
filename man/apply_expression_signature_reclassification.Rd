@@ -12,13 +12,13 @@ apply_expression_signature_reclassification(
 )
 }
 \arguments{
-\item{original_cat}{The original stratification category}
+\item{original_cat}{The original stratification category.}
 
-\item{expression_score}{The gene expression signature score}
+\item{expression_score}{The gene expression signature score.}
 
-\item{adverse_threshold}{Threshold for adjusting stratification to 'adverse' category}
+\item{fav_threshold}{Threshold for adjusting stratification to 'favourable' category.}
 
-\item{fav_theshold}{Threshold for adjusting stratification to 'favourable' category}
+\item{adverse_threshold}{Threshold for adjusting stratification to 'adverse' category.}
 }
 \value{
 A revised stratification category and justification

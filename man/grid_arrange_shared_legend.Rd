@@ -12,14 +12,24 @@ grid_arrange_shared_legend(
 )
 }
 \arguments{
-\item{...}{A set of plots to arrange with a shared legend}
+\item{...}{A set of plots to arrange with a shared legend.}
+
+\item{ncol}{Number of columns to plot.}
+
+\item{nrow}{Number of rows to plot.}
+
+\item{position}{Position of legend ("bottom" or "right").}
 }
 \value{
 A ggplot plot
 }
 \description{
-Adapted from:
-  https://github.com/tidyverse/ggplot2/wiki/Share-a-legend-between-two-ggplot2-graphs
-  http://rpubs.com/sjackman/grid_arrange_shared_legend
-  http://stackoverflow.com/questions/13649473/add-a-common-legend-for-combined-ggplots
+Generate a grid of plots with a shared legend
+}
+\references{
+\url{https://github.com/tidyverse/ggplot2/wiki/Share-a-legend-between-two-ggplot2-graphs}
+
+\url{http://rpubs.com/sjackman/grid_arrange_shared_legend}
+
+\url{http://stackoverflow.com/questions/13649473/add-a-common-legend-for-combined-ggplots}
 }
