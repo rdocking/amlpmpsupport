@@ -271,29 +271,38 @@ plot_heatmap_for_k <- function(cluster_assignments.df,
 #'
 #' @return A ggplot object
 #' @export
+#'
+#' @examples
+#' df <- tibble::tibble(gene_name = c('A', 'B', 'C', 'D'),
+#'                      padj = c(0.001, 0.1, 0.2, 0.01),
+#'                      log2FoldChange = c(-5, -1, 1, 5),
+#'                      `-10log10(padj)` = c(30, 10, 6.9897, 20))
+#' aps_volcano_plot(df, q_threshold = 0.05, fc_threshold = 2,
+#'                  label_q_threshold = 0.05, label_fc_threshold = 2,
+#'                  draw_labels = TRUE)
 aps_volcano_plot <- function(df, q_threshold, fc_threshold,
                              label_q_threshold, label_fc_threshold,
                              draw_labels = FALSE){
 
   # Set up labels and colours for volcano plot
   labelled_hits <-
-    dplyr::filter(df, padj <= label_q_threshold,
-                  abs(log2FoldChange) >= label_fc_threshold) %>%
+    dplyr::filter(df, .data$padj <= label_q_threshold,
+                  abs(.data$log2FoldChange) >= label_fc_threshold) %>%
     dplyr::pull(gene_name)
 
   labelled.df <-
     df %>%
-    dplyr::mutate(label_text = dplyr::if_else(gene_name %in% labelled_hits,
-                                       true = gene_name, false = NA_character_),
-           point_colour = case_when(
+    dplyr::mutate(label_text = dplyr::if_else(.data$gene_name %in% labelled_hits,
+                                       true = .data$gene_name, false = NA_character_),
+           point_colour = dplyr::case_when(
              padj <= q_threshold & log2FoldChange >= fc_threshold ~ "#E41A1C",
              padj <= q_threshold & log2FoldChange <= -1 * fc_threshold ~ "#377EB8",
              TRUE ~ "black"))
 
   # Base plot without labels
   p <- ggplot2::ggplot(labelled.df,
-              aes(x = log2FoldChange, y = `-10log10(padj)`,
-                  label = label_text, colour = point_colour)) +
+              aes(x = .data$log2FoldChange, y = .data$`-10log10(padj)`,
+                  label = .data$label_text, colour = .data$point_colour)) +
     ggplot2::geom_point() +
     ggplot2::scale_color_identity() +
     ggplot2::geom_vline(xintercept = 0, linetype = 1) +
@@ -302,7 +311,7 @@ aps_volcano_plot <- function(df, q_threshold, fc_threshold,
 
   # Optionally label points
   if (draw_labels) {
-    p <- p + ggrepel::geom_label_repel()
+    p <- p + ggrepel::geom_label_repel(na.rm = TRUE)
   }
 
   return(p)

@@ -134,11 +134,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A data frame</p></td>
+      <td><p>A data frame.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Unquoted variables to group by</p></td>
+      <td><p>Unquoted variables to group by.</p></td>
     </tr>
     </table>
 
@@ -147,7 +147,13 @@
     <p>A knitr::kable()</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>group_tally_table</span>(<span class='no'>iris</span>, <span class='no'>Species</span>)</div><div class='output co'>#&gt; <span class='error'>Error in x %&gt;% dplyr::group_by(...) %&gt;% dplyr::tally(., wt = NULL) %&gt;%     knitr::kable(): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>group_tally_table</span>(<span class='no'>iris</span>, <span class='no'>Species</span>)</div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; |Species    |  n|
+#&gt; |:----------|--:|
+#&gt; |setosa     | 50|
+#&gt; |versicolor | 50|
+#&gt; |virginica  | 50|</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

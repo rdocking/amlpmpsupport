@@ -134,22 +134,20 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An integer to convert to text</p></td>
+      <td><p>An integer to convert to text.</p></td>
     </tr>
     <tr>
       <th>capitalize</th>
-      <td><p>Boolean whether to capitalize text</p></td>
+      <td><p>Boolean - whether or not to capitalize text</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-
+    <p>A character string.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>num_to_text</span>(<span class='fl'>5</span>, <span class='kw'>capitalize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span class='error'>Error in tibble::tribble(~x, ~small, 1, "one", 2, "two", 3, "three", 4,     "four", 5, "five", 6, "six", 7, "seven", 8, "eight", 9, "nine",     10, "ten", 11, "eleven", 12, "twelve", 13, "thirteen", 14,     "fourteen", 15, "fifteen", 16, "sixteen", 17, "seventeen",     18, "eighteen", 19, "nineteen", 20, "twenty", 21, "twenty-one",     22, "twenty-two", 23, "twenty-three", 24, "twenty-four",     25, "twenty-five", 26, "twenty-six", 27, "twenty-seven",     28, "twenty-eight", 29, "twenty-nine", 30, "thirty") %&gt;%     dplyr::mutate(big = stringr::str_to_sentence(small)): could not find function "%&gt;%"</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>num_to_text</span>(<span class='fl'>5</span>, <span class='kw'>capitalize</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "Five"</div><div class='input'><span class='fu'>num_to_text</span>(<span class='fl'>23</span>, <span class='kw'>capitalize</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; [1] "twenty-three"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

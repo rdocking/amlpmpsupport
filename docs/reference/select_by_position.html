@@ -40,7 +40,7 @@
 
 
 <meta property="og:title" content="Quick function for mapping to select out list items — select_by_position" />
-<meta property="og:description" content="Quick function for mapping to select out list items" />
+<meta property="og:description" content="This is mostly useful in the context of purrr::map pipelines." />
 
 
 
@@ -124,7 +124,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Quick function for mapping to select out list items</p>
+    <p>This is mostly useful in the context of purrr::map pipelines.</p>
     </div>
 
     <pre class="usage"><span class='fu'>select_by_position</span>(<span class='no'>x</span>, <span class='no'>position</span>)</pre>
@@ -134,17 +134,20 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A vector</p></td>
+      <td><p>A vector.</p></td>
     </tr>
     <tr>
       <th>position</th>
-      <td><p>The position to select out</p></td>
+      <td><p>The position to select out.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>The vector at the given index.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>select_by_position</span>(<span class='no'>lst</span>, <span class='fl'>1</span>)</div><div class='output co'>#&gt; <span class='error'>Error in select_by_position(lst, 1): object 'lst' not found</span></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>select_by_position</span>(<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span>), <span class='fl'>2</span>)</div><div class='output co'>#&gt; [1] 2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

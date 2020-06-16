@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>upregulated_genes — upregulated_genes • amlpmpsupport</title>
+<title>Pull up-regulated genes — upregulated_genes • amlpmpsupport</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="upregulated_genes — upregulated_genes" />
-<meta property="og:description" content="upregulated_genes" />
+<meta property="og:title" content="Pull up-regulated genes — upregulated_genes" />
+<meta property="og:description" content="Pull up-regulated genes" />
 
 
 
@@ -118,13 +118,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>upregulated_genes</h1>
+    <h1>Pull up-regulated genes</h1>
     
     <div class="hidden name"><code>upregulated_genes.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>upregulated_genes</p>
+    <p>Pull up-regulated genes</p>
     </div>
 
     <pre class="usage"><span class='fu'>upregulated_genes</span>(<span class='no'>df</span>, <span class='no'>adjpval_threshold</span>, <span class='no'>log2fc_threshold</span>)</pre>
@@ -133,16 +133,22 @@
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>df</th>
+      <td><p>Data frame containing DE results</p></td>
+    </tr>
+    <tr>
+      <th>adjpval_threshold</th>
+      <td><p>Adjusted p-value threshold</p></td>
+    </tr>
+    <tr>
       <th>log2fc_threshold</th>
-      <td></td>
+      <td><p>Log2-fold-change threshold</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-
+    <p>A vector of up-regulated genes</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
