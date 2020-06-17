@@ -23,17 +23,23 @@ hit_plotter <- function(expression_df, feature_label){
   return(p)
 }
 
-#' Generate a density-plot of expression of selected genes, facetted by selected feature
+#' Generate a density-plot of expression of selected genes, faceted by selected feature
 #'
-#' @param expression_df Data frame containing expression values
-#' @param feature_label Label in the data frame to facet by
+#' @param expression_df Data frame containing expression values.
+#' @param feature_label Label in the data frame to facet by.
 #'
 #' @return p A ggplot object containing the generated plot
 #' @export
+#'
+#' @examples
+#' df <- tibble::tibble(TPM = runif(300),
+#'                      lab = rep(c('A', 'B', 'C'), 100),
+#'                      gene = rep(c('A', 'B', 'C'), 100))
+#' density_plotter(df, feature_label = "lab")
 density_plotter <- function(expression_df, feature_label){
   p <- ggplot2::ggplot(expression_df) +
     ggplot2::aes_string(fill = feature_label) +
-    ggplot2::aes(x = TPM) + ggplot2::scale_x_log10() +
+    ggplot2::aes(x = .data$TPM) + ggplot2::scale_x_log10() +
     ggplot2::geom_density(alpha = 0.5) +
     ggplot2::scale_fill_brewer(palette = 'Set1') +
     ggplot2::facet_wrap(~ gene, scales = "free_y")
@@ -288,7 +294,7 @@ aps_volcano_plot <- function(df, q_threshold, fc_threshold,
   labelled_hits <-
     dplyr::filter(df, .data$padj <= label_q_threshold,
                   abs(.data$log2FoldChange) >= label_fc_threshold) %>%
-    dplyr::pull(gene_name)
+    dplyr::pull(.data$gene_name)
 
   labelled.df <-
     df %>%
