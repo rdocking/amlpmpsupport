@@ -10,14 +10,14 @@ read_filled_variant_tsv <- function(tsv_file) {
                                       'transcript', 'protein', 'genotype',
                                       'hq_depth', 'vaf')) %>%
                   # Calculate a numeric variant allele frequency
-    dplyr::mutate(vaf_numeric = as.numeric(gsub('%', '', vaf)),
+    dplyr::mutate(vaf_numeric = as.numeric(gsub('%', '', .data$vaf)),
                   # Calculate a 'variant key' - chr_pos_ref_alt
-                  var_key = paste(chr, pos, ref, alt, sep = '_'),
+                  var_key = paste(.data$chr, .data$pos, .data$ref, .data$alt, sep = '_'),
                   # Paste together the HGVS names
-                  var_hgvs = paste(gene, transcript, protein, sep = ';'),
+                  var_hgvs = paste(.data$gene, .data$transcript, .data$protein, sep = ';'),
                   # Add a simple yes/no for 'was a variant called?'
-                  # Note that we handleweird genotypes (0|1, 1|0, 1|1) here
-                  bool_genotype = as.integer(dplyr::if_else(genotype %in% c('0/1', '1/1', '0|1', '1|0', '1|1'),
+                  # Note that we handle weird genotypes (0|1, 1|0, 1|1) here
+                  bool_genotype = as.integer(dplyr::if_else(.data$genotype %in% c('0/1', '1/1', '0|1', '1|0', '1|1'),
                                                      1, 0)))
   return(filled.df)
 }
@@ -40,6 +40,11 @@ spread_filled_snv_df_to_wide <- function(df) {
     return()
 }
 
+#' Add colour vector to concordance data frame
+#'
+#' This is a dummy function - this function is defined in the upstream analysis documents
+add_colour_vector_to_concordance <- function() NULL
+
 #' This function takes the long and wide data frames, and plots all variants by covearge, colouring them by concordance status
 #'
 #' @param wide.df A wide dataframe containing variant observations
@@ -52,19 +57,19 @@ plot_vars_by_coverage <- function(wide.df, long.df, sample_name) {
   title <- paste0("Coverage Depth for ", sample_name, " Replicate SNVs")
   wide.df %>%
     add_colour_vector_to_concordance() %>%
-    dplyr::select(var_key, concordance_col) %>%
+    dplyr::select(.data$var_key, .data$concordance_col) %>%
     dplyr::left_join(long.df, by = "var_key") %>%
-    ggplot(aes(x = factor(var_key),
-               y = hq_depth,
-               shape = genotype,
-               colour = concordance_col)) +
-    geom_point(size = 3) + scale_colour_identity() +
-    scale_y_log10(breaks = c(1,2,5,10,20,50,100,200,500,1000, 2000)) +
-    theme(axis.text.x = element_text(angle = 90, hjust = 0)) +
-    coord_flip() +
-    labs(title = title,
-         x = "Variant",
-         y = "High-quality Depth") %>%
+    ggplot2::ggplot(aes(x = factor(.data$var_key),
+               y = .data$hq_depth,
+               shape = .data$genotype,
+               colour = .data$concordance_col)) +
+    ggplot2::geom_point(size = 3) + ggplot2::scale_colour_identity() +
+    ggplot2::scale_y_log10(breaks = c(1,2,5,10,20,50,100,200,500,1000, 2000)) +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, hjust = 0)) +
+    ggplot2::coord_flip() +
+    ggplot2::labs(title = title,
+                  x = "Variant",
+                  y = "High-quality Depth") %>%
     return()
 }
 
@@ -80,16 +85,16 @@ plot_vars_by_vaf <- function(wide.df, long.df, sample_name) {
   title <- paste0("Variant allele fraction for ", sample_name, " Replicate SNVs")
   wide.df %>%
     add_colour_vector_to_concordance() %>%
-    dplyr::select(var_key, concordance_col) %>%
+    dplyr::select(.data$var_key, .data$concordance_col) %>%
     dplyr::left_join(long.df, by = "var_key") %>%
-    ggplot(aes(x = factor(var_key),
-               y = vaf_numeric,
-               shape = genotype,
-               colour = concordance_col)) +
-    geom_point(size = 3) + scale_colour_identity() +
-    theme(axis.text.x = element_text(angle = 90, hjust = 0)) +
-    coord_flip() +
-    labs(title = title,
+    ggplot2::ggplot(aes(x = factor(.data$var_key),
+               y = .data$vaf_numeric,
+               shape = .data$genotype,
+               colour = .data$concordance_col)) +
+    ggplot2::geom_point(size = 3) + ggplot2::scale_colour_identity() +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, hjust = 0)) +
+    ggplot2::coord_flip() +
+    ggplot2::labs(title = title,
          x = "Variant",
          y = "Variant Allele Fraction") %>%
     return()

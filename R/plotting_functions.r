@@ -230,7 +230,7 @@ plot_heatmap_for_k <- function(cluster_assignments.df,
   #  if the current cluster equals the next one
   gap_locations.df <-
     annotation_col.w_cluster.df %>%
-    dplyr::mutate(start_gap = cluster != dplyr::lag(cluster),
+    dplyr::mutate(start_gap = .data$cluster != dplyr::lag(.data$cluster),
            rownum = dplyr::row_number()) %>%
     dplyr::filter(.data$start_gap)
   # Offset to get the correct location
@@ -238,7 +238,7 @@ plot_heatmap_for_k <- function(cluster_assignments.df,
 
   # Set the cluster palette to be as long as the largest number of clusters
   #cluster_palette <- viridis(n = k, option = "C")
-  k = length(levels(as_factor(cluster_assignments.df$cluster)))
+  k = length(levels(forcats::as_factor(cluster_assignments.df$cluster)))
   cluster_palette <- RColorBrewer::brewer.pal(n = k, "Paired")
   names(cluster_palette) <- seq(1, k)
   cluster_list <- list("cluster" = cluster_palette)

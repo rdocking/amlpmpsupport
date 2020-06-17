@@ -130,9 +130,9 @@ gather_expression_matrix_to_tidy_df <- function(x, gene_col, id_col, expr_col){
 #' @export
 pull_enrichr_enriched_terms <- function(enrichr_lst, pathway_source, cohort_name, padj_thresh){
     enrichr_lst[pathway_source][[1]] %>%
-      dplyr::select(Term, Overlap, padj = Adjusted.P.value) %>%
-      dplyr::mutate(cohort = cohort_name) %>%
-      dplyr::filter(padj <= padj_thresh)
+      dplyr::select(.data$Term, .data$Overlap, padj = .data$Adjusted.P.value) %>%
+      dplyr::mutate(cohort = .data$cohort_name) %>%
+      dplyr::filter(.data$padj <= padj_thresh)
   }
 
 #' Identify enriched terms across cohorts
@@ -145,15 +145,15 @@ pull_enrichr_terms_to_plot <- function(long_df){
 
   ranked_terms.df <-
     long_df %>%
-    dplyr::group_by(Term) %>%
-    dplyr::summarise(count = n(),
-                     mean = mean(padj)) %>%
-    dplyr::arrange(-count, mean)
+    dplyr::group_by(.data$Term) %>%
+    dplyr::summarise(count = dplyr::n(),
+                     mean = mean(.data$padj)) %>%
+    dplyr::arrange(-.data$count, mean)
 
   terms_to_keep <-
     ranked_terms.df %>%
-    dplyr::filter(count >= 2) %>%
-    dplyr::pull(Term)
+    dplyr::filter(.data$count >= 2) %>%
+    dplyr::pull(.data$Term)
 
   return(list("ranked_terms" = ranked_terms.df,
               "terms_to_keep" = terms_to_keep))

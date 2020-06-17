@@ -26,6 +26,7 @@ Suggests:
   caret,
   covr,
   edgeR,
+  forcats,
   fs,
   gage,
   GGally,
