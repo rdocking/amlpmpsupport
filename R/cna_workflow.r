@@ -41,18 +41,19 @@ expression_matrix_to_long_df <- function(expression.mat, genes.bed){
 
 #' Transform long data frame to sorted matrix
 #'
-#' @param long.df A tidy-formatted data frame of CNA data
+#' @param long.df A tidy-formatted data frame of CNA data.
 #'
-#' @return ret.mat
+#' @return ret.mat The re-sorted matrix.
 #' @export
 #'
 long_df_to_ranked_matrix <- function(long.df){
   # Convert back to matrix, with rownames as the gene, and columns as the library name
   # Spread to go back to wide, and remove unnecessary columns
-  long.df %>%
-    dplyr::select(-chrom, -start, -stop) %>%
-    tidyr::spread(key = library, value = cnv_est) %>%
-    dplyr::arrange(sequence) -> tmp.wide.df
+  tmp.wide.df <-
+    long.df %>%
+    dplyr::select(-.data$chrom, -.data$start, -.data$stop) %>%
+    tidyr::spread(key = .data$library, value = .data$cnv_est) %>%
+    dplyr::arrange(sequence)
   # Extract the rownames, and convert back to matrix
   ranked_genes <- tmp.wide.df$gene
   # Remove unnecessary columns
@@ -61,7 +62,6 @@ long_df_to_ranked_matrix <- function(long.df){
   rownames(ret.mat) <- ranked_genes
   return(ret.mat)
 }
-
 
 #' Subset expression matrix by thresholds
 #'

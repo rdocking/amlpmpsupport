@@ -10,18 +10,17 @@
 nest_libraries_by_patient <- function(patients.df, libraries.df, key = 'tfl_id') {
 
   # Map functions - find all the library names and concatenate them
-  select_fun <- function(df) dplyr::select(df, library_name)
+  select_fun <- function(df) dplyr::select(df, .data$library_name)
   cat_fun <- function(df) stringr::str_c(df, sep = ", ")
 
   # This code aggregates all the library data by tfl_id, then simplifies down
   #  to a list of libraries associated with each tfl_id and joins it back
   #  to the patient-level data frame
   libraries.df %>%
-    dplyr::group_by(tfl_id) %>%
+    dplyr::group_by(.data$tfl_id) %>%
     tidyr::nest_legacy() %>%
-    dplyr::mutate(lib_list = purrr::map(data, select_fun),
+    dplyr::mutate(lib_list = purrr::map(.data$data, select_fun),
                   libraries = purrr::map_chr(lib_list, cat_fun)) %>%
-    # dplyr::select(-data, -lib_list) %>%
     dplyr::right_join(patients.df, by = key)
 }
 
@@ -133,7 +132,7 @@ num_to_text <- function(x, capitalize = FALSE){
     28, 'twenty-eight',
     29, 'twenty-nine',
     30, 'thirty') %>%
-    dplyr::mutate(big = stringr::str_to_sentence(small))
+    dplyr::mutate(big = stringr::str_to_sentence(.data$small))
 
   if (capitalize) {
     ret <- num_table[x,]$big

@@ -58,11 +58,12 @@ run_voom_for_feature <- function(yvals, exp.design, counts.mat){
 #' @export
 #'
 munge_voom_to_ipa <- function(voom_hits){
-  ipa_hits <- transmute(voom_hits,
-                        ID = gene,
-                        FOLD = limma_logFC_to_signed_foldchange(logFC),
-                        P_VALUE = P.Value,
-                        Q_VALUE = adj.P.Val)
+  ipa_hits <-
+    dplyr::transmute(voom_hits,
+                     ID = .data$gene,
+                     FOLD = limma_logFC_to_signed_foldchange(.data$logFC),
+                     P_VALUE = .data$P.Value,
+                     Q_VALUE = .data$adj.P.Val)
   return(ipa_hits)
 }
 
