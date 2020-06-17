@@ -20,7 +20,7 @@ nest_libraries_by_patient <- function(patients.df, libraries.df, key = 'tfl_id')
     dplyr::group_by(.data$tfl_id) %>%
     tidyr::nest_legacy() %>%
     dplyr::mutate(lib_list = purrr::map(.data$data, select_fun),
-                  libraries = purrr::map_chr(lib_list, cat_fun)) %>%
+                  libraries = purrr::map_chr(.data$lib_list, cat_fun)) %>%
     dplyr::right_join(patients.df, by = key)
 }
 

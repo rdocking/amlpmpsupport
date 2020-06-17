@@ -60,8 +60,9 @@ pathway_enrichment_plot <- function(gage_hits, plot_limit = 20){
   plot_subset$pathway <- factor(plot_subset$pathway,
                                 levels = rev(plot_subset$pathway))
   p <-
-    ggplot2::ggplot(plot_subset, ggplot2::aes(x = pathway, y = q.val,
-                                              size = set.size, colour = stat.mean)) +
+    ggplot2::ggplot(plot_subset,
+                    ggplot2::aes(x = .data$pathway, y = .data$q.val,
+                                 size = .data$set.size, colour = .data$stat.mean)) +
     ggplot2::geom_point() +
     ggplot2::scale_y_log10() +
     ggplot2::coord_flip()
@@ -217,27 +218,28 @@ plot_heatmap_for_k <- function(cluster_assignments.df,
   annotation_col.w_cluster.df <-
     annotation_col.df %>%
     dplyr::right_join(cluster_assignments.df, by = "library_name") %>%
-    dplyr::arrange(cluster)
+    dplyr::arrange(.data$cluster)
 
   # Convert the rownames back to the library identifier
   rownames(annotation_col.w_cluster.df) <-
     annotation_col.w_cluster.df$library_name
   annotation_col.w_cluster.df <-
-    dplyr::select(annotation_col.w_cluster.df, -library_name)
+    dplyr::select(annotation_col.w_cluster.df, -.data$library_name)
 
   # Find where the gaps between clusters are by checking
   #  if the current cluster equals the next one
   gap_locations.df <-
     annotation_col.w_cluster.df %>%
     dplyr::mutate(start_gap = cluster != dplyr::lag(cluster),
-           rownum = row_number()) %>%
-    dplyr::filter(start_gap)
+           rownum = dplyr::row_number()) %>%
+    dplyr::filter(.data$start_gap)
   # Offset to get the correct location
   gap_locations <- gap_locations.df$rownum - 1
 
   # Set the cluster palette to be as long as the largest number of clusters
   #cluster_palette <- viridis(n = k, option = "C")
-  cluster_palette <- brewer.pal(n = k, "Paired")
+  k = length(levels(as_factor(cluster_assignments.df$cluster)))
+  cluster_palette <- RColorBrewer::brewer.pal(n = k, "Paired")
   names(cluster_palette) <- seq(1, k)
   cluster_list <- list("cluster" = cluster_palette)
 
@@ -253,17 +255,18 @@ plot_heatmap_for_k <- function(cluster_assignments.df,
 
   # Replot the heatmap from above, adding on an annotation column
   # Note that we re-sort the input matrix into 'cluster' order
-  pheatmap(cluster_input.mat[,rownames(annotation_col.w_cluster.df)],
-           breaks = breaks2,
-           col = colfunc,
-           cluster_rows = T, cluster_cols = F,
-           scale = "row",
-           show_rownames = F, show_colnames = F,
-           annotation_col = annotation_col.w_cluster.df,
-           annotation_colors = ann_colours.w_cluster.lst,
-           clustering_method = "ward.D2",
-           gaps_col = gap_locations,
-           annotation_legend = annotation_legend)
+  pheatmap::pheatmap(
+    cluster_input.mat[,rownames(annotation_col.w_cluster.df)],
+    breaks = breaks2,
+    col = colfunc,
+    cluster_rows = T, cluster_cols = F,
+    scale = "row",
+    show_rownames = F, show_colnames = F,
+    annotation_col = annotation_col.w_cluster.df,
+    annotation_colors = ann_colours.w_cluster.lst,
+    clustering_method = "ward.D2",
+    gaps_col = gap_locations,
+    annotation_legend = annotation_legend)
 }
 
 #' Draw Volcano Plot for APS DE Comparison
