@@ -11,14 +11,14 @@ log2_plus1_transform <- function(x){
   return(log2_plus_one.mat)
 }
 
-#' Transform expression matrix to long dataframe
+#' Transform expression matrix to long data frame
 #'
 #' This function takes a matrix (columns are samples, rows are genes),
 #' and converts it into a 'long' data frame suitable for plotting
-#' It also handles sorting the data by chromosomal coordinate
+#' It also handles sorting the data by chromosomal coordinate.
 #'
-#' @param expression.mat A matrix of expression values
-#' @param genes.bed A bed-like file containing gene coordinates
+#' @param expression.mat A matrix of expression values.
+#' @param genes.bed A bed-like file containing gene coordinates.
 #'
 #' @return expression.long.df
 #' @export
@@ -30,15 +30,16 @@ expression_matrix_to_long_df <- function(expression.mat, genes.bed){
   tmp.df$gene <- rownames(expression.mat)
   # Join the expression data with the sorted BED gene list -
   #  this has the effect of sorting by gene coordinate
-  expression.df <- inner_join(genes.bed, tmp.df, by = 'gene')
+  expression.df <- dplyr::inner_join(genes.bed, tmp.df, by = 'gene')
   expression.df$sequence <- seq(1, nrow(expression.df))
-  expression.df %>%
-    gather(library, cnv_est, -start, -stop, -chrom, -gene, -sequence) ->
-    expression.long.df
+  expression.long.df <-
+    expression.df %>%
+    tidyr::gather(.data$library, .data$cnv_est, -.data$start,
+                  -.data$stop, -.data$chrom, -.data$gene, -.data$sequence)
   return(expression.long.df)
 }
 
-#' Transform long dataframe to sorted matrix
+#' Transform long data frame to sorted matrix
 #'
 #' @param long.df A tidy-formatted data frame of CNA data
 #'

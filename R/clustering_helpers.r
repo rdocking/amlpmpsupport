@@ -15,7 +15,7 @@ get_cluster_assignments_for_k <- function(k, cluster_obj){
   cluster_assignments.df <-
     cluster_assignments %>%
     as.data.frame() %>%
-    rownames_to_column('library_name')
+    tibble::rownames_to_column('library_name')
   # Return the cluster assignments data frame
   return(cluster_assignments.df)
 }

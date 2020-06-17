@@ -159,21 +159,21 @@ subset_heatmap <- function(gene_set, annotation_col, counts.mat){
 grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, position = c("bottom", "right")) {
   plots <- list(...)
   position <- match.arg(position)
-  g <- ggplotGrob(plots[[1]] + theme(legend.position = position))$grobs
+  g <- ggplot2::ggplotGrob(plots[[1]] + ggplot2::theme(legend.position = position))$grobs
   legend <- g[[which(sapply(g, function(x) x$name) == "guide-box")]]
   lheight <- sum(legend$height)
   lwidth <- sum(legend$width)
-  gl <- lapply(plots, function(x) x + theme(legend.position = "none"))
+  gl <- lapply(plots, function(x) x + ggplot2::theme(legend.position = "none"))
   gl <- c(gl, ncol = ncol, nrow = nrow)
   combined <- switch(position,
                      "bottom" = gridExtra::arrangeGrob(do.call(gridExtra::arrangeGrob, gl),
                                             legend,
                                             ncol = 1,
-                                            heights = grid::unit.c(unit(1, "npc") - lheight, lheight)),
+                                            heights = grid::unit.c(grid::unit(1, "npc") - lheight, lheight)),
                      "right" = gridExtra::arrangeGrob(do.call(gridExtra::arrangeGrob, gl),
                                            legend,
                                            ncol = 2,
-                                           widths = grid::unit.c(unit(1, "npc") - lwidth, lwidth)))
+                                           widths = grid::unit.c(grid::unit(1, "npc") - lwidth, lwidth)))
   grid::grid.newpage()
   grid::grid.draw(combined)
   # return gtable invisibly

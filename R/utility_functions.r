@@ -160,17 +160,17 @@ upregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
 
 #' Pull down-regulated genes
 #'
-#' @param df Data frame containing DE results
-#' @param adjpval_threshold Adjusted p-value threshold
-#' @param log2fc_threshold Log2-fold-change threshold
+#' @param df Data frame containing DE results.
+#' @param adjpval_threshold Adjusted p-value threshold.
+#' @param log2fc_threshold Log2-fold-change threshold.
 #'
-#' @return A vector of down-regulated genes
+#' @return A vector of down-regulated genes.
 #' @export
 downregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
   dplyr::filter(df,
-         padj <= adjpval_threshold,
-         log2FoldChange <= -1 * log2fc_threshold) %>%
-    dplyr::pull(gene_name)
+         .data$padj <= adjpval_threshold,
+         .data$log2FoldChange <= -1 * log2fc_threshold) %>%
+    dplyr::pull(.data$gene_name)
 }
 
 #' Group / Tally / Table
@@ -178,12 +178,15 @@ downregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
 #' @param x A data frame.
 #' @param ... Unquoted variables to group by.
 #'
-#' @return A knitr::kable()
+#' @return A knitr::kable().
 #' @export
 #'
-#' @examples group_tally_table(iris, Species)
+#' @examples group_tally_table(mtcars, cyl, carb)
 group_tally_table <- function(x, ...) {
-  x %>% dplyr::group_by(...) %>% dplyr::tally(., wt = NULL) %>% knitr::kable()
+  x %>%
+    dplyr::group_by(...) %>%
+    dplyr::tally(wt = NULL) %>%
+    knitr::kable()
 }
 
 #' Save ggplot to PDF and PNG
@@ -195,17 +198,15 @@ group_tally_table <- function(x, ...) {
 #' @param ... parameters passed on to ggsave.
 #'
 #' @export
-#'
-#' @examples \dontrun{ggsave_pdf_and_png(foo, p)}
 ggsave_pdf_and_png <- function(filename_root, plot, width = 4, height = 2.472, ...){
 
   plot_file_pdf <- fs::path_ext_set(filename_root, 'pdf')
-  ggsave(plot_file_pdf, plot = plot,
+  ggplot2::ggsave(plot_file_pdf, plot = plot,
          device = "pdf", width = width, height = height,
          ...)
 
   plot_file_png <- fs::path_ext_set(filename_root, 'png')
-  ggsave(plot_file_png, plot = plot,
+  ggplot2::ggsave(plot_file_png, plot = plot,
          device = "png", width = width, height = height,
          ...)
 }

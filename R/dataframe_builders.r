@@ -103,19 +103,19 @@ spread_expression_df_to_matrix <- function(df, key, value){
 
 #' Convert an expression matrix to a tidy DF
 #'
-#' @param x Expression matrix
-#' @param gene_col Column name for the column containing gene names
-#' @param id_col Column name for the column containing sample IDs
-#' @param expr_col Column name for the column containing expression values
+#' @param x Expression matrix.
+#' @param gene_col Column name for the column containing gene names.
+#' @param id_col Column name for the column containing sample IDs.
+#' @param expr_col Column name for the column containing expression values.
 #'
-#' @return df A tidy data frame containing the expression results
+#' @return df A tidy data frame containing the expression results.
 #' @export
 #'
 gather_expression_matrix_to_tidy_df <- function(x, gene_col, id_col, expr_col){
   x %>%
     as.data.frame() %>%
-    rownames_to_column(gene_col) %>%
-    gather(key = !!id_col, value = !!expr_col, -gene_col)
+    tibble::rownames_to_column(gene_col) %>%
+    tidyr::gather(key = !!id_col, value = !!expr_col, -gene_col)
 }
 
 
