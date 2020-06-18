@@ -85,10 +85,10 @@ volcano_plotter <- function(voom_hits, label_threshold = 30){
                             NA)
   # Set up the plot
   p <-
-    ggplot2::ggplot(voom_hits, aes(x = logFC, y = neg_log10_p,
-                                   colour = neg_log10_p, label = label)) +
+    ggplot2::ggplot(voom_hits, aes(x = .data$logFC, y = .data$neg_log10_p,
+                                   colour = .data$neg_log10_p, label = .data$label)) +
     ggplot2::geom_point(alpha = 0.6) +
-    ggrepel::geom_label_repel(box.padding = unit(0.5, "lines"), na.rm = TRUE)
+    ggrepel::geom_label_repel(box.padding = grid::unit(0.5, "lines"), na.rm = TRUE)
   return(p)
 }
 
@@ -113,7 +113,7 @@ subset_pc_plot <- function(gene_set, exp.design, feature_label, counts.mat){
   pc1_pc2 <- subset(rotations, select = c("PC1", "PC2"))
   pc1_pc2$rna_seq_lib <- rownames(pc1_pc2)
   pc1_pc2_w_design <- dplyr::left_join(pc1_pc2, exp.design, by = 'rna_seq_lib')
-  p <- ggplot2::ggplot(pc1_pc2_w_design, aes(x = PC1, y = PC2)) +
+  p <- ggplot2::ggplot(pc1_pc2_w_design, aes(x = .data$PC1, y = .data$PC2)) +
     ggplot2::aes_string(colour = feature_label) +
     ggplot2::geom_point(size = 5) +
     ggplot2::scale_colour_brewer(palette = "Set1")

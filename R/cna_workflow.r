@@ -140,21 +140,21 @@ rescale_genes_by_reference <- function(expr.mat, reference_means){
 #'
 scale_by_rolling_mean <- function(expr.mat, genes.bed, window_size){
   # Convert to a long data frame - still ordered by gene
-  expr.mat %>%
-    expression_matrix_to_long_df(genes.bed) ->
-    tmp.long.df
+  tmp.long.df <-
+    expr.mat %>%
+    expression_matrix_to_long_df(genes.bed)
   # Split by chromosome and sample and apply rollmean
+  tmp.rollmean_by_chrom.long.df <-
   tmp.long.df %>%
-    group_by(chrom, library) %>%
-    dplyr::mutate(cnv_est = zoo::rollmean(x = cnv_est, k = window_size,
-                                   align = "center", fill = c(0,0,0))) ->
-    tmp.rollmean_by_chrom.long.df
+    dplyr::group_by(.data$chrom, .data$library) %>%
+    dplyr::mutate(cnv_est = zoo::rollmean(x = .data$cnv_est, k = window_size,
+                                   align = "center", fill = c(0,0,0)))
   # Ungroup and convert back to matrix
-  tmp.rollmean_by_chrom.long.df %>%
-    ungroup() %>%
-    long_df_to_ranked_matrix() ->
-    tmp.mat
-  return(tmp.mat)
+  ret.mat <-
+    tmp.rollmean_by_chrom.long.df %>%
+    dplyr::ungroup() %>%
+    long_df_to_ranked_matrix()
+  return(ret.mat)
 }
 
 #' Run the CNA workflow

@@ -12,9 +12,8 @@ subset_genes_for_plots <- function(tpm.mat, exp.design, gene_list){
   hits_to_plot <- as.data.frame(t(hits_to_plot))
   hits_to_plot$rna_seq_lib <- rownames(hits_to_plot)
   # Convert to long for plotting
-  hits_to_plot_long <- tidyr::gather(hits_to_plot,
-                              key = gene, value = TPM,
-                              -rna_seq_lib)
+  hits_to_plot_long <-
+    tidyr::gather(hits_to_plot, key = .data$gene, value = .data$TPM, -.data$rna_seq_lib)
   # Add the experimental design
   hits_to_plot_long <- dplyr::left_join(hits_to_plot_long,
                                  exp.design, by='rna_seq_lib')

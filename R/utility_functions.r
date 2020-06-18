@@ -152,9 +152,9 @@ num_to_text <- function(x, capitalize = FALSE){
 #' @export
 upregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
   dplyr::filter(df,
-         padj <= adjpval_threshold,
-         log2FoldChange >= log2fc_threshold) %>%
-    dplyr::pull(gene_name)
+         .data$padj <= adjpval_threshold,
+         .data$log2FoldChange >= log2fc_threshold) %>%
+    dplyr::pull(.data$gene_name)
 }
 
 #' Pull down-regulated genes
@@ -220,13 +220,15 @@ tfl_split_sort <- function(df){
 
   # Split identifier
   tmp.df <- df %>%
-    tidyr::separate(patient_external_id, into = c('prefix', 'suffix'),
+    tidyr::separate(.data$patient_external_id, into = c('prefix', 'suffix'),
                     sep = '-', remove = FALSE, fill = "right",
                     convert = TRUE)
 
+  # Convert to integer for sorting
   tmp.df$prefix <- as.integer(tmp.df$prefix)
   tmp.df$suffix <- as.integer(tmp.df$suffix)
 
-  dplyr::arrange(tmp.df, prefix, suffix) %>%
-    dplyr::select(-prefix, -suffix)
+  # Sort by prefix then suffix
+  dplyr::arrange(tmp.df, .data$prefix, .data$suffix) %>%
+    dplyr::select(-.data$prefix, -.data$suffix)
 }

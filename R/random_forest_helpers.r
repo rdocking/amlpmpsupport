@@ -69,9 +69,9 @@ rf_predictions <- function(caret.rf, yvals){
   rf.probs <- broom::tidy(stats::predict(caret.forest, type="prob"))
   rf.predict <- dplyr::bind_cols(rf.call, rf.probs)
   rf.predict <- rf.predict %>%
-    dplyr::mutate(rna_seq_lib = .rownames,
-                  prediction = as.factor(x)) %>%
-    dplyr::select(-x, -.rownames)
+    dplyr::mutate(rna_seq_lib = .data$.rownames,
+                  prediction = as.factor(.data$x)) %>%
+    dplyr::select(-.data$x, -.data$.rownames)
   return(rf.predict)
 }
 

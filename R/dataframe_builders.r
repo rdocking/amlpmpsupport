@@ -92,10 +92,10 @@ convert_sailfish_df_to_matrix <- function(sailfish.df, metric = c("NumReads", "T
 #'
 spread_expression_df_to_matrix <- function(df, key, value){
   # Quote the input variables
-  key <- enquo(key)
-  value <- enquo(value)
+  key <- rlang::enquo(key)
+  value <- rlang::enquo(value)
   # Spread to wide and convert to DF
-  tmp.df <- spread(df, key = !!key, value = !!value) %>% as.data.frame()
+  tmp.df <- tidyr::spread(df, key = !!key, value = !!value) %>% as.data.frame()
   # Set the first column as the rownames and return as a matrix
   rownames(tmp.df) <- tmp.df[,1]
   return(as.matrix(tmp.df[,-1]))

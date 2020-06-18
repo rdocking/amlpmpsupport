@@ -33,9 +33,10 @@ spread_filled_snv_df_to_wide <- function(df) {
     # Add a default concordance colour for plotting
     dplyr::mutate(concordance_col = 'black') %>%
     # Remove redundant columns
-    dplyr::select(-genotype, -hq_depth, -vaf, -vaf_numeric) %>%
+    dplyr::select(-.data$genotype, -.data$hq_depth,
+                  -.data$vaf, -.data$vaf_numeric) %>%
     # Spread to wide to compare samples by genotypes
-    tidyr::spread(key = sample, value = bool_genotype) %>%
+    tidyr::spread(key = .data$sample, value = .data$bool_genotype) %>%
     as.data.frame() %>%
     return()
 }
@@ -111,14 +112,15 @@ plot_vars_by_vaf <- function(wide.df, long.df, sample_name) {
 split_gatk_format_vals <- function(df){
 
   df %>%
-    dplyr::mutate(format_split = stringr::str_split(format_vals, ':'),
-    genotype = map_chr(format_split, select_by_position, 1),
-    allele_depth = map_chr(format_split, select_by_position, 2),
-    depth_split = stringr::str_split(allele_depth, ','),
-    ref_depth = as.integer(map_chr(depth_split, select_by_position, 1)),
-    alt_depth = as.integer(map_chr(depth_split, select_by_position, 2)),
-    vaf = alt_depth / (ref_depth + alt_depth) * 100.0,
-    reported_depth = as.integer(map_chr(format_split, select_by_position, 3)),
-    genotype_quality = as.integer(map_chr(format_split, select_by_position, 4)))
+    dplyr::mutate(
+      format_split = stringr::str_split(.data$format_vals, ':'),
+      genotype = purrr::map_chr(.data$format_split, select_by_position, 1),
+      allele_depth = purrr::map_chr(.data$format_split, select_by_position, 2),
+      depth_split = stringr::str_split(.data$allele_depth, ','),
+      ref_depth = as.integer(purrr::map_chr(.data$depth_split, select_by_position, 1)),
+      alt_depth = as.integer(purrr::map_chr(.data$depth_split, select_by_position, 2)),
+      vaf = .data$alt_depth / (.data$ref_depth + .data$alt_depth) * 100.0,
+      reported_depth = as.integer(purrr::map_chr(.data$format_split, select_by_position, 3)),
+      genotype_quality = as.integer(purrr::map_chr(.data$format_split, select_by_position, 4)))
 }
 
