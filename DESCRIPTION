@@ -1,7 +1,7 @@
 Package: amlpmpsupport
 Type: Package
 Title: Support Functions for AML PMP RNA-Seq Stratification Manuscript
-Version: 0.3.0
+Version: 1.0.0
 Authors@R: person("Rod", "Docking", email = "rdocking@bcgsc.ca", role = c("aut", "cre"))
 Maintainer: Rod Docking <rdocking@bcgsc.ca>
 Description: Support code for analysis done for the AML PMP RNA-Seq Diagnostic Manuscript.

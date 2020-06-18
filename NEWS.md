@@ -1,3 +1,7 @@
+# amlpmpsupport 1.0.0
+
+* Update all code to address all R CMD CHECK errors, warnings, and notes.
+
 # amlpmpsupport 0.3.0
 
 * Added `pkgdown` infrastructure for project website.
