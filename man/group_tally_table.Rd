@@ -12,11 +12,11 @@ group_tally_table(x, ...)
 \item{...}{Unquoted variables to group by.}
 }
 \value{
-A knitr::kable()
+A knitr::kable().
 }
 \description{
 Group / Tally / Table
 }
 \examples{
-group_tally_table(iris, Species)
+group_tally_table(mtcars, cyl, carb)
 }

@@ -7,14 +7,14 @@
 convert_sailfish_df_to_matrix(sailfish.df, metric = c("NumReads", "TPM"))
 }
 \arguments{
-\item{sailfish.df}{Data frame containing sailfish results}
+\item{sailfish.df}{Data frame containing sailfish results.}
 
-\item{metric}{Expression metric to use (either 'NumReads' or 'TPM')}
+\item{metric}{Expression metric to use (either 'NumReads' or 'TPM').}
 }
 \value{
-df A data frame containing the Sailfish results
+df A data frame containing the Sailfish results.
 }
 \description{
 Given a data frame containing Sailfish gene-level results, from the construct_sailfish_gene_dataframe
-function, convert that dataframe to a matrix suitable for downstream analysis
+function, convert that dataframe to a matrix suitable for downstream analysis.
 }

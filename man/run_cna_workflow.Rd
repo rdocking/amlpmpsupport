@@ -21,9 +21,9 @@ run_cna_workflow(
 
 \item{window_size}{Window size to use for rolling mean}
 
-\item{mean_tpm_threshold}{TPM threshold}
+\item{mean_tpm_threshold}{TPM threshold to retain genes}
 
-\item{cv_threshold}{CV threshold}
+\item{cv_threshold}{CV threshold to retain genes}
 
 \item{reference_labels}{Reference labels}
 

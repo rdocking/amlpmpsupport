@@ -7,16 +7,16 @@
 gather_expression_matrix_to_tidy_df(x, gene_col, id_col, expr_col)
 }
 \arguments{
-\item{x}{Expression matrix}
+\item{x}{Expression matrix.}
 
-\item{gene_col}{Column name for the column containing gene names}
+\item{gene_col}{Column name for the column containing gene names.}
 
-\item{id_col}{Column name for the column containing sample IDs}
+\item{id_col}{Column name for the column containing sample IDs.}
 
-\item{expr_col}{Column name for the column containing expression values}
+\item{expr_col}{Column name for the column containing expression values.}
 }
 \value{
-df A tidy data frame containing the expression results
+df A tidy data frame containing the expression results.
 }
 \description{
 Convert an expression matrix to a tidy DF

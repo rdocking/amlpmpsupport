@@ -2,18 +2,24 @@
 % Please edit documentation in R/plotting_functions.r
 \name{density_plotter}
 \alias{density_plotter}
-\title{Generate a density-plot of expression of selected genes, facetted by selected feature}
+\title{Generate a density-plot of expression of selected genes, faceted by selected feature}
 \usage{
 density_plotter(expression_df, feature_label)
 }
 \arguments{
-\item{expression_df}{Data frame containing expression values}
+\item{expression_df}{Data frame containing expression values.}
 
-\item{feature_label}{Label in the data frame to facet by}
+\item{feature_label}{Label in the data frame to facet by.}
 }
 \value{
 p A ggplot object containing the generated plot
 }
 \description{
-Generate a density-plot of expression of selected genes, facetted by selected feature
+Generate a density-plot of expression of selected genes, faceted by selected feature
+}
+\examples{
+df <- tibble::tibble(TPM = runif(300),
+                     lab = rep(c('A', 'B', 'C'), 100),
+                     gene = rep(c('A', 'B', 'C'), 100))
+density_plotter(df, feature_label = "lab")
 }

@@ -15,6 +15,6 @@ calculate_reference_set_mean_expression(expr.mat, reference_set)
 A transformed matrix
 }
 \description{
-In this case, we have a matrix of expression values, and a character vector of samples in the reference set
+In this case, we have a matrix of expression values, and a character vector of samples in the reference set.
 What we want to do is calculate the rowMeans from just the samples in the reference set
 }

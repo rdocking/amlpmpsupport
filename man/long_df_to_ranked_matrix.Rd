@@ -2,16 +2,16 @@
 % Please edit documentation in R/cna_workflow.r
 \name{long_df_to_ranked_matrix}
 \alias{long_df_to_ranked_matrix}
-\title{Transform long dataframe to sorted matrix}
+\title{Transform long data frame to sorted matrix}
 \usage{
 long_df_to_ranked_matrix(long.df)
 }
 \arguments{
-\item{long.df}{A tidy-formatted data frame of CNA data}
+\item{long.df}{A tidy-formatted data frame of CNA data.}
 }
 \value{
-ret.mat
+ret.mat The re-sorted matrix.
 }
 \description{
-Transform long dataframe to sorted matrix
+Transform long data frame to sorted matrix
 }

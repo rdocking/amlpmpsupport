@@ -10,10 +10,10 @@ construct_sailfish_gene_dataframe(exp.design)
 \item{exp.design}{Experimental design data frame}
 }
 \value{
-df A data frame containing the Sailfish results
+df A data frame containing the Sailfish results.
 }
 \description{
 Given a data frame containing library names and Sailfish paths, Construct a data frame of Sailfish results
 NOTE that this function makes strong assumptions about the shape of the incoming data frame,
-and currently only fetches \emph{gene-level} results
+and currently only fetches \emph{gene-level} results.
 }

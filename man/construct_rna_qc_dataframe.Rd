@@ -7,12 +7,12 @@
 construct_rna_qc_dataframe(exp.design)
 }
 \arguments{
-\item{exp.design}{Experimental design data frame}
+\item{exp.design}{Experimental design data frame.}
 }
 \value{
-df A data frame containing the RNA-SeQC results
+df A data frame containing the RNA-SeQC results.
 }
 \description{
 Given a data frame containing library names and RNA-SeQC paths, Construct a data frame of RNA-SeQC results
-NOTE that this function makes strong assumptions about the shape of the incoming data frame
+NOTE that this function makes strong assumptions about the shape of the incoming data frame.
 }

@@ -16,5 +16,5 @@ A transformed matrix
 }
 \description{
 In this case, we have a matrix of expression values, and a character vector of samples in the reference set
-What we want to do is calculate the CVs from just the samples in the reference set
+What we want to do is calculate the coefficients of variation from just the samples in the reference set
 }

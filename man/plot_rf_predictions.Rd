@@ -7,10 +7,10 @@
 plot_rf_predictions(rf_predictions)
 }
 \arguments{
-\item{rf_predictions}{A vector of predictions from a randomForest model}
+\item{rf_predictions}{A vector of predictions from a randomForest model.}
 }
 \value{
-p A ggplot plot
+p A ggplot plot.
 }
 \description{
 Plot predictions from a randomForest model

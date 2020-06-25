@@ -20,6 +20,3 @@ ggsave_pdf_and_png(filename_root, plot, width = 4, height = 2.472, ...)
 \description{
 Save ggplot to PDF and PNG
 }
-\examples{
-\dontrun{ggsave_pdf_and_png(foo, p)}
-}

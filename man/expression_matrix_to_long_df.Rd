@@ -2,14 +2,14 @@
 % Please edit documentation in R/cna_workflow.r
 \name{expression_matrix_to_long_df}
 \alias{expression_matrix_to_long_df}
-\title{Transform expression matrix to long dataframe}
+\title{Transform expression matrix to long data frame}
 \usage{
 expression_matrix_to_long_df(expression.mat, genes.bed)
 }
 \arguments{
-\item{expression.mat}{A matrix of expression values}
+\item{expression.mat}{A matrix of expression values.}
 
-\item{genes.bed}{A bed-like file containing gene coordinates}
+\item{genes.bed}{A bed-like file containing gene coordinates.}
 }
 \value{
 expression.long.df
@@ -17,5 +17,5 @@ expression.long.df
 \description{
 This function takes a matrix (columns are samples, rows are genes),
 and converts it into a 'long' data frame suitable for plotting
-It also handles sorting the data by chromosomal coordinate
+It also handles sorting the data by chromosomal coordinate.
 }

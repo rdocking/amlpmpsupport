@@ -7,14 +7,14 @@
 downregulated_genes(df, adjpval_threshold, log2fc_threshold)
 }
 \arguments{
-\item{df}{Data frame containing DE results}
+\item{df}{Data frame containing DE results.}
 
-\item{adjpval_threshold}{Adjusted p-value threshold}
+\item{adjpval_threshold}{Adjusted p-value threshold.}
 
-\item{log2fc_threshold}{Log2-fold-change threshold}
+\item{log2fc_threshold}{Log2-fold-change threshold.}
 }
 \value{
-A vector of down-regulated genes
+A vector of down-regulated genes.
 }
 \description{
 Pull down-regulated genes
