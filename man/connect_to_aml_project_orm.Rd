@@ -2,7 +2,8 @@
 % Please edit documentation in R/db_helpers.r
 \name{connect_to_aml_project_orm}
 \alias{connect_to_aml_project_orm}
-\title{Connect to AML Project ORM Database}
+\title{Connect to AML Project ORM Database
+\lifecycle{deprecated}}
 \usage{
 connect_to_aml_project_orm(
   dbname = "aml_project_db",
@@ -22,4 +23,5 @@ db_conn A database connection object
 }
 \description{
 Connect to AML Project ORM Database
+\lifecycle{deprecated}
 }

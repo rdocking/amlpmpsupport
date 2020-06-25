@@ -2,7 +2,7 @@
 % Please edit documentation in R/db_helpers.r
 \name{subtype_to_disease}
 \alias{subtype_to_disease}
-\title{Convert subtype indications to disease status}
+\title{From a subtype indication, return a simplified disease type}
 \usage{
 subtype_to_disease(subtype)
 }
@@ -13,5 +13,5 @@ subtype_to_disease(subtype)
 disease A simplified disease name
 }
 \description{
-Convert subtype indications to disease status
+From a subtype indication, return a simplified disease type
 }

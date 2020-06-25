@@ -2,7 +2,8 @@
 % Please edit documentation in R/db_helpers.r
 \name{retrieve_db_comments}
 \alias{retrieve_db_comments}
-\title{Retrieve DB Comments}
+\title{Retrieve DB Comments
+\lifecycle{deprecated}}
 \usage{
 retrieve_db_comments(db_conn)
 }
@@ -14,4 +15,5 @@ db_comments.df A data-frame containing curated result comments from the database
 }
 \description{
 Retrieve DB Comments
+\lifecycle{deprecated}
 }

@@ -16,6 +16,7 @@ Imports:
   ggplot2,
   glue,
   knitr,
+  lifecycle,
   magrittr,
   rlang,
   tibble,
@@ -50,3 +51,4 @@ Remotes:
   bioc::release/edgeR,
   bioc::release/limma,
   bioc::release/gage
+RdMacros: lifecycle

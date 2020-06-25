@@ -9,8 +9,11 @@
 #' @export
 #'
 construct_rna_qc_dataframe <- function(exp.design){
+
   # Set up an empty data frame
   rna_seqc.df <- data.frame()
+
+  # Aggregate all the data
   for (lib in exp.design$rna_seq_lib) {
     # Select the row that we want from the experimental design
     data_row <- dplyr::filter(exp.design, .data$rna_seq_lib == lib)
@@ -22,7 +25,6 @@ construct_rna_qc_dataframe <- function(exp.design){
     # Arrange by library name
     rna_seqc.df <- dplyr::arrange(rna_seqc.df, .data$Sample)
   }
-  # Return the data frame
   return(rna_seqc.df)
 }
 
@@ -79,28 +81,6 @@ convert_sailfish_df_to_matrix <- function(sailfish.df, metric = c("NumReads", "T
   return(metric_subset.mat)
 }
 
-#' Convert a 'tidy' expression DF to a matrix
-#'
-#' Assumes the only other columns other than 'key' and 'val' are expression measurements
-#'
-#' @param df A tidy data frame.
-#' @param key Column name for the column containing gene names.
-#' @param value Column name for the column containing sample IDs.
-#'
-#' @return x A matrix containing the expression results
-#' @export
-#'
-spread_expression_df_to_matrix <- function(df, key, value){
-  # Quote the input variables
-  key <- rlang::enquo(key)
-  value <- rlang::enquo(value)
-  # Spread to wide and convert to DF
-  tmp.df <- tidyr::spread(df, key = !!key, value = !!value) %>% as.data.frame()
-  # Set the first column as the rownames and return as a matrix
-  rownames(tmp.df) <- tmp.df[,1]
-  return(as.matrix(tmp.df[,-1]))
-}
-
 #' Convert an expression matrix to a tidy DF
 #'
 #' @param x Expression matrix.
@@ -117,7 +97,6 @@ gather_expression_matrix_to_tidy_df <- function(x, gene_col, id_col, expr_col){
     tibble::rownames_to_column(gene_col) %>%
     tidyr::gather(key = !!id_col, value = !!expr_col, -gene_col)
 }
-
 
 #' Pull EnrichR enriched terms for a single pathway source
 #'
@@ -143,6 +122,7 @@ pull_enrichr_enriched_terms <- function(enrichr_lst, pathway_source, cohort_name
 #' @export
 pull_enrichr_terms_to_plot <- function(long_df){
 
+  # Rank all the terms by how often they occur
   ranked_terms.df <-
     long_df %>%
     dplyr::group_by(.data$Term) %>%
@@ -150,6 +130,7 @@ pull_enrichr_terms_to_plot <- function(long_df){
                      mean = mean(.data$padj)) %>%
     dplyr::arrange(-.data$count, mean)
 
+  # Filter the ranked terms to those occurring at least twice
   terms_to_keep <-
     ranked_terms.df %>%
     dplyr::filter(.data$count >= 2) %>%
@@ -157,4 +138,29 @@ pull_enrichr_terms_to_plot <- function(long_df){
 
   return(list("ranked_terms" = ranked_terms.df,
               "terms_to_keep" = terms_to_keep))
+}
+
+#' Convert a 'tidy' expression DF to a matrix
+#'
+#' Assumes the only other columns other than 'key' and 'val' are expression measurements
+#'
+#' @param df A tidy data frame.
+#' @param key Column name for the column containing gene names.
+#' @param value Column name for the column containing sample IDs.
+#'
+#' @return x A matrix containing the expression results
+#' @export
+#'
+spread_expression_df_to_matrix <- function(df, key, value){
+
+  # Quote the input variables
+  key <- rlang::enquo(key)
+  value <- rlang::enquo(value)
+
+  # Spread to wide and convert to DF
+  tmp.df <- tidyr::spread(df, key = !!key, value = !!value) %>% as.data.frame()
+
+  # Set the first column as the rownames and return as a matrix
+  rownames(tmp.df) <- tmp.df[,1]
+  return(as.matrix(tmp.df[,-1]))
 }
