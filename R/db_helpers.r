@@ -1,5 +1,4 @@
 #' Connect to AML Project ORM Database
-#'\lifecycle{deprecated}
 #'
 #' @param dbname Database name
 #' @param host Database host
@@ -20,7 +19,6 @@ connect_to_aml_project_orm <- function(dbname = 'aml_project_db',
 
 
 #' Retrieve DB Libraries
-#'\lifecycle{deprecated}
 #'
 #' @param db_conn Database connection object
 #'
@@ -70,7 +68,6 @@ retrieve_db_libraries <- function(db_conn) {
 }
 
 #' Retrieve DB Paths
-#'\lifecycle{deprecated}
 #'
 #' @param db_conn Database connection object
 #'
@@ -167,7 +164,6 @@ subtype_to_disease <- function(subtype) {
 
 
 #' Retrieve DB Curated Results
-#'\lifecycle{deprecated}
 #'
 #' @param db_conn Database connection object
 #'
@@ -205,7 +201,6 @@ retrieve_db_curated_results <- function(db_conn) {
 }
 
 #' Retrieve DB Specimens
-#'\lifecycle{deprecated}
 #'
 #' @param db_conn Database connection object
 #'
@@ -238,7 +233,6 @@ retrieve_db_specimens <- function(db_conn) {
 }
 
 #' Retrieve DB Comments
-#'\lifecycle{deprecated}
 #'
 #' @param db_conn Database connection object
 #'

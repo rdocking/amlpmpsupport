@@ -2,8 +2,7 @@
 % Please edit documentation in R/db_helpers.r
 \name{retrieve_db_paths}
 \alias{retrieve_db_paths}
-\title{Retrieve DB Paths
-\lifecycle{deprecated}}
+\title{Retrieve DB Paths}
 \usage{
 retrieve_db_paths(db_conn)
 }
@@ -15,5 +14,4 @@ db_paths.df A data-frame containing path information from the database
 }
 \description{
 Retrieve DB Paths
-\lifecycle{deprecated}
 }

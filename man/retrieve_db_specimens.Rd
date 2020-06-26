@@ -2,8 +2,7 @@
 % Please edit documentation in R/db_helpers.r
 \name{retrieve_db_specimens}
 \alias{retrieve_db_specimens}
-\title{Retrieve DB Specimens
-\lifecycle{deprecated}}
+\title{Retrieve DB Specimens}
 \usage{
 retrieve_db_specimens(db_conn)
 }
@@ -15,5 +14,4 @@ db_specimens.df A data-frame containing specimen information from the database
 }
 \description{
 Retrieve DB Specimens
-\lifecycle{deprecated}
 }

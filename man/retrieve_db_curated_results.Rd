@@ -2,8 +2,7 @@
 % Please edit documentation in R/db_helpers.r
 \name{retrieve_db_curated_results}
 \alias{retrieve_db_curated_results}
-\title{Retrieve DB Curated Results
-\lifecycle{deprecated}}
+\title{Retrieve DB Curated Results}
 \usage{
 retrieve_db_curated_results(db_conn)
 }
@@ -15,5 +14,4 @@ db_curated_results.df A data-frame containing curated result information from th
 }
 \description{
 Retrieve DB Curated Results
-\lifecycle{deprecated}
 }

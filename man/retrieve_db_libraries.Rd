@@ -2,8 +2,7 @@
 % Please edit documentation in R/db_helpers.r
 \name{retrieve_db_libraries}
 \alias{retrieve_db_libraries}
-\title{Retrieve DB Libraries
-\lifecycle{deprecated}}
+\title{Retrieve DB Libraries}
 \usage{
 retrieve_db_libraries(db_conn)
 }
@@ -15,5 +14,4 @@ db_libraries.df A data-frame containing library information from the database
 }
 \description{
 Retrieve DB Libraries
-\lifecycle{deprecated}
 }
