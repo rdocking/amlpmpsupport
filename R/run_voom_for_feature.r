@@ -1,3 +1,35 @@
+#' Convert limma's logFC value to signed fold-change
+#'
+#' Note that this needs to convert negative logFC numbers to absolute values to get correct fold-change estimates.
+#' limma reports `logFC` as the 'estimate of the log2-fold-change'. For fold-changes in the \emph{negative} direction
+#' we need to use the absolute value of the fold-change before applying the sign
+#'
+#' @param logFC A logFC value reported by limma
+#'
+#' @return foldchange A signed fold-change value
+#' @export
+#'
+limma_logFC_to_signed_foldchange <- function(logFC){
+  return (ifelse(abs(logFC >= 0), 2^logFC, (2^(abs(logFC)) * -1)))
+}
+
+#' Munge differential expression hits in voom format to IPA-friendly format
+#'
+#' @param voom_hits A data frame containing voom hits
+#'
+#' @return df A data frame containing the voom hits in IPA-friendly format
+#' @export
+#'
+munge_voom_to_ipa <- function(voom_hits){
+  ipa_hits <-
+    dplyr::transmute(voom_hits,
+                     ID = .data$gene,
+                     FOLD = limma_logFC_to_signed_foldchange(.data$logFC),
+                     P_VALUE = .data$P.Value,
+                     Q_VALUE = .data$adj.P.Val)
+  return(ipa_hits)
+}
+
 #' Run voom for a given feature comparison
 #'
 #' @param yvals Feature in the experimental design data frame to use as data labels
@@ -48,36 +80,3 @@ run_voom_for_feature <- function(yvals, exp.design, counts.mat){
 #                                                      multiVals="first"))
 #  return(voom_hits)
 #}
-
-
-#' Munge differential expression hits in voom format to IPA-friendly format
-#'
-#' @param voom_hits A data frame containing voom hits
-#'
-#' @return df A data frame containing the voom hits in IPA-friendly format
-#' @export
-#'
-munge_voom_to_ipa <- function(voom_hits){
-  ipa_hits <-
-    dplyr::transmute(voom_hits,
-                     ID = .data$gene,
-                     FOLD = limma_logFC_to_signed_foldchange(.data$logFC),
-                     P_VALUE = .data$P.Value,
-                     Q_VALUE = .data$adj.P.Val)
-  return(ipa_hits)
-}
-
-#' Convert limma's logFC value to signed fold-change
-#'
-#' Note that this needs to convert negative logFC numbers to absolute values to get correct fold-change estimates.
-#' limma reports `logFC` as the 'estimate of the log2-fold-change'. For fold-changes in the \emph{negative} direction
-#' we need to use the absolute value of the fold-change before applying the sign
-#'
-#' @param logFC A logFC value reported by limma
-#'
-#' @return foldchange A signed fold-change value
-#' @export
-#'
-limma_logFC_to_signed_foldchange <- function(logFC){
-  return (ifelse(abs(logFC >= 0), 2^logFC, (2^(abs(logFC)) * -1)))
-}
