@@ -1,5 +1,3 @@
-# Note - Rod migrated some of this code from the older CCG `ifxparsers` R package
-
 #' Parse PAVfinder 0.2.0 output
 #'
 #' @param events_path Path to the PAVfinder events file
@@ -99,7 +97,7 @@ parse_pavfinder_0.3.0 <- function (events_path) {
     transcript2_tpm = readr::col_double(),
     filter = readr::col_character()
   )
-  # Read the TSV data - let readr pick the column types for now
+  # Read the TSV data
   events.dat <- readr::read_tsv(events_path,
                                 skip=2,
                                 col_names = col_names,

@@ -10,7 +10,8 @@ plot_rf_predictions <- function(rf_predictions){
   rf_predictions.long <- tidyr::gather(rf_predictions,
                                        key = .data$predicted_class,
                                        .data$probability,
-                                       -.data$rna_seq_lib, -.data$prediction, -.data$prior_label)
+                                       -.data$rna_seq_lib,
+                                       -.data$prediction, -.data$prior_label)
   # Generate the plot
   p <- ggplot2::ggplot(rf_predictions.long,
                        aes(x = factor(.data$predicted_class),
