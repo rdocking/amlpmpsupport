@@ -2,7 +2,8 @@
 % Please edit documentation in R/snv_indel_helpers.r
 \name{plot_vars_by_coverage}
 \alias{plot_vars_by_coverage}
-\title{This function takes the long and wide data frames, and plots all variants by covearge, colouring them by concordance status}
+\title{This function takes the long and wide data frames, and plots all variants by coverage,
+colouring them by concordance status}
 \usage{
 plot_vars_by_coverage(wide.df, long.df, sample_name)
 }
@@ -17,5 +18,6 @@ plot_vars_by_coverage(wide.df, long.df, sample_name)
 A plot
 }
 \description{
-This function takes the long and wide data frames, and plots all variants by covearge, colouring them by concordance status
+This function takes the long and wide data frames, and plots all variants by coverage,
+colouring them by concordance status
 }

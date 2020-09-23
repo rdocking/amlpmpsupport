@@ -7,7 +7,7 @@
 matrix_glimpse(mat)
 }
 \arguments{
-\item{mat}{A matrix}
+\item{mat}{A numeric matrix}
 }
 \description{
 # Report basic information about a matrix
