@@ -11,6 +11,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' df <- tibble::tibble(gene_name = c('A', 'B', 'C', 'D'),
 #'                      padj = c(0.001, 0.1, 0.2, 0.01),
 #'                      log2FoldChange = c(-5, -1, 1, 5),
@@ -18,6 +19,7 @@
 #' aps_volcano_plot(df, q_threshold = 0.05, fc_threshold = 2,
 #'                  label_q_threshold = 0.05, label_fc_threshold = 2,
 #'                  draw_labels = TRUE)
+#' }
 aps_volcano_plot <- function(df, q_threshold, fc_threshold,
                              label_q_threshold, label_fc_threshold,
                              draw_labels = FALSE){
