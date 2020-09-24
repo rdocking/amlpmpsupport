@@ -85,8 +85,8 @@ read_filled_variant_tsv <- function(tsv_file) {
 #' @return updated_df An augmented data frame.
 #' @export
 #'
-#' @examples
-#' \dontrun{split_gatk_format_vals(df)}
+# @examples
+# \dontrun{split_gatk_format_vals(df)}
 split_gatk_format_vals <- function(df){
 
   df %>%

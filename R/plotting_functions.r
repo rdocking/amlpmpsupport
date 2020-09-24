@@ -10,6 +10,14 @@
 #' @return A ggplot object
 #' @export
 #'
+# @examples
+# df <- tibble::tibble(gene_name = c('A', 'B', 'C', 'D'),
+#                      padj = c(0.001, 0.1, 0.2, 0.01),
+#                      log2FoldChange = c(-5, -1, 1, 5),
+#                      `-10log10(padj)` = c(30, 10, 6.9897, 20))
+# aps_volcano_plot(df, q_threshold = 0.05, fc_threshold = 2,
+#                  label_q_threshold = 0.05, label_fc_threshold = 2,
+#                  draw_labels = TRUE)
 aps_volcano_plot <- function(df, q_threshold, fc_threshold,
                              label_q_threshold, label_fc_threshold,
                              draw_labels = FALSE){
@@ -55,6 +63,11 @@ aps_volcano_plot <- function(df, q_threshold, fc_threshold,
 #' @return p A ggplot object containing the generated plot
 #' @export
 #'
+# @examples
+# df <- tibble::tibble(TPM = runif(300),
+#                      lab = rep(c('A', 'B', 'C'), 100),
+#                      gene = rep(c('A', 'B', 'C'), 100))
+# density_plotter(df, feature_label = "lab")
 density_plotter <- function(expression_df, feature_label){
   p <- ggplot2::ggplot(expression_df) +
     ggplot2::aes_string(fill = feature_label) +
@@ -128,6 +141,9 @@ grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, 
 #' @return p A ggplot object containing the generated plot
 #' @export
 #'
+# @examples
+# df <- tibble::tibble(lab = "Label", TPM = c(10, 100, 1000), gene = c('Foo', 'Bar', 'Baz'))
+# hit_plotter(expression_df = df, feature_label = "lab")
 hit_plotter <- function(expression_df, feature_label){
   p <- ggplot2::ggplot(expression_df) +
     ggplot2::aes_string(x = feature_label, colour = feature_label) +

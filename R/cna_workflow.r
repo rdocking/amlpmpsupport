@@ -89,8 +89,8 @@ long_df_to_ranked_matrix <- function(long.df){
 #' @return A matrix with transformed values
 #' @export
 #'
-#' @examples
-#' \dontrun{log2_plus1_transform(matrix(c(1, 2, 4, 8)))}
+# @examples
+# \dontrun{log2_plus1_transform(matrix(c(1, 2, 4, 8)))}
 log2_plus1_transform <- function(x){
   log2_plus_one.mat <- log2(x + 1)
   return(log2_plus_one.mat)
