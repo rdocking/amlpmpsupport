@@ -12,6 +12,3 @@ matrix_glimpse(mat)
 \description{
 # Report basic information about a matrix
 }
-\examples{
-\dontrun{matrix_glimpse(matrix(runif(1000), nrow = 200, ncol = 500))}
-}

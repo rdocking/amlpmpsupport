@@ -15,6 +15,3 @@ A matrix with transformed values
 \description{
 Transform data by taking the log2(count+1)
 }
-\examples{
-\dontrun{log2_plus1_transform(matrix(c(1, 2, 4, 8)))}
-}

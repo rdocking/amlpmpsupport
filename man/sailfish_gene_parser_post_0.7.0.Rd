@@ -15,6 +15,3 @@ df
 \description{
 Parse gene-level output from Sailfish >=0.7.0
 }
-\examples{
-\dontrun{sailfish.genes.df <- sailfish_gene_parser_post_0.7.0(sailfish_path)}
-}

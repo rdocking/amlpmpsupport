@@ -17,6 +17,3 @@ The vector at the given index.
 \description{
 This is mostly useful in the context of purrr::map pipelines.
 }
-\examples{
-\dontrun{select_by_position(c(1,2,3), 2)}
-}
