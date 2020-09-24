@@ -42,9 +42,9 @@ ggsave_pdf_and_png <- function(filename_root, plot, width = 4, height = 2.472, .
 #'
 #' @return A knitr::kable().
 #' @export
-#'
-#' @examples
-#' \dontrun{group_tally_table(mtcars, cyl, carb)}
+#
+# @examples
+# \dontrun{group_tally_table(mtcars, cyl, carb)}
 group_tally_table <- function(x, ...) {
   x %>%
     dplyr::group_by(...) %>%
