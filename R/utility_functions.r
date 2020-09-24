@@ -42,9 +42,9 @@ ggsave_pdf_and_png <- function(filename_root, plot, width = 4, height = 2.472, .
 #'
 #' @return A knitr::kable().
 #' @export
-#
-# @examples
-# \dontrun{group_tally_table(mtcars, cyl, carb)}
+#'
+#' @examples
+#' group_tally_table(mtcars, cyl, carb)
 group_tally_table <- function(x, ...) {
   x %>%
     dplyr::group_by(...) %>%
@@ -58,8 +58,8 @@ group_tally_table <- function(x, ...) {
 #'
 #' @export
 #'
-# @examples
-# \dontrun{matrix_glimpse(matrix(runif(1000), nrow = 200, ncol = 500))}
+#' @examples
+#' matrix_glimpse(matrix(runif(1000), nrow = 200, ncol = 500))
 matrix_glimpse <- function(mat) {
   print("Dimensions: ")
   print(dim(mat))
@@ -103,9 +103,9 @@ nest_libraries_by_patient <- function(patients.df, libraries.df, key = 'tfl_id')
 #' @return A character string.
 #' @export
 #'
-# @examples
-# \dontrun{num_to_text(5, capitalize = TRUE)}
-# \dontrun{num_to_text(23, capitalize = FALSE)}
+#' @examples
+#' num_to_text(5, capitalize = TRUE)
+#' num_to_text(23, capitalize = FALSE)
 num_to_text <- function(x, capitalize = FALSE){
 
   # Input checks
@@ -162,8 +162,8 @@ num_to_text <- function(x, capitalize = FALSE){
 #' @return A kable table
 #' @export
 #'
-# @examples
-# \dontrun{pretty_kable(data.frame(x = c(1000, 999), y = c(0.345:0.351)))}
+#' @examples
+#' pretty_kable(data.frame(x = c(1000, 999), y = c(0.345:0.351)))
 pretty_kable <- function(df, ...){
   # This has options I like - comma separator for thousands, small number of sig digits
   knitr::kable(df, digits = 2,
@@ -179,8 +179,8 @@ pretty_kable <- function(df, ...){
 #' @return A formatted number
 #' @export
 #'
-# @examples
-# \dontrun{pretty_num(5.55654)}
+#' @examples
+#' pretty_num(5.55654)
 pretty_num <- function(x, ...){
   # This has options I like - small number of sig digits
   prettyNum(x, digits = 3, ...)
@@ -196,8 +196,8 @@ pretty_num <- function(x, ...){
 #' @return The vector at the given index.
 #' @export
 #'
-# @examples
-# \dontrun{select_by_position(c(1,2,3), 2)}
+#' @examples
+#' select_by_position(c(1,2,3), 2)
 select_by_position <- function(x, position) x[position]
 
 #' A function to sort TFL IDs into ascending order

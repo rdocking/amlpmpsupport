@@ -15,3 +15,6 @@ df
 \description{
 Parse output from RNA-SeQC v1.1.8
 }
+\examples{
+\dontrun{qc.dat <- rna_seqc_parser(rna_seqc_path)}
+}

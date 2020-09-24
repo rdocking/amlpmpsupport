@@ -17,3 +17,6 @@ A formatted number
 \description{
 Set a function for pretty-printing numbers in the text
 }
+\examples{
+pretty_num(5.55654)
+}

@@ -17,3 +17,6 @@ A knitr::kable().
 \description{
 Group / Tally / Table
 }
+\examples{
+group_tally_table(mtcars, cyl, carb)
+}

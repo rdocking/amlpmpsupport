@@ -17,3 +17,9 @@ p A ggplot object containing the generated plot
 \description{
 Generate a density-plot of expression of selected genes, faceted by selected feature
 }
+\examples{
+df <- tibble::tibble(TPM = runif(300),
+                     lab = rep(c('A', 'B', 'C'), 100),
+                     gene = rep(c('A', 'B', 'C'), 100))
+density_plotter(df, feature_label = "lab")
+}

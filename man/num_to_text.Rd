@@ -17,3 +17,7 @@ A character string.
 \description{
 Convert a small number to a text representation
 }
+\examples{
+num_to_text(5, capitalize = TRUE)
+num_to_text(23, capitalize = FALSE)
+}

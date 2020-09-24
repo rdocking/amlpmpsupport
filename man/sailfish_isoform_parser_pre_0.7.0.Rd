@@ -15,3 +15,6 @@ df
 \description{
 Parse isoform-level output from Sailfish <0.7.0
 }
+\examples{
+sailfish.df <- sailfish_isoform_parser_pre_0.7.0(sailfish_path)
+}
