@@ -15,3 +15,6 @@ updated_df An augmented data frame.
 \description{
 Split a FORMAT string from GATK-haplotype to get simpler statistics
 }
+\examples{
+\dontrun{split_gatk_format_vals(df)}
+}

@@ -32,3 +32,12 @@ A ggplot object
 \description{
 Draw Volcano Plot for APS DE Comparison
 }
+\examples{
+df <- tibble::tibble(gene_name = c('A', 'B', 'C', 'D'),
+                     padj = c(0.001, 0.1, 0.2, 0.01),
+                     log2FoldChange = c(-5, -1, 1, 5),
+                     `-10log10(padj)` = c(30, 10, 6.9897, 20))
+aps_volcano_plot(df, q_threshold = 0.05, fc_threshold = 2,
+                 label_q_threshold = 0.05, label_fc_threshold = 2,
+                 draw_labels = TRUE)
+}
