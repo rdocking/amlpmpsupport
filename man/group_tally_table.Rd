@@ -18,5 +18,5 @@ A knitr::kable().
 Group / Tally / Table
 }
 \examples{
-group_tally_table(mtcars, cyl, carb)
+\dontrun{group_tally_table(mtcars, cyl, carb)}
 }

@@ -18,5 +18,5 @@ A formatted number
 Set a function for pretty-printing numbers in the text
 }
 \examples{
-pretty_num(5.55654)
+\dontrun{pretty_num(5.55654)}
 }

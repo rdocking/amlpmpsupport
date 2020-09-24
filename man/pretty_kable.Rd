@@ -18,5 +18,5 @@ A kable table
 Set a function for pretty-printing kables
 }
 \examples{
-pretty_kable(data.frame(x = c(1000, 999), y = c(0.345:0.351)))
+\dontrun{pretty_kable(data.frame(x = c(1000, 999), y = c(0.345:0.351)))}
 }
