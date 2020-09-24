@@ -114,7 +114,7 @@ parse_pavfinder_0.3.0 <- function (events_path) {
 #' @export
 #'
 #' @examples
-#'#' qc.dat <- rna_seqc_parser(rna_seqc_path)
+#' \dontrun{qc.dat <- rna_seqc_parser(rna_seqc_path)}
 rna_seqc_parser <- function ( rna_seqc_path ) {
   # Read the TSV data, using readr::read_tsv
   rna_seqc.dat <- readr::read_tsv(rna_seqc_path)
@@ -129,7 +129,7 @@ rna_seqc_parser <- function ( rna_seqc_path ) {
 #' @export
 #'
 #' @examples
-#'#' sailfish.genes.df <- sailfish_gene_parser_post_0.7.0(sailfish_path)
+#' \dontrun{sailfish.genes.df <- sailfish_gene_parser_post_0.7.0(sailfish_path)}
 sailfish_gene_parser_post_0.7.0 <- function ( sailfish_path ) {
   # The sailfish files in the DB are just the directory name
   sailfish_file <- stringr::str_c(sailfish_path, '/quant.genes.sf.gz', '/')
@@ -159,7 +159,7 @@ sailfish_gene_parser_post_0.7.0 <- function ( sailfish_path ) {
 #' @export
 #'
 #' @examples
-#'#' sailfish.df <- sailfish_isoform_parser_pre_0.7.0(sailfish_path)
+#' \dontrun{sailfish.df <- sailfish_isoform_parser_pre_0.7.0(sailfish_path)}
 sailfish_isoform_parser_pre_0.7.0 <- function ( sailfish_path ) {
   # The sailfish files in the DB are just the directory name
   sailfish_file <- stringr::str_c(sailfish_path, '/quant_bias_corrected.sf', '/')
@@ -191,7 +191,7 @@ sailfish_isoform_parser_pre_0.7.0 <- function ( sailfish_path ) {
 #' @export
 #'
 #' @examples
-#'#' sailfish.df <- sailfish_isoform_parser_post_0.7.0(sailfish_path)
+#' \dontrun{sailfish.df <- sailfish_isoform_parser_post_0.7.0(sailfish_path)}
 sailfish_isoform_parser_post_0.7.0 <- function ( sailfish_path ) {
   # The sailfish files in the DB are just the directory name
   sailfish_file <- stringr::str_c(sailfish_path, '/quant.sf.gz', '/')

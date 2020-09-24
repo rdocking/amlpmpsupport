@@ -17,7 +17,3 @@ p A ggplot object containing the generated plot
 \description{
 Generate a dot-plot of expression of selected genes, facetted by selected feature
 }
-\examples{
-df <- tibble::tibble(lab = "Label", TPM = c(10, 100, 1000), gene = c('Foo', 'Bar', 'Baz'))
-hit_plotter(expression_df = df, feature_label = "lab")
-}

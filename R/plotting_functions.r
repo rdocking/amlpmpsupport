@@ -55,11 +55,6 @@ aps_volcano_plot <- function(df, q_threshold, fc_threshold,
 #' @return p A ggplot object containing the generated plot
 #' @export
 #'
-#' @examples
-#' df <- tibble::tibble(TPM = runif(300),
-#'                      lab = rep(c('A', 'B', 'C'), 100),
-#'                      gene = rep(c('A', 'B', 'C'), 100))
-#' density_plotter(df, feature_label = "lab")
 density_plotter <- function(expression_df, feature_label){
   p <- ggplot2::ggplot(expression_df) +
     ggplot2::aes_string(fill = feature_label) +
@@ -133,9 +128,6 @@ grid_arrange_shared_legend <- function(..., ncol = length(list(...)), nrow = 1, 
 #' @return p A ggplot object containing the generated plot
 #' @export
 #'
-#' @examples
-#' df <- tibble::tibble(lab = "Label", TPM = c(10, 100, 1000), gene = c('Foo', 'Bar', 'Baz'))
-#' hit_plotter(expression_df = df, feature_label = "lab")
 hit_plotter <- function(expression_df, feature_label){
   p <- ggplot2::ggplot(expression_df) +
     ggplot2::aes_string(x = feature_label, colour = feature_label) +
