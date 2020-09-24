@@ -6,7 +6,7 @@ name: check_and_document
 
 jobs:
   check_and_document:
-    runs-on: macOS-latest
+    runs-on: macos-10.15
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
