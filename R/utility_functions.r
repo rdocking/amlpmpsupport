@@ -13,6 +13,34 @@ downregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
     dplyr::pull(.data$gene_name)
 }
 
+#' Summarize distribution characteristics for a column of interest
+#'
+#' @param df Data frame
+#' @param x Bare name of column to summarize
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' df <- tibble(bar = rnorm(10000))
+#' expression_summary(df, bar)
+expression_summary <- function(df, x){
+  # Quote the incoming variable name
+  x <- enquo(x)
+  # Unquote within dplyr chain
+  df %>% summarise(
+    min = min(!!x),
+    q1 = quantile(!!x, 0.25),
+    mean = mean(!!x),
+    median = median(!!x),
+    q3 = quantile(!!x, 0.75),
+    max = max(!!x),
+    std_dev = sd(!!x),
+    median_abs_dev = mad(!!x),
+    coefficient_of_variation = std_dev / mean)
+}
+
+
 #' Save ggplot to PDF and PNG
 #'
 #' @param filename_root Root filename (without extension).
