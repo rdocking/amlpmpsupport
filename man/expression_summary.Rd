@@ -12,12 +12,12 @@ expression_summary(df, x)
 \item{x}{Bare name of column to summarize}
 }
 \value{
-
+A tibble containing a summary of the data distribution
 }
 \description{
 Summarize distribution characteristics for a column of interest
 }
 \examples{
-df <- tibble(bar = rnorm(10000))
+df <- tibble::tibble(bar = rnorm(10000))
 expression_summary(df, bar)
 }

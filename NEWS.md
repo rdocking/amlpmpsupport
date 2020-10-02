@@ -1,3 +1,7 @@
+# amlpmpsupport 1.1.0
+
+* Add additional functions supporting manuscript analysis.
+
 # amlpmpsupport 1.0.0
 
 * Update all code to address all R CMD CHECK errors, warnings, and notes.

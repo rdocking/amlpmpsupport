@@ -18,26 +18,26 @@ downregulated_genes <- function(df, adjpval_threshold, log2fc_threshold){
 #' @param df Data frame
 #' @param x Bare name of column to summarize
 #'
-#' @return
+#' @return A tibble containing a summary of the data distribution
 #' @export
 #'
 #' @examples
-#' df <- tibble(bar = rnorm(10000))
+#' df <- tibble::tibble(bar = rnorm(10000))
 #' expression_summary(df, bar)
 expression_summary <- function(df, x){
   # Quote the incoming variable name
-  x <- enquo(x)
+  x <- dplyr::enquo(x)
   # Unquote within dplyr chain
-  df %>% summarise(
+  df %>% dplyr::summarise(
     min = min(!!x),
-    q1 = quantile(!!x, 0.25),
+    q1 = stats::quantile(!!x, 0.25),
     mean = mean(!!x),
-    median = median(!!x),
-    q3 = quantile(!!x, 0.75),
+    median = stats::median(!!x),
+    q3 = stats::quantile(!!x, 0.75),
     max = max(!!x),
-    std_dev = sd(!!x),
-    median_abs_dev = mad(!!x),
-    coefficient_of_variation = std_dev / mean)
+    std_dev = stats::sd(!!x),
+    median_abs_dev = stats::mad(!!x),
+    coefficient_of_variation = .data$std_dev / mean)
 }
 
 
