@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate a heatmap for a subset of genes — subset_heatmap • amlpmpsupport</title>
+<title>Summarize distribution characteristics for a column of interest — expression_summary • amlpmpsupport</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Generate a heatmap for a subset of genes — subset_heatmap" />
-<meta property="og:description" content="Generate a heatmap for a subset of genes" />
+<meta property="og:title" content="Summarize distribution characteristics for a column of interest — expression_summary" />
+<meta property="og:description" content="Summarize distribution characteristics for a column of interest" />
 
 
 
@@ -112,38 +112,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate a heatmap for a subset of genes</h1>
+    <h1>Summarize distribution characteristics for a column of interest</h1>
     
-    <div class="hidden name"><code>subset_heatmap.Rd</code></div>
+    <div class="hidden name"><code>expression_summary.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Generate a heatmap for a subset of genes</p>
+    <p>Summarize distribution characteristics for a column of interest</p>
     </div>
 
-    <pre class="usage"><span class='fu'>subset_heatmap</span>(<span class='kw'>gene_set</span>, <span class='kw'>annotation_col</span>, <span class='kw'>counts.mat</span>)</pre>
+    <pre class="usage"><span class='fu'>expression_summary</span>(<span class='kw'>df</span>, <span class='kw'>x</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>gene_set</th>
-      <td><p>A vector containing gene names to plot</p></td>
+      <th>df</th>
+      <td><p>Data frame</p></td>
     </tr>
     <tr>
-      <th>annotation_col</th>
-      <td><p>Data frame containing annotation columns for pheatmap</p></td>
-    </tr>
-    <tr>
-      <th>counts.mat</th>
-      <td><p>A matrix of gene count data</p></td>
+      <th>x</th>
+      <td><p>Bare name of column to summarize</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>p A ggplot plot</p>
+    <p>A tibble containing a summary of the data distribution</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>df</span> <span class='op'>&lt;-</span> <span class='kw'>tibble</span>::<span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span>(bar = <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='fl'>10000</span>))
+<span class='fu'>expression_summary</span>(<span class='kw'>df</span>, <span class='kw'>bar</span>)
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1 x 9</span><span>
+#&gt;     min     q1     mean   median    q3   max std_dev median_abs_dev
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span> -</span><span style='color: #BB0000;'>3.37</span><span> -</span><span style='color: #BB0000;'>0.679</span><span> -</span><span style='color: #BB0000;'>0.002</span><span style='color: #BB0000;text-decoration: underline;'>31</span><span> -</span><span style='color: #BB0000;'>0.003</span><span style='color: #BB0000;text-decoration: underline;'>28</span><span> 0.674  3.59   0.990           1.00
+#&gt; </span><span style='color: #555555;'># … with 1 more variable: coefficient_of_variation </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
